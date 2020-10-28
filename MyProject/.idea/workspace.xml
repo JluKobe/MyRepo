@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="04abfb22-9091-4727-b1f0-8d5d60b75e81" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myproject/SwaggerConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myproject/SwaggerConfiguration.java" afterDir="false" />
-    </list>
+    <list default="true" id="04abfb22-9091-4727-b1f0-8d5d60b75e81" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +155,7 @@
       <workItem from="1603672894757" duration="587000" />
       <workItem from="1603673520279" duration="1456000" />
       <workItem from="1603759988567" duration="21142000" />
-      <workItem from="1603870499551" duration="2594000" />
+      <workItem from="1603870499551" duration="2860000" />
     </task>
     <task id="LOCAL-00001" summary="modify getAllWord controller">
       <created>1603872165427</created>
@@ -173,7 +171,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603873263433</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="modify swagger config">
+      <created>1603873449820</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1603873449820</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,7 +198,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="modify getAllWord controller" />
     <MESSAGE value="remove controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove controller" />
+    <MESSAGE value="modify swagger config" />
+    <option name="LAST_COMMIT_MESSAGE" value="modify swagger config" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
