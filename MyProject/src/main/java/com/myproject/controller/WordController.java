@@ -28,7 +28,7 @@ public class WordController {
     }
 
     @ApiOperation(value = "查询所有单词", notes = "getAllWord")
-//    @GetMapping(value = "/getAllWord")
+    @GetMapping(value = "/getAllWord")
     public ResultBean<List<Word>> getAllWord() {
         List<Word> wordList = iWord.getAllWord();
         return new ResultBean<>(wordList);
