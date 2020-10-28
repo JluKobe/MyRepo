@@ -3,16 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="04abfb22-9091-4727-b1f0-8d5d60b75e81" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myproject/controller/WordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myproject/controller/WordController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myproject/service/IWord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myproject/service/IWord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myproject/service/impl/WordImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myproject/service/impl/WordImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/annotation/Column.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/annotation/MyAnnotation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/annotation/Table.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/aop/ControllerAop.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myproject/controller/RecoverDataLogController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myproject/jpa/bean/RecoverDataLog.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myproject/jpa/repository/RecoverRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myproject/service/impl/RecoverDataLogImpl.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/controller/WordController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myproject/controller/WordController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/service/IWord.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myproject/service/IWord.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/service/impl/WordImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myproject/service/impl/WordImpl.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -167,8 +162,16 @@
       <workItem from="1603672894757" duration="587000" />
       <workItem from="1603673520279" duration="1456000" />
       <workItem from="1603759988567" duration="21142000" />
-      <workItem from="1603870499551" duration="1331000" />
+      <workItem from="1603870499551" duration="2470000" />
     </task>
+    <task id="LOCAL-00001" summary="modify getAllWord controller">
+      <created>1603872165427</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1603872165427</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -185,24 +188,13 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="modify getAllWord controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="modify getAllWord controller" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/myproject/controller/RecoverDataLogController.java</url>
-          <line>20</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/myproject/service/impl/RecoverDataLogImpl.java</url>
-          <line>19</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/myproject/controller/RecoverDataLogController.java</url>
-          <line>29</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/myproject/controller/StudentController.java</url>
           <line>26</line>
