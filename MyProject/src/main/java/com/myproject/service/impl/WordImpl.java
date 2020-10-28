@@ -7,6 +7,8 @@ import com.myproject.vo.WordVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class WordImpl implements IWord {
 
@@ -23,5 +25,11 @@ public class WordImpl implements IWord {
         repository.save(word);
         Word w = repository.findWordByWord(wordVo.getWord());
         return w.getId();
+    }
+
+    @Override
+    public List<Word> getAllWord() {
+        List<Word> wordList = repository.findAll();
+        return wordList;
     }
 }
