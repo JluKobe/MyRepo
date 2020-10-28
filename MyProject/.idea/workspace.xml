@@ -3,10 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="04abfb22-9091-4727-b1f0-8d5d60b75e81" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/SwaggerConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myproject/SwaggerConfiguration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/service/IRecoverDataLog.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/vo/RecoverDataLogVo$RecoverDataLogVoBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/vo/RecoverDataLogVo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myproject/controller/WordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myproject/controller/WordController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myproject/jpa/repository/WordRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myproject/jpa/repository/WordRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myproject/service/IWord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myproject/service/IWord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myproject/service/impl/WordImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myproject/service/impl/WordImpl.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -161,7 +161,7 @@
       <workItem from="1603672894757" duration="587000" />
       <workItem from="1603673520279" duration="1456000" />
       <workItem from="1603759988567" duration="21142000" />
-      <workItem from="1603870499551" duration="4414000" />
+      <workItem from="1603870499551" duration="5395000" />
     </task>
     <task id="LOCAL-00001" summary="modify getAllWord controller">
       <created>1603872165427</created>
@@ -191,7 +191,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603874713969</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="modify word controller">
+      <created>1603875757469</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1603875757469</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,7 +220,8 @@
     <MESSAGE value="remove controller" />
     <MESSAGE value="modify swagger config" />
     <MESSAGE value="remove file" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove file" />
+    <MESSAGE value="modify word controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="modify word controller" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -33,4 +33,11 @@ public class WordController {
         List<Word> wordList = iWord.getAllWord();
         return new ResultBean<>(wordList);
     }
+
+    @ApiOperation(value = "查询所有句子", notes = "getAllSentence")
+    @GetMapping(value = "/getAllSentence")
+    public ResultBean<List<String>> getAllSentence() {
+        List<String> sentenceList = iWord.getAllSentence();
+        return new ResultBean<>(sentenceList);
+    }
 }

@@ -9,4 +9,6 @@ public interface IWord {
     long addWord(WordVo wordVo);
 
     List<Word> getAllWord();
+
+    List<String> getAllSentence();
 }

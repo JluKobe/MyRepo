@@ -32,4 +32,10 @@ public class WordImpl implements IWord {
         List<Word> wordList = repository.findAll();
         return wordList;
     }
+
+    @Override
+    public List<String> getAllSentence() {
+        List<String> sentenceList = repository.findSentence();
+        return sentenceList;
+    }
 }
