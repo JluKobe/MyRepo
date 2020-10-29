@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="04abfb22-9091-4727-b1f0-8d5d60b75e81" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myproject/controller/WordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myproject/controller/WordController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myproject/jpa/repository/WordRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myproject/jpa/repository/WordRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myproject/service/IWord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myproject/service/IWord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myproject/service/impl/WordImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myproject/service/impl/WordImpl.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -161,7 +157,7 @@
       <workItem from="1603672894757" duration="587000" />
       <workItem from="1603673520279" duration="1456000" />
       <workItem from="1603759988567" duration="21142000" />
-      <workItem from="1603870499551" duration="5395000" />
+      <workItem from="1603870499551" duration="11365000" />
     </task>
     <task id="LOCAL-00001" summary="modify getAllWord controller">
       <created>1603872165427</created>
@@ -198,7 +194,28 @@
       <option name="project" value="LOCAL" />
       <updated>1603875757469</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="add getAllSentence Controller">
+      <created>1603876655276</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1603876655276</updated>
+    </task>
+    <task id="LOCAL-00007" summary="remove student refer">
+      <created>1603876811972</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1603876811972</updated>
+    </task>
+    <task id="LOCAL-00008" summary="add feign dependency">
+      <created>1603962023058</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1603962023058</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,17 +238,9 @@
     <MESSAGE value="modify swagger config" />
     <MESSAGE value="remove file" />
     <MESSAGE value="modify word controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="modify word controller" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/myproject/controller/StudentController.java</url>
-          <line>26</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="add getAllSentence Controller" />
+    <MESSAGE value="remove student refer" />
+    <MESSAGE value="add feign dependency" />
+    <option name="LAST_COMMIT_MESSAGE" value="add feign dependency" />
   </component>
 </project>
