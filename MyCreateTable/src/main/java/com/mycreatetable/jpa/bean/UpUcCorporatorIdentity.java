@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * 用户信息数据 法人身份信息
+ */
+
 @Entity
 @Data
 @Table(name = "up_uc_corporator_identity")

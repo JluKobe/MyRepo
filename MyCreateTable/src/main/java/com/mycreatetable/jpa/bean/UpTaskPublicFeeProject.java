@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * 公共服务类事项 收费项目信息
+ */
+
 @Entity
 @Data
 @Table(name = "up_task_public_fee_project")

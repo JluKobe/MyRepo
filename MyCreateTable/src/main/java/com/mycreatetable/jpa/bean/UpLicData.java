@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * 电子证照共享数据 证照目录信息
+ */
+
 @Entity
 @Data
 @Table(name = "up_lic_data")

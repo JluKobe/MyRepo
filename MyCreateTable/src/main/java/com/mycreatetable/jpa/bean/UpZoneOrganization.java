@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * 区域内实施 主体信息
+ */
+
 @Entity
 @Data
 @Table(name = "up_zone_organization")

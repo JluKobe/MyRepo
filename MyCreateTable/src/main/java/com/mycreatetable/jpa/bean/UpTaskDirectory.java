@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * 政务服务事项 基本目录
+ */
+
 @Entity
 @Data
 @Table(name = "up_task_directory")

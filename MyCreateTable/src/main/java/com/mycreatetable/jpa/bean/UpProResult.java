@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * 政务服务事项办件信息 办件结果信息
+ */
+
 @Entity
 @Data
 @Table(name = "up_pro_result")

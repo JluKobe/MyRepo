@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * 用户信息数据 行政区域
+ */
+
 @Entity
 @Data
 @Table(name = "up_uc_gov_region")
