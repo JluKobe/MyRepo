@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * 强制、检查类事项 常见问题解答
+ */
+
 @Entity
 @Data
 @Table(name = "dn_task_check_questions")

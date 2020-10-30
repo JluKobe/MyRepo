@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * 公共服务类事项 常见问题解答
+ */
+
 @Entity
 @Data
 @Table(name = "dn_task_public_questions")

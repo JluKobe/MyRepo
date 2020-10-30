@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * 事项办件异常 数据表
+ */
+
 @Entity
 @Data
 @Table(name = "dn_audit_abnormal")

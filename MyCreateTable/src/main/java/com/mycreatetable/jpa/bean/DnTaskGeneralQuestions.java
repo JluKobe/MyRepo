@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * 许可、给付、奖励、确认、裁决、其他类事项 常见问题解答
+ */
+
 @Entity
 @Data
 @Table(name = "dn_task_general_questions")

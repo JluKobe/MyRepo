@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * 用户信息 异常数据
+ */
+
 @Entity
 @Data
 @Table(name = "dn_uc_adult_abnormal")

@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * 征收类事项 基本信息
+ */
+
 @Entity
 @Data
 @Table(name = "dn_task_handle_basic")

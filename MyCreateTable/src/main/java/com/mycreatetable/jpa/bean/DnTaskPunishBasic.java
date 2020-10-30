@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * 处罚类事项 基本信息
+ */
+
 @Entity
 @Data
 @Table(name = "dn_task_punish_basic")

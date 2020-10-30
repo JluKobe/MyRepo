@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * 征收类事项 材料目录信息
+ */
+
 @Entity
 @Data
 @Table(name = "dn_task_handle_material")
