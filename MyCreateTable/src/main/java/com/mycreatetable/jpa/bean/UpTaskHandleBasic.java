@@ -39,7 +39,7 @@ public class UpTaskHandleBasic {
     @Column(name = "task_type", columnDefinition = "varchar(2) comment '事项类型'", nullable = false)
     private String taskType;
 
-    @Column(name = "by_law", columnDefinition = "longtext comment '设定依据'", nullable = false)
+    @Column(name = "by_law", columnDefinition = "varchar(256) comment '设定依据'", nullable = false)
     private String byLaw;
 
     @Column(name = "power_source", columnDefinition = "varchar(2) comment '权力来源'", nullable = false)
@@ -75,13 +75,13 @@ public class UpTaskHandleBasic {
     @Column(name = "entrust_name", columnDefinition = "varchar(100) comment '委托部门'")
     private String entrustName;
 
-    @Column(name = "anticipate_day", columnDefinition = "int(11) comment '法定办结时限'", nullable = false)
+    @Column(name = "anticipate_day", columnDefinition = "int(11) comment '法定办结时限'")
     private String anticipateDay;
 
-    @Column(name = "anticipate_type", columnDefinition = "varchar(2) comment '法定办结时限单位'", nullable = false)
+    @Column(name = "anticipate_type", columnDefinition = "varchar(2) comment '法定办结时限单位'")
     private String anticipateType;
 
-    @Column(name = "anticipate_explain", columnDefinition = "longtext comment '法定办结时限说明'")
+    @Column(name = "anticipate_explain", columnDefinition = "varchar(256) comment '法定办结时限说明'")
     private String anticipateExplain;
 
     @Column(name = "is_permit_reduce", columnDefinition = "varchar(2) comment '是否涉及征收费减免的审批'")
@@ -90,13 +90,13 @@ public class UpTaskHandleBasic {
     @Column(name = "collect_type", columnDefinition = "varchar(2) comment '征收种类'")
     private String collectType;
 
-    @Column(name = "handle_flow", columnDefinition = "longtext comment '办理流程'", nullable = false)
+    @Column(name = "handle_flow", columnDefinition = "varchar(256) comment '办理流程'", nullable = false)
     private String handleFlow;
 
-    @Column(name = "link_way", columnDefinition = "longtext comment '咨询方式'", nullable = false)
+    @Column(name = "link_way", columnDefinition = "varchar(256) comment '咨询方式'", nullable = false)
     private String linkWay;
 
-    @Column(name = "supervise_way", columnDefinition = "longtext comment '监督投诉方式'", nullable = false)
+    @Column(name = "supervise_way", columnDefinition = "varchar(256) comment '监督投诉方式'", nullable = false)
     private String superviseWay;
 
     @Column(name = "plan_effective_date", columnDefinition = "datetime comment '计划生效日期'")

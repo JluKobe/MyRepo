@@ -27,7 +27,7 @@ public class UpTaskHandleQuestions {
     @Column(name = "row_guid", columnDefinition = "varchar(50) comment '记录唯一标识'", nullable = false)
     private String rowGuid;
 
-    @Column(name = "task_guid", columnDefinition = "varchar(36) comment '事项唯一标识'", nullable = false)
+    @Column(name = "task_guid", columnDefinition = "varchar(50) comment '事项唯一标识'", nullable = false)
     private String taskGuid;
 
     @Column(name = "task_code", columnDefinition = "varchar(36) comment '实施编码'", nullable = false)
@@ -39,7 +39,7 @@ public class UpTaskHandleQuestions {
     @Column(name = "question", columnDefinition = "varchar(1000) comment '问题'", nullable = false)
     private String question;
 
-    @Column(name = "answer", columnDefinition = "longtext comment '答案'", nullable = false)
+    @Column(name = "answer", columnDefinition = "varchar(256) comment '答案'", nullable = false)
     private String answer;
 
     @Column(name = "order_num", columnDefinition = "int(11) comment '排序'", nullable = false)

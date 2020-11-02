@@ -92,7 +92,7 @@ public class UpProAccept {
     @Column(name = "org_name", columnDefinition = "varchar(100) comment '受理部门'", nullable = false)
     private String orgName;
 
-    @Column(name = "org_code", columnDefinition = "varchar(18) comment '受理部门编码'", nullable = false)
+    @Column(name = "org_code", columnDefinition = "varchar(64) comment '受理部门编码'", nullable = false)
     private String orgCode;
 
     @Column(name = "handle_user_name", columnDefinition = "varchar(100) comment '受理人员'")

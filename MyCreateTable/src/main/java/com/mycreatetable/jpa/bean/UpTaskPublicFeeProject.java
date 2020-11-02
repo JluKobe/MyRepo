@@ -27,7 +27,7 @@ public class UpTaskPublicFeeProject {
     @Column(name = "row_guid", columnDefinition = "varchar(50) comment '记录唯一标识'", nullable = false)
     private String rowGuid;
 
-    @Column(name = "task_guid", columnDefinition = "varchar(36) comment '事项唯一标识'", nullable = false)
+    @Column(name = "task_guid", columnDefinition = "varchar(50) comment '事项唯一标识'", nullable = false)
     private String taskGuid;
 
     @Column(name = "task_code", columnDefinition = "varchar(36) comment '实施编码'", nullable = false)
@@ -39,16 +39,16 @@ public class UpTaskPublicFeeProject {
     @Column(name = "fee_name", columnDefinition = "varchar(200) comment '收费项目名称'", nullable = false)
     private String feeName;
 
-    @Column(name = "fee_stand", columnDefinition = "longtext comment '收费标准'", nullable = false)
+    @Column(name = "fee_stand", columnDefinition = "varchar(256) comment '收费标准'", nullable = false)
     private String feeStand;
 
-    @Column(name = "by_law", columnDefinition = "longtext comment '收费依据'")
+    @Column(name = "by_law", columnDefinition = "varchar(256) comment '收费依据'")
     private String byLaw;
 
     @Column(name = "is_desc", columnDefinition = "varchar(2) comment '是否允许减免'")
     private String isDesc;
 
-    @Column(name = "desc_explain", columnDefinition = "longtext comment '允许减免依据'")
+    @Column(name = "desc_explain", columnDefinition = "varchar(256) comment '允许减免依据'")
     private String descExplain;
 
     @Column(name = "remark", columnDefinition = "varchar(1000) comment '备注'")

@@ -38,7 +38,7 @@ public class UpUcGovRegion {
     @Column(name = "region_lvl", columnDefinition = "varchar(6) comment '行政区域登记'", nullable = false)
     private String regionLvl;
 
-    @Column(name = "nation", columnDefinition = "varchar(6) comment '国家'", nullable = false)
+    @Column(name = "nation", columnDefinition = "varchar(20) comment '国家'", nullable = false)
     private String nation;
 
     @Column(name = "province", columnDefinition = "varchar(20) comment '省'", nullable = false)

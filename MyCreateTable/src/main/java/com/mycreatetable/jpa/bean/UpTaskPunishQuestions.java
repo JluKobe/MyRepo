@@ -39,7 +39,7 @@ public class UpTaskPunishQuestions {
     @Column(name = "question", columnDefinition = "varchar(1000) comment '问题'", nullable = false)
     private String question;
 
-    @Column(name = "answer", columnDefinition = "longtext comment '答案'", nullable = false)
+    @Column(name = "answer", columnDefinition = "varchar(256) comment '答案'", nullable = false)
     private String answer;
 
     @Column(name = "order_num", columnDefinition = "int(11) comment '排序'", nullable = false)

@@ -38,7 +38,7 @@ public class UpProResult {
     @Column(name = "result_type", columnDefinition = "varchar(2) comment '办结结果'", nullable = false)
     private String resultType;
 
-    @Column(name = "result_cetr_name", columnDefinition = "longtext comment '结果证照名称'")
+    @Column(name = "result_cetr_name", columnDefinition = "varchar(256) comment '结果证照名称'")
     private String resultCetrName;
 
     @Column(name = "result_cetr_no", columnDefinition = "varchar(2000) comment '结果证照编号'")
@@ -53,7 +53,7 @@ public class UpProResult {
     @Column(name = "satisfaction", columnDefinition = "varchar(2) comment '满意度'")
     private String satisfaction;
 
-    @Column(name = "remark", columnDefinition = "varchar(1000) comment '备注'")
+    @Column(name = "remark", columnDefinition = "varchar(256) comment '备注'")
     private String remark;
 
     @Column(name = "cd_operation", columnDefinition = "varchar(2) comment '同步类型'", nullable = false)

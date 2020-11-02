@@ -57,7 +57,7 @@ public class UpProSpecialProcedure {
     @Column(name = "handle_user", columnDefinition = "varchar(100) comment '办理人'")
     private String handleUser;
 
-    @Column(name = "remark", columnDefinition = "varchar(1000) comment '备注'")
+    @Column(name = "remark", columnDefinition = "varchar(256) comment '备注'")
     private String remark;
 
     @Column(name = "cd_operation", columnDefinition = "varchar(2) comment '同步类型'", nullable = false)

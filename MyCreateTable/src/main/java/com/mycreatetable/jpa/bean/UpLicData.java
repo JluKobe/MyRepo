@@ -35,19 +35,19 @@ public class UpLicData {
     @Column(name = "certificate_type_code", columnDefinition = "varchar(64) comment '证照类型代码'", nullable = false)
     private String certificateTypeCode;
 
-    @Column(name = "issue_dept", columnDefinition = "longtext comment '证照颁发机构'", nullable = false)
+    @Column(name = "issue_dept", columnDefinition = "varchar(256) comment '证照颁发机构'", nullable = false)
     private String issueDept;
 
-    @Column(name = "issue_dept_code", columnDefinition = "longtext comment '证照颁发机构代码'", nullable = false)
+    @Column(name = "issue_dept_code", columnDefinition = "varchar(32) comment '证照颁发机构代码'", nullable = false)
     private String issueDeptCode;
 
     @Column(name = "certificate_area_code", columnDefinition = "varchar(32) comment '证照所属管辖属地编码'", nullable = false)
     private String certificateAreaCode;
 
-    @Column(name = "certificate_holder", columnDefinition = "longtext comment '持证主体'", nullable = false)
+    @Column(name = "certificate_holder", columnDefinition = "varchar(256) comment '持证主体'", nullable = false)
     private String certificateHolder;
 
-    @Column(name = "certificate_holder_code", columnDefinition = "longtext comment '持证主体代码'", nullable = false)
+    @Column(name = "certificate_holder_code", columnDefinition = "varchar(256) comment '持证主体代码'", nullable = false)
     private String certificateHolderCode;
 
     @Column(name = "certificate_holder_type", columnDefinition = "varchar(2000) comment '持证主体代码类型'")

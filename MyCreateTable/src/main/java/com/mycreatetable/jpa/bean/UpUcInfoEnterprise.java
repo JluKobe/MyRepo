@@ -57,7 +57,7 @@ public class UpUcInfoEnterprise {
     @Column(name = "enterprise_approver_agency", columnDefinition = "varchar(64) comment '核准机构'")
     private String enterpriseApproverAgency;
 
-    @Column(name = "create_date", columnDefinition = "varchar(20) comment '创建时间'")
+    @Column(name = "create_date", columnDefinition = "varchar(20) comment '创建时间'", nullable = false)
     private String createDate;
 
     @Column(name = "cd_operation", columnDefinition = "varchar(2) comment '同步类型'", nullable = false)

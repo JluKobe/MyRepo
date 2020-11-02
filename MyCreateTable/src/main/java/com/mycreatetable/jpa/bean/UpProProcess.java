@@ -48,7 +48,7 @@ public class UpProProcess {
     @Column(name = "event_end_time", columnDefinition = "datetime comment '环节结束时间'", nullable = false)
     private String eventEndTime;
 
-    @Column(name = "remark", columnDefinition = "longtext comment '备注'")
+    @Column(name = "remark", columnDefinition = "varchar(256) comment '备注'")
     private String remark;
 
     @Column(name = "cd_operation", columnDefinition = "varchar(2) comment '同步类型'", nullable = false)

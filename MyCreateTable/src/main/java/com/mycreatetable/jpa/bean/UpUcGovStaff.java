@@ -50,7 +50,7 @@ public class UpUcGovStaff {
     @Column(name = "cert_no", columnDefinition = "varchar(64) comment '证件号码'")
     private String certNo;
 
-    @Column(name = "org_id", columnDefinition = "varchar(64) comment '所在组织'")
+    @Column(name = "org_id", columnDefinition = "varchar(64) comment '所在组织'", nullable = false)
     private String orgId;
 
     @Column(name = "region_id", columnDefinition = "varchar(64) comment '所在区域'", nullable = false)
@@ -71,7 +71,7 @@ public class UpUcGovStaff {
     @Column(name = "staff_status", columnDefinition = "varchar(6) comment '人员状态'", nullable = false)
     private String staffStatus;
 
-    @Column(name = "staff_creater", columnDefinition = "varchar(64) comment '创建用户'", nullable = false)
+    @Column(name = "staff_creater", columnDefinition = "varchar(64) comment '创建用户'")
     private String staffCreater;
 
     @Column(name = "cd_operation", columnDefinition = "varchar(2) comment '同步类型'", nullable = false)

@@ -32,11 +32,11 @@ public class UpProMaterial {
     @Column(name = "material_name", columnDefinition = "varchar(200) comment '材料名称'", nullable = false)
     private String materialName;
 
-    @Column(name = "get_type", columnDefinition = "varchar(2) comment '收取方式'")
+    @Column(name = "get_type", columnDefinition = "varchar(2) comment '收取方式'", nullable = false)
     private String getType;
 
-    @Column(name = "get_name", columnDefinition = "varchar(5) comment '收取数量'")
-    private String getName;
+    @Column(name = "get_num", columnDefinition = "varchar(5) comment '收取数量'")
+    private String getNum;
 
     @Column(name = "material_attach_name", columnDefinition = "varchar(200) comment '附件名称'")
     private String materialAttachName;

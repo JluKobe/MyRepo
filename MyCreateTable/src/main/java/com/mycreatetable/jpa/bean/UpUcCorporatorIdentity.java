@@ -23,7 +23,7 @@ public class UpUcCorporatorIdentity {
     @Column(name = "id", columnDefinition = "bigint(20) comment '主键'", nullable = false)
     private Long id;
 
-    @Column(name = "corp_name", columnDefinition = "varchar(128) comment '法人名称'")
+    @Column(name = "corp_name", columnDefinition = "varchar(256) comment '法人名称'")
     private String corpName;
 
     @Column(name = "certificate_sno", columnDefinition = "varchar(128) comment '法人机构代码'")
@@ -32,7 +32,7 @@ public class UpUcCorporatorIdentity {
     @Column(name = "certificate_key", columnDefinition = "varchar(128) comment '法人机构代码散列值'", nullable = false)
     private String certificateKey;
 
-    @Column(name = "corp_type", columnDefinition = "varchar(64) comment '法人类型'")
+    @Column(name = "corp_type", columnDefinition = "varchar(64) comment '法人类型'", nullable = false)
     private String corpType;
 
     @Column(name = "legal_mobile", columnDefinition = "varchar(64) comment '法人代表人手机号'")
@@ -41,8 +41,8 @@ public class UpUcCorporatorIdentity {
     @Column(name = "legal_name", columnDefinition = "varchar(64) comment '法定代表人姓名'")
     private String legalName;
 
-    @Column(name = "legal_certno", columnDefinition = "varchar(64) comment '法定代表人证件号'")
-    private String legalCertno;
+    @Column(name = "legal_cert_no", columnDefinition = "varchar(64) comment '法定代表人证件号'")
+    private String legalCertNo;
 
     @Column(name = "legal_cert_type", columnDefinition = "varchar(12) comment '法定代表人证件类型'")
     private String legalCertType;

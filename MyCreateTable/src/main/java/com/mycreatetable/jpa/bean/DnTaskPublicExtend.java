@@ -26,7 +26,7 @@ public class DnTaskPublicExtend {
     @Column(name = "row_guid", columnDefinition = "varchar(50) comment '记录唯一标识'", nullable = false)
     private String rowGuid;
 
-    @Column(name = "task_guid", columnDefinition = "varchar(36) comment '事项唯一标识'", nullable = false)
+    @Column(name = "task_guid", columnDefinition = "varchar(50) comment '事项唯一标识'", nullable = false)
     private String taskGuid;
 
     @Column(name = "task_code", columnDefinition = "varchar(36) comment '实施编码'", nullable = false)
@@ -44,7 +44,7 @@ public class DnTaskPublicExtend {
     @Column(name = "other_dept", columnDefinition = "varchar(200) comment '联办机构'")
     private String otherDept;
 
-    @Column(name = "service_type", columnDefinition = "varchar(200) comment '中介服务'")
+    @Column(name = "service_type", columnDefinition = "varchar(500) comment '中介服务'")
     private String serviceType;
 
     @Column(name = "result_type", columnDefinition = "varchar(30) comment '审批结果类型'", nullable = false)
@@ -86,7 +86,7 @@ public class DnTaskPublicExtend {
     @Column(name = "online_handle_depth", columnDefinition = "varchar(20) comment '网上办理深度'")
     private String onlineHandleDepth;
 
-    @Column(name = "online_handle_url", columnDefinition = "longtext comment '网办地址'")
+    @Column(name = "online_handle_url", columnDefinition = "varchar(256) comment '网办地址'")
     private String onlineHandleUrl;
 
     @Column(name = "limit_scene_explain", columnDefinition = "varchar(1000) comment '办理现场办理原因说明'")

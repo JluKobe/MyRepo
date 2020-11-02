@@ -26,7 +26,7 @@ public class DnTaskGeneralMaterial {
     @Column(name = "row_guid", columnDefinition = "varchar(50) comment '记录唯一标识'", nullable = false)
     private String rowGuid;
 
-    @Column(name = "task_guid", columnDefinition = "varchar(36) comment '事项唯一标识'", nullable = false)
+    @Column(name = "task_guid", columnDefinition = "varchar(50) comment '事项唯一标识'", nullable = false)
     private String taskGuid;
 
     @Column(name = "task_code", columnDefinition = "varchar(36) comment '实施编码'", nullable = false)
@@ -44,7 +44,7 @@ public class DnTaskGeneralMaterial {
     @Column(name = "material_format", columnDefinition = "varchar(2) comment '材料形式'")
     private String materialFormat;
 
-    @Column(name = "is_need", columnDefinition = "varchar(2) comment '材料必要性'")
+    @Column(name = "is_need", columnDefinition = "varchar(2) comment '材料必要性'", nullable = false)
     private String isNeed;
 
     @Column(name = "form_guid", columnDefinition = "varchar(256) comment '空白表格'")
@@ -68,13 +68,13 @@ public class DnTaskGeneralMaterial {
     @Column(name = "fill_explain", columnDefinition = "varchar(500) comment '填报须知'")
     private String fillExplain;
 
-    @Column(name = "accept_stand", columnDefinition = "longtext comment '受理标准'")
+    @Column(name = "accept_stand", columnDefinition = "varchar(256) comment '受理标准'")
     private String acceptStand;
 
-    @Column(name = "by_law", columnDefinition = "longtext comment '要求提供材料的依据'")
+    @Column(name = "by_law", columnDefinition = "varchar(256) comment '要求提供材料的依据'")
     private String byLaw;
 
-    @Column(name = "remark", columnDefinition = "longtext comment '备注'")
+    @Column(name = "remark", columnDefinition = "varchar(256) comment '备注'")
     private String remark;
 
     @Column(name = "order_num", columnDefinition = "int(11) comment '排序'", nullable = false)

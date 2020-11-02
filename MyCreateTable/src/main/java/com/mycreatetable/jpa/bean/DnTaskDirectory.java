@@ -35,7 +35,7 @@ public class DnTaskDirectory {
     @Column(name = "task_type", columnDefinition = "varchar(2) comment '事项类型'", nullable = false)
     private String taskType;
 
-    @Column(name = "by_law", columnDefinition = "longtext comment '设定依据'", nullable = false)
+    @Column(name = "by_law", columnDefinition = "varchar(256) comment '设定依据'", nullable = false)
     private String byLaw;
 
     @Column(name = "use_level", columnDefinition = "varchar(11) comment '行使层级'", nullable = false)
