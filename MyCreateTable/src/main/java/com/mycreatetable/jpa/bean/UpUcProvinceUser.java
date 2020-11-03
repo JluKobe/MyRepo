@@ -19,9 +19,32 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class UpUcProvinceUser {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //自增组件
-    @Column(name = "id", columnDefinition = "bigint(20) comment '主键'", nullable = false)
+    @Column(name = "id", columnDefinition = "bigint(20) comment '雪花算法生成的ID'", nullable = false)
     private Long id;
+
+    @Column(name = "version", columnDefinition = "int(10) comment '版本号' default 1", nullable = false)
+    private String version;
+
+    @Column(name = "create_time", columnDefinition = "datetime comment '创建时间'", nullable = false)
+    private String createTime;
+
+    @Column(name = "create_user_id", columnDefinition = "bigint(20) comment '创建人ID'", nullable = false)
+    private String createUserId;
+
+    @Column(name = "create_org_id", columnDefinition = "bigint(20) comment '创建机构ID'", nullable = false)
+    private String createOrgId;
+
+    @Column(name = "tenant_id", columnDefinition = "bigint(20) comment '租户ID'", nullable = false)
+    private String tenantId;
+
+    @Column(name = "update_time", columnDefinition = "datetime comment '更新时间'", nullable = false)
+    private String updateTime;
+
+    @Column(name = "update_user_id", columnDefinition = "bigint(20) comment '更新人ID'", nullable = false)
+    private String updateUserId;
+
+    @Column(name = "update_org_id", columnDefinition = "bigint(20) comment '更新机构ID'", nullable = false)
+    private String updateOrgId;
 
     @Column(name = "cert_type", columnDefinition = "varchar(6) comment '证件类型'")
     private String certType;
@@ -37,9 +60,6 @@ public class UpUcProvinceUser {
 
     @Column(name = "cert_ext_date", columnDefinition = "varchar(8) comment '证件失效日期'")
     private String certExtDate;
-
-    @Column(name = "create_time", columnDefinition = "varchar(20) comment '注册时间'", nullable = false)
-    private String createTime;
 
     @Column(name = "user_name", columnDefinition = "varchar(64) comment '用户名称'")
     private String userName;
