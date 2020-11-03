@@ -11,4 +11,6 @@ public interface IWord {
     List<Word> getAllWord();
 
     List<String> getAllSentence();
+
+    List<String> getAllMean();
 }

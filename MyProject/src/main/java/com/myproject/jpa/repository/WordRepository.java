@@ -12,4 +12,7 @@ public interface WordRepository extends JpaRepository<Word, Long> {
 
     @Query(value = "select sentence from word", nativeQuery = true)
     List<String> findSentence();
+
+    @Query(value = "select meaning from word", nativeQuery = true)
+    List<String> findMeans();
 }

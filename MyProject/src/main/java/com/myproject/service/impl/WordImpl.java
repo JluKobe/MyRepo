@@ -38,4 +38,10 @@ public class WordImpl implements IWord {
         List<String> sentenceList = repository.findSentence();
         return sentenceList;
     }
+
+    @Override
+    public List<String> getAllMean() {
+        List<String> meansList = repository.findMeans();
+        return meansList;
+    }
 }

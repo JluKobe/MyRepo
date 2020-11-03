@@ -40,4 +40,11 @@ public class WordController {
         List<String> sentenceList = iWord.getAllSentence();
         return new ResultBean<>(sentenceList);
     }
+
+    @ApiOperation(value = "查询所有词意", notes = "getAllMean")
+    @GetMapping(value = "/getAllMean")
+    public ResultBean<List<String>> getAllMean() {
+        List<String> meansList = iWord.getAllMean();
+        return new ResultBean<>(meansList);
+    }
 }
