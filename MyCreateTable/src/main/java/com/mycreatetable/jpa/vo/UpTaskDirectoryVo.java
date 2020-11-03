@@ -3,7 +3,7 @@ package com.mycreatetable.jpa.vo;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -12,19 +12,19 @@ public class UpTaskDirectoryVo {
 
     private String version;
 
-    private String createTime;
+    private LocalDateTime createTime;
 
-    private String createUserId;
+    private Long createUserId;
 
-    private String createOrgId;
+    private Long createOrgId;
 
-    private String tenantId;
+    private Long tenantId;
 
-    private String updateTime;
+    private LocalDateTime updateTime;
 
-    private String updateUserId;
+    private Long updateUserId;
 
-    private String updateOrgId;
+    private Long updateOrgId;
 
     private String rowGuid;
 
@@ -42,15 +42,15 @@ public class UpTaskDirectoryVo {
 
     private String taskState;
 
-    private String taskVersion;
+    private Integer taskVersion;
 
-    private String planEffectiveDate;
+    private LocalDateTime planEffectiveDate;
 
-    private String planCancelDate;
+    private LocalDateTime planCancelDate;
 
     private String cdOperation;
 
-    private String cdTime;
+    private LocalDateTime cdTime;
 
     private String cdBatch;
 
