@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 /**
  * 事项办件异常 数据表
@@ -23,28 +24,28 @@ public class DnAuditAbnormal {
     private Long id;
 
     @Column(name = "version", columnDefinition = "int(10) comment '版本号' default 1", nullable = false)
-    private String version;
+    private Integer version;
 
     @Column(name = "create_time", columnDefinition = "datetime comment '创建时间'", nullable = false)
-    private String createTime;
+    private LocalDateTime createTime;
 
     @Column(name = "create_user_id", columnDefinition = "bigint(20) comment '创建人ID'", nullable = false)
-    private String createUserId;
+    private Long createUserId;
 
     @Column(name = "create_org_id", columnDefinition = "bigint(20) comment '创建机构ID'", nullable = false)
-    private String createOrgId;
+    private Long createOrgId;
 
     @Column(name = "tenant_id", columnDefinition = "bigint(20) comment '租户ID'", nullable = false)
-    private String tenantId;
+    private Long tenantId;
 
     @Column(name = "update_time", columnDefinition = "datetime comment '更新时间'", nullable = false)
-    private String updateTime;
+    private LocalDateTime updateTime;
 
     @Column(name = "update_user_id", columnDefinition = "bigint(20) comment '更新人ID'", nullable = false)
-    private String updateUserId;
+    private Long updateUserId;
 
     @Column(name = "update_org_id", columnDefinition = "bigint(20) comment '更新机构ID'", nullable = false)
-    private String updateOrgId;
+    private Long updateOrgId;
 
     @Column(name = "row_guid", columnDefinition = "varchar(50) comment '记录唯一标识'", nullable = false)
     private String rowGuid;
@@ -62,10 +63,10 @@ public class DnAuditAbnormal {
     private String errType;
 
     @Column(name = "table_cd_time", columnDefinition = "datetime comment '上传日期'", nullable = false)
-    private String tableCdTime;
+    private LocalDateTime tableCdTime;
 
     @Column(name = "table_update_time", columnDefinition = "datetime comment '进入汇聚区日期'", nullable = false)
-    private String tableUpdateTime;
+    private LocalDateTime tableUpdateTime;
 
     @Column(name = "table_cd_batch", columnDefinition = "varchar(32) comment '批次号'", nullable = false)
     private String tableCdBatch;
@@ -77,5 +78,5 @@ public class DnAuditAbnormal {
     private String remark;
 
     @Column(name = "cd_time", columnDefinition = "datetime comment '同步时间'", nullable = false)
-    private String cdTime;
+    private LocalDateTime cdTime;
 }

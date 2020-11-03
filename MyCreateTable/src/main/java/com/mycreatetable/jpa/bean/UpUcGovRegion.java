@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 /**
  * 用户信息数据 行政区域
@@ -23,28 +24,28 @@ public class UpUcGovRegion {
     private Long id;
 
     @Column(name = "version", columnDefinition = "int(10) comment '版本号' default 1", nullable = false)
-    private String version;
+    private Integer version;
 
     @Column(name = "create_time", columnDefinition = "datetime comment '创建时间'", nullable = false)
-    private String createTime;
+    private LocalDateTime createTime;
 
     @Column(name = "create_user_id", columnDefinition = "bigint(20) comment '创建人ID'", nullable = false)
-    private String createUserId;
+    private Long createUserId;
 
     @Column(name = "create_org_id", columnDefinition = "bigint(20) comment '创建机构ID'", nullable = false)
-    private String createOrgId;
+    private Long createOrgId;
 
     @Column(name = "tenant_id", columnDefinition = "bigint(20) comment '租户ID'", nullable = false)
-    private String tenantId;
+    private Long tenantId;
 
     @Column(name = "update_time", columnDefinition = "datetime comment '更新时间'", nullable = false)
-    private String updateTime;
+    private LocalDateTime updateTime;
 
     @Column(name = "update_user_id", columnDefinition = "bigint(20) comment '更新人ID'", nullable = false)
-    private String updateUserId;
+    private Long updateUserId;
 
     @Column(name = "update_org_id", columnDefinition = "bigint(20) comment '更新机构ID'", nullable = false)
-    private String updateOrgId;
+    private Long updateOrgId;
 
     @Column(name = "region_code", columnDefinition = "varchar(64) comment '行政区域代码'", nullable = false)
     private String regionCode;
@@ -86,7 +87,7 @@ public class UpUcGovRegion {
     private String cdOperation;
 
     @Column(name = "cd_time", columnDefinition = "datetime comment '同步时间'", nullable = false)
-    private String cdTime;
+    private LocalDateTime cdTime;
 
     @Column(name = "cd_batch", columnDefinition = "varchar(32) comment '批次号'", nullable = false)
     private String cdBatch;

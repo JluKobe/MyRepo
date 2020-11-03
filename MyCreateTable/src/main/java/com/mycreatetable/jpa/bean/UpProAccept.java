@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 /**
  * 政务服务事项办件信息 办件受理信息
@@ -23,28 +24,28 @@ public class UpProAccept {
     private Long id;
 
     @Column(name = "version", columnDefinition = "int(10) comment '版本号' default 1", nullable = false)
-    private String version;
+    private Integer version;
 
     @Column(name = "create_time", columnDefinition = "datetime comment '创建时间'", nullable = false)
-    private String createTime;
+    private LocalDateTime createTime;
 
     @Column(name = "create_user_id", columnDefinition = "bigint(20) comment '创建人ID'", nullable = false)
-    private String createUserId;
+    private Long createUserId;
 
     @Column(name = "create_org_id", columnDefinition = "bigint(20) comment '创建机构ID'", nullable = false)
-    private String createOrgId;
+    private Long createOrgId;
 
     @Column(name = "tenant_id", columnDefinition = "bigint(20) comment '租户ID'", nullable = false)
-    private String tenantId;
+    private Long tenantId;
 
     @Column(name = "update_time", columnDefinition = "datetime comment '更新时间'", nullable = false)
-    private String updateTime;
+    private LocalDateTime updateTime;
 
     @Column(name = "update_user_id", columnDefinition = "bigint(20) comment '更新人ID'", nullable = false)
-    private String updateUserId;
+    private Long updateUserId;
 
     @Column(name = "update_org_id", columnDefinition = "bigint(20) comment '更新机构ID'", nullable = false)
-    private String updateOrgId;
+    private Long updateOrgId;
 
     @Column(name = "row_guid", columnDefinition = "varchar(50) comment '记录唯一标识'", nullable = false)
     private String rowGuid;
@@ -71,7 +72,7 @@ public class UpProAccept {
     private String taskName;
 
     @Column(name = "task_version", columnDefinition = "int(10) comment '事项版本'", nullable = false)
-    private String taskVersion;
+    private Integer taskVersion;
 
     @Column(name = "applyer_name", columnDefinition = "varchar(100) comment '申请人名称'", nullable = false)
     private String applyerName;
@@ -86,7 +87,7 @@ public class UpProAccept {
     private String applyerPageCode;
 
     @Column(name = "apply_date", columnDefinition = "datetime comment '申请时间'", nullable = false)
-    private String applyDate;
+    private LocalDateTime applyDate;
 
     @Column(name = "apply_type", columnDefinition = "varchar(2) comment '申请类型'", nullable = false)
     private String applyType;
@@ -122,7 +123,7 @@ public class UpProAccept {
     private String handleUserName;
 
     @Column(name = "accept_date", columnDefinition = "datetime comment '受理时间'", nullable = false)
-    private String acceptDate;
+    private LocalDateTime acceptDate;
 
     @Column(name = "accept_doc_no", columnDefinition = "varchar(50) comment '受理文书编号'")
     private String acceptDocNo;
@@ -134,13 +135,13 @@ public class UpProAccept {
     private String projectType;
 
     @Column(name = "promise_date", columnDefinition = "datetime comment '承诺办结时间'")
-    private String promiseDate;
+    private LocalDateTime promiseDate;
 
     @Column(name = "cd_operation", columnDefinition = "varchar(2) comment '同步类型'", nullable = false)
     private String cdOperation;
 
     @Column(name = "cd_time", columnDefinition = "datetime comment '同步时间'", nullable = false)
-    private String cdTime;
+    private LocalDateTime cdTime;
 
     @Column(name = "cd_batch", columnDefinition = "varchar(32) comment '批次号'", nullable = false)
     private String cdBatch;

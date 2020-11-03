@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 /**
  * 公共服务类事项 基本信息
@@ -23,28 +24,28 @@ public class DnTaskPublicBasic {
     private Long id;
 
     @Column(name = "version", columnDefinition = "int(10) comment '版本号' default 1", nullable = false)
-    private String version;
+    private Integer version;
 
     @Column(name = "create_time", columnDefinition = "datetime comment '创建时间'", nullable = false)
-    private String createTime;
+    private LocalDateTime createTime;
 
     @Column(name = "create_user_id", columnDefinition = "bigint(20) comment '创建人ID'", nullable = false)
-    private String createUserId;
+    private Long createUserId;
 
     @Column(name = "create_org_id", columnDefinition = "bigint(20) comment '创建机构ID'", nullable = false)
-    private String createOrgId;
+    private Long createOrgId;
 
     @Column(name = "tenant_id", columnDefinition = "bigint(20) comment '租户ID'", nullable = false)
-    private String tenantId;
+    private Long tenantId;
 
     @Column(name = "update_time", columnDefinition = "datetime comment '更新时间'", nullable = false)
-    private String updateTime;
+    private LocalDateTime updateTime;
 
     @Column(name = "update_user_id", columnDefinition = "bigint(20) comment '更新人ID'", nullable = false)
-    private String updateUserId;
+    private Long updateUserId;
 
     @Column(name = "update_org_id", columnDefinition = "bigint(20) comment '更新机构ID'", nullable = false)
-    private String updateOrgId;
+    private Long updateOrgId;
 
     @Column(name = "row_guid", columnDefinition = "varchar(50) comment '记录唯一标识'", nullable = false)
     private String rowGuid;
@@ -74,7 +75,7 @@ public class DnTaskPublicBasic {
     private String taskState;
 
     @Column(name = "task_version", columnDefinition = "int(10) comment '事项版本'", nullable = false)
-    private String taskVersion;
+    private Integer taskVersion;
 
     @Column(name = "dept_name", columnDefinition = "varchar(200) comment '实施主体'", nullable = false)
     private String deptName;
@@ -89,7 +90,7 @@ public class DnTaskPublicBasic {
     private String entrustName;
 
     @Column(name = "anticipate_day", columnDefinition = "int(11) comment '法定办结时限'")
-    private String anticipateDay;
+    private Integer anticipateDay;
 
     @Column(name = "anticipate_type", columnDefinition = "varchar(2) comment '法定办结时限单位'")
     private String anticipateType;
@@ -98,10 +99,10 @@ public class DnTaskPublicBasic {
     private String anticipateExplain;
 
     @Column(name = "promise_day", columnDefinition = "int(11) comment '承诺办结时限'")
-    private String promiseDay;
+    private Integer promiseDay;
 
     @Column(name = "promise_type", columnDefinition = "int(2) comment '承诺办结时限单位'")
-    private String promiseType;
+    private Integer promiseType;
 
     @Column(name = "promise_explain", columnDefinition = "varchar(256) comment '承诺办结时限说明'")
     private String promiseExplain;
@@ -128,7 +129,7 @@ public class DnTaskPublicBasic {
     private String handleType;
 
     @Column(name = "limit_scene_num", columnDefinition = "int(11) comment '到办事现场次数'", nullable = false)
-    private String limitSceneNum;
+    private Integer limitSceneNum;
 
     @Column(name = "special_procedure", columnDefinition = "varchar(500) comment '特别程序'", nullable = false)
     private String specialProcedure;
@@ -158,10 +159,10 @@ public class DnTaskPublicBasic {
     private String superviseWay;
 
     @Column(name = "plan_effective_date", columnDefinition = "datetime comment '计划生效日期'")
-    private String planEffectiveDate;
+    private LocalDateTime planEffectiveDate;
 
     @Column(name = "plan_cancel_date", columnDefinition = "datetime comment '计划取消日期'")
-    private String planCancelDate;
+    private LocalDateTime planCancelDate;
 
     @Column(name = "local_catalog_code", columnDefinition = "varchar(50) comment '地方基本编码' default null")
     private String localCatalogCode;
@@ -173,7 +174,7 @@ public class DnTaskPublicBasic {
     private String cdOperation;
 
     @Column(name = "cd_time", columnDefinition = "datetime comment '同步时间'", nullable = false)
-    private String cdTime;
+    private LocalDateTime cdTime;
 
     @Column(name = "cd_batch", columnDefinition = "varchar(32) comment '批次号'", nullable = false)
     private String cdBatch;
