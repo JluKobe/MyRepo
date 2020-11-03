@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Entity
 @Data
 @Table(name = "dn_audit_item_condition")
+@org.hibernate.annotations.Table(appliesTo = "dn_audit_item_condition", comment = "情形分组表")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

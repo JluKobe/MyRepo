@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @Entity
 @Data
 @Table(name = "dn_audit_abnormal")
+@org.hibernate.annotations.Table(appliesTo = "dn_audit_abnormal", comment = "事项办件异常 数据表")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

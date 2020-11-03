@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @Entity
 @Data
 @Table(name = "dn_lic_data_error")
+@org.hibernate.annotations.Table(appliesTo = "dn_lic_data_error", comment = "电子证照共享异常数据 目录信息")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

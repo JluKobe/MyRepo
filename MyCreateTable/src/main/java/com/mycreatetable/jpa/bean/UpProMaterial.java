@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @Entity
 @Data
 @Table(name = "up_pro_material")
+@org.hibernate.annotations.Table(appliesTo = "up_pro_material", comment = "政务服务事项办件信息 材料目录信息")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @Entity
 @Data
 @Table(name = "up_task_general_extend")
+@org.hibernate.annotations.Table(appliesTo = "up_task_general_extend", comment = "许可、给付、奖励、确认、裁决、其他类事项 扩展信息")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

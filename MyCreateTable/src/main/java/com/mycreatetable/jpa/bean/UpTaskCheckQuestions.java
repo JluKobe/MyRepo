@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @Entity
 @Data
 @Table(name = "up_task_check_questions")
+@org.hibernate.annotations.Table(appliesTo = "up_task_check_questions", comment = "强制、检查类事项 常见问题解答")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
