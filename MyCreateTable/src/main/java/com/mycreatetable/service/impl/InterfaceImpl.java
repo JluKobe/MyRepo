@@ -16,6 +16,15 @@ public class InterfaceImpl implements IInterface {
     @Override
     public void addUpTaskDirectory(UpTaskDirectoryVo vo) {
         UpTaskDirectory upTaskDirectory = UpTaskDirectory.builder()
+                .id(Long.valueOf(vo.getId()))
+//                .version(vo.getVersion())
+                .createTime(vo.getCreateTime())
+                .createUserId(vo.getCreateUserId())
+                .createOrgId(vo.getCreateOrgId())
+                .tenantId(vo.getTenantId())
+                .updateTime(vo.getUpdateTime())
+                .updateUserId(vo.getUpdateUserId())
+                .updateOrgId(vo.getUpdateOrgId())
                 .rowGuid(vo.getRowGuid())
                 .taskName(vo.getTaskName())
                 .catalogCode(vo.getCatalogCode())
