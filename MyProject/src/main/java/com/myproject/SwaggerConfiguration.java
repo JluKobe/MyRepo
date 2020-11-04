@@ -29,7 +29,7 @@ public class SwaggerConfiguration {
                 //页面标题
                 .title("Spring Boot 测试使用 Swagger2 构建RESTful API")
                 //创建人
-                .contact(new Contact("zhengzhao", "https://github.com/beyondthegame-zz", "495133744@qq.com"))
+                .contact(new Contact("zhengzhao", "https://github.com/JluKobe/MyRepo/tree/master", "495133744@qq.com"))
                 //版本号
                 .version("1.0")
                 //描述
