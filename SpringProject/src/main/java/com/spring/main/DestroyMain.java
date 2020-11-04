@@ -5,7 +5,7 @@ import com.spring.bean.lifecycle.MyDestroyBean2;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class TestDestroyMain {
+public class DestroyMain {
     public static void main(String[] args) {
         AbstractApplicationContext context = new ClassPathXmlApplicationContext("BeansDestroy.xml");
 

@@ -8,7 +8,7 @@ import org.springframework.context.support.AbstractApplicationContext;
 /**
  * 使用AbstractApplicationContext创建context，使用registerShutdownHook方法调用bean销毁回调方法
  */
-public class TestDestroyByAnno {
+public class DestroyByAnnoMain {
     public static void main(String[] args) {
         AbstractApplicationContext context = new AnnotationConfigApplicationContext(BeanConfiguration.class);
 

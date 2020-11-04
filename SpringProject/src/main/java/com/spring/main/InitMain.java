@@ -5,7 +5,7 @@ import com.spring.bean.lifecycle.MyInitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class TestInitMain {
+public class InitMain {
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("BeansInit.xml");
 
