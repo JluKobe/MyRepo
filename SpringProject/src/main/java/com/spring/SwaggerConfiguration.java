@@ -1,4 +1,4 @@
-package com.myproject;
+package com.spring;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -19,7 +19,7 @@ public class SwaggerConfiguration {
         return new Docket(DocumentationType.SWAGGER_2)
                 .pathMapping("/")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.myproject.controller")) //暴露接口地址的包路径
+                .apis(RequestHandlerSelectors.basePackage("com.spring.controller")) //暴露接口地址的包路径
                 .paths(PathSelectors.any())
                 .build();
     }
