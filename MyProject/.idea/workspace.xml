@@ -1,19 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="04abfb22-9091-4727-b1f0-8d5d60b75e81" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../SpringProject/src/main/java/com/spring/Application.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../SpringProject/src/main/java/com/spring/SwaggerConfiguration.java" afterDir="false" />
+    <list default="true" id="04abfb22-9091-4727-b1f0-8d5d60b75e81" name="Default Changelist" comment="add swagger config">
+      <change afterPath="$PROJECT_DIR$/../SpringProject/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MyCreateTable/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../MyCreateTable/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/SwaggerConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myproject/SwaggerConfiguration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/controller/WordController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myproject/controller/WordController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/jpa/repository/WordRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myproject/jpa/repository/WordRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/service/IWord.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myproject/service/IWord.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/service/impl/WordImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myproject/service/impl/WordImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpringProject/src/main/java/spring/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring/spring.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/MyProject.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/Application.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/SwaggerConfiguration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/controller/PlayerController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/controller/SamController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/controller/WordController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/jpa/bean/Player$PlayerBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/jpa/bean/Player.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/jpa/bean/Sam$SamBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/jpa/bean/Sam.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/jpa/bean/Word$WordBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/jpa/bean/Word.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/jpa/repository/PlayerRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/jpa/repository/SamRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/jpa/repository/WordRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/service/IPlayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/service/ISam.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/service/IWord.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/service/impl/PlayerImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/service/impl/SamImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/service/impl/WordImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/vo/PlayerVo$PlayerVoBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/vo/PlayerVo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/vo/WordVo$WordVoBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/vo/WordVo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/vo/result/ResultBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/MyProject/AppTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringProject/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringProject/target/classes/com/spring/Application.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringProject/target/classes/com/spring/SwaggerConfiguration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringProject/target/test-classes/spring/AppTest.class" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -170,6 +193,7 @@
       <workItem from="1603759988567" duration="21142000" />
       <workItem from="1603870499551" duration="15911000" />
       <workItem from="1604191239959" duration="17934000" />
+      <workItem from="1604456523137" duration="2842000" />
     </task>
     <task id="LOCAL-00001" summary="modify getAllWord controller">
       <created>1603872165427</created>
