@@ -74,10 +74,10 @@ public class TaskExtend {
     private String entrustName;
 
     @Column(name = "plan_effective_date", columnDefinition = "datetime comment '计划生效日期'")
-    private LocalDateTime planEffectiveDate;
+    private String planEffectiveDate;
 
     @Column(name = "plan_cancel_date", columnDefinition = "datetime comment '计划取消日期'")
-    private LocalDateTime planCancelDate;
+    private String planCancelDate;
 
     @Column(name = "by_law", columnDefinition = "varchar(256) comment '设定依据'")
     private String byLaw;

@@ -136,12 +136,12 @@ public class TaskBasic {
     @Column(name = "is_service_terminals", columnDefinition = "varchar(2) comment '是否支持自助终端办理'")
     private String isServiceTerminals;
 
-//    @Column(name = "is_window", columnDefinition = "varchar(2) comment '是否支持综窗办理'")
-//    private String isWindow;
-//
-//    @Column(name = "is_batch", columnDefinition = "varchar(2) comment '是否支持批量接件'")
-//    private String isBatch;
-//
-//    @Column(name = "result_group_code", columnDefinition = "varchar(50) comment '审批结果分组代码'")
-//    private String resultGroupCode;
+    @Column(name = "is_window", columnDefinition = "varchar(2) comment '是否支持综窗办理'")
+    private String isWindow;
+
+    @Column(name = "is_batch", columnDefinition = "varchar(2) comment '是否支持批量接件'")
+    private String isBatch;
+
+    @Column(name = "result_group_code", columnDefinition = "varchar(50) comment '审批结果分组代码'")
+    private String resultGroupCode;
 }
