@@ -39,7 +39,6 @@ public class DataExchangeImpl implements IDataExchange {
             //4 根据得到数据，在igt_task_extend新增数据，扩展信息
             insertIgtTaskExtend(cleanDnTaskGeneralBasic, cleanDnTaskGeneralExtend);
 
-            //taskGuid = "0116172b-7f77-aaa3-909f-06617e9604cd";  //测试数据
             //5 根据material_guid查询clean_dn_task_general_material
             List<CleanDnTaskGeneralMaterial> cleanDnTaskGeneralMaterialList = queryCleanMaterial(taskGuid);
 
@@ -380,11 +379,11 @@ public class DataExchangeImpl implements IDataExchange {
      * @param cleanDnTaskGeneralMaterialList
      */
     public void insertIgtTaskMaterialCatalogTask(List<CleanDnTaskGeneralMaterial> cleanDnTaskGeneralMaterialList) {
-        String sql = "insert into task.igt_task_material_catalog (id, task_guid, material_guid, condition_guid, " +
+        String sql = "insert into task.igt_task_material_catalog (id, task_guid, material_guid, " +
                 "material_name, page_num, page_format, material_type, material_format, form_guid, example_guid," +
                 "is_need, is_reused, source_type, source_explain, fill_explain, by_law, accept_stand," +
                 "create_org_id, create_time, create_user_id, update_org_id, update_time, update_user_id)" +
-                "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, '1', SYSDATE(), '1', '1', SYSDATE(), '1')";
+                "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, '1', SYSDATE(), '1', '1', SYSDATE(), '1')";
         for(CleanDnTaskGeneralMaterial cleanDnTaskGeneralMaterial : cleanDnTaskGeneralMaterialList) {
             PreparedStatementSetter preparedStatementSetter = new PreparedStatementSetter() {
                 @Override
@@ -392,21 +391,20 @@ public class DataExchangeImpl implements IDataExchange {
                     preparedStatement.setInt(1, Integer.valueOf(cleanDnTaskGeneralMaterial.getId()));
                     preparedStatement.setString(2, cleanDnTaskGeneralMaterial.getTaskGuid());
                     preparedStatement.setString(3, cleanDnTaskGeneralMaterial.getRowGuid());
-                    preparedStatement.setString(4, null);
-                    preparedStatement.setString(5, cleanDnTaskGeneralMaterial.getMaterialName());
-                    preparedStatement.setString(6, cleanDnTaskGeneralMaterial.getPageNum());
-                    preparedStatement.setString(7, cleanDnTaskGeneralMaterial.getPageFormat());
-                    preparedStatement.setString(8, cleanDnTaskGeneralMaterial.getMaterialType());
-                    preparedStatement.setString(9, cleanDnTaskGeneralMaterial.getMaterialFormat());
-                    preparedStatement.setString(10, cleanDnTaskGeneralMaterial.getFormGuid());
-                    preparedStatement.setString(11, cleanDnTaskGeneralMaterial.getExampleGuid());
-                    preparedStatement.setString(12, cleanDnTaskGeneralMaterial.getIsNeed());
-                    preparedStatement.setString(13, "0");
-                    preparedStatement.setString(14, cleanDnTaskGeneralMaterial.getSourceType());
-                    preparedStatement.setString(15, cleanDnTaskGeneralMaterial.getSourceExplain());
-                    preparedStatement.setString(16, cleanDnTaskGeneralMaterial.getFillExplain());
-                    preparedStatement.setString(17, cleanDnTaskGeneralMaterial.getByLaw());
-                    preparedStatement.setString(18, cleanDnTaskGeneralMaterial.getAcceptStand());
+                    preparedStatement.setString(4, cleanDnTaskGeneralMaterial.getMaterialName());
+                    preparedStatement.setString(5, cleanDnTaskGeneralMaterial.getPageNum());
+                    preparedStatement.setString(6, cleanDnTaskGeneralMaterial.getPageFormat());
+                    preparedStatement.setString(7, cleanDnTaskGeneralMaterial.getMaterialType());
+                    preparedStatement.setString(8, cleanDnTaskGeneralMaterial.getMaterialFormat());
+                    preparedStatement.setString(9, cleanDnTaskGeneralMaterial.getFormGuid());
+                    preparedStatement.setString(10, cleanDnTaskGeneralMaterial.getExampleGuid());
+                    preparedStatement.setString(11, cleanDnTaskGeneralMaterial.getIsNeed());
+                    preparedStatement.setString(12, "0");
+                    preparedStatement.setString(13, cleanDnTaskGeneralMaterial.getSourceType());
+                    preparedStatement.setString(14, cleanDnTaskGeneralMaterial.getSourceExplain());
+                    preparedStatement.setString(15, cleanDnTaskGeneralMaterial.getFillExplain());
+                    preparedStatement.setString(16, cleanDnTaskGeneralMaterial.getByLaw());
+                    preparedStatement.setString(17, cleanDnTaskGeneralMaterial.getAcceptStand());
                 }
             };
             jdbcTemplateOne.update(sql, preparedStatementSetter);
