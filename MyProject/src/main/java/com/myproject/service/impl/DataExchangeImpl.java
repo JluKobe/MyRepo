@@ -77,26 +77,6 @@ public class DataExchangeImpl implements IDataExchange {
         return true;
     }
 
-    @Override
-    public boolean doBusiness2(String taskGuid) {
-        List<CleanDnTaskAuditItemCondition> cleanDnTaskAuditItemConditionList = queryCleanItemCondition(taskGuid);
-        System.out.println(cleanDnTaskAuditItemConditionList.size());
-
-//        insertIgtTaskCondition(cleanDnTaskAuditItemConditionList);
-
-        List<String> conditionGuidList = new ArrayList<>();
-        for(CleanDnTaskAuditItemCondition cleanDnTaskAuditItemCondition : cleanDnTaskAuditItemConditionList) {
-            String conditionGuid = cleanDnTaskAuditItemCondition.getRowGuid();
-            conditionGuidList.add(conditionGuid);
-        }
-
-        List<CleanDnAuditMaterialCondition> cleanDnAuditMaterialConditionList = queryMaterialCondition(conditionGuidList);
-
-//        insertIgtTaskConditionMaterial(cleanDnAuditMaterialConditionList);
-
-        return true;
-    }
-
     /**
      * 根据material_guid查询clean_dn_task_general_material
      * @param taskGuid
