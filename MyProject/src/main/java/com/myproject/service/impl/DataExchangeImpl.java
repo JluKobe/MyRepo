@@ -62,9 +62,6 @@ public class DataExchangeImpl implements IDataExchange {
             if(cleanDnAuditMaterialConditionList.size() > 0) {
                 //10 根据得到数据，在igt_task_condition_material新增数据，情形材料关系
                 insertIgtTaskConditionMaterial(cleanDnAuditMaterialConditionList);
-
-                //更新igt_task_material_catalog中的condition_guid字段
-                updateIgtTaskMaterialCatalogCondition(taskGuid, cleanDnAuditMaterialConditionList);
             }
 
             //11 根据taskGuid查询clean_dn_task_general_fee_project  收费情况
@@ -387,25 +384,6 @@ public class DataExchangeImpl implements IDataExchange {
                     preparedStatement.setString(17, cleanDnTaskGeneralMaterial.getAcceptStand());
                 }
             };
-            jdbcTemplateOne.update(sql, preparedStatementSetter);
-        }
-    }
-
-    /**
-     * 更新igt_task_material_catalog中的condition_guid字段
-     */
-    public void updateIgtTaskMaterialCatalogCondition(String taskGuid, List<CleanDnAuditMaterialCondition> cleanDnAuditMaterialConditionList) {
-        String sql = "update task.igt_task_material_catalog set condition_guid = ? where task_guid = ? and material_guid = ?";
-        for(CleanDnAuditMaterialCondition cleanDnAuditMaterialCondition : cleanDnAuditMaterialConditionList) {
-            PreparedStatementSetter preparedStatementSetter = new PreparedStatementSetter() {
-                @Override
-                public void setValues(PreparedStatement preparedStatement) throws SQLException {
-                    preparedStatement.setString(1, cleanDnAuditMaterialCondition.getConditionGuid());
-                    preparedStatement.setString(2, taskGuid);
-                    preparedStatement.setString(3, cleanDnAuditMaterialCondition.getMaterialGuid());
-                }
-            };
-
             jdbcTemplateOne.update(sql, preparedStatementSetter);
         }
     }
