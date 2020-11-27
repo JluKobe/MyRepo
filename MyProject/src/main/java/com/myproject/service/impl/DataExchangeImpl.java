@@ -39,7 +39,7 @@ public class DataExchangeImpl implements IDataExchange {
             //4 根据得到数据，在igt_task_extend新增数据，扩展信息
             insertIgtTaskExtend(cleanDnTaskGeneralBasic, cleanDnTaskGeneralExtend);
 
-            //5 根据material_guid查询clean_dn_task_general_material
+            //5 根据task_guid查询clean_dn_task_general_material
             List<CleanDnTaskGeneralMaterial> cleanDnTaskGeneralMaterialList = queryCleanMaterial(taskGuid);
 
             //6 根据得到数据，在igt_task_material_catalog新增数据，事项材料目录信息
