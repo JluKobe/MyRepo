@@ -28,19 +28,4 @@ public class DataExchangeController {
         iDataExchange.doBusiness(taskHandleItemList);
         return new ResultBean<>(true);
     }
-
-    @ApiOperation(value = "业务处理2", notes = "getBusiness2")
-    @PostMapping(value = "/getBusiness2")
-    public ResultBean<Boolean> getBusiness2(@RequestParam String taskGuid) {
-        iDataExchange.doBusiness2(taskGuid);
-        return new ResultBean<>(true);
-    }
-
-    @ApiOperation(value = "业务处理3", notes = "getBusiness3")
-    @PostMapping(value = "/getBusiness3")
-    public ResultBean<Boolean> getBusiness3(@RequestParam String taskGuid) {
-//        public BadResponseException(HttpStatus httpStatus, ErrorCodeEnum errorCodeEnum, String message)
-        throw new BadResponseException(HttpStatus.BAD_REQUEST, ErrorCodeEnum.GL999999, "error");
-//        return new ResultBean<>(true);
-    }
 }
