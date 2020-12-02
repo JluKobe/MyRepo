@@ -152,17 +152,30 @@ public class DataExchangeImpl implements IDataExchange {
     }
 
     /**
+     * 根据task_guid查询clean_dn_task_directory中的task_name
+     * @param catalogCode
+     * @return
+     */
+    public CleanDnTaskDirectory queryTaskName(String catalogCode) {
+        String sql = "select taskname from task_test.clean_dn_task_directory where catalogcode = ?";
+        RowMapper<CleanDnTaskDirectory> rowMapper = new BeanPropertyRowMapper<>(CleanDnTaskDirectory.class);
+        return jdbcTemplateOne.queryForObject(sql, rowMapper, catalogCode);
+    }
+
+    /**
      * 根据得到数据，在igt_task_basic新增数据
      * @param cleanDnTaskGeneralBasic
      * @param cleanDnTaskGeneralExtend
      */
     public void insertIgtTaskBasic(CleanDnTaskGeneralBasic cleanDnTaskGeneralBasic, CleanDnTaskGeneralExtend cleanDnTaskGeneralExtend) {
+        CleanDnTaskDirectory cleanDnTaskDirectory = queryTaskName(cleanDnTaskGeneralBasic.getCatalogCode());
+
         PreparedStatementSetter preparedStatementSetter = new PreparedStatementSetter() {
             @Override
             public void setValues(PreparedStatement preparedStatement) throws SQLException {
                 preparedStatement.setInt(1, Integer.valueOf(cleanDnTaskGeneralBasic.getId()));
                 preparedStatement.setString(2, cleanDnTaskGeneralBasic.getCatalogCode());
-                preparedStatement.setString(3, null);
+                preparedStatement.setString(3, cleanDnTaskDirectory.getTaskName());
                 preparedStatement.setInt(4, 1);
                 preparedStatement.setInt(5, 1);
                 preparedStatement.setString(6, cleanDnTaskGeneralBasic.getDeptCode());
@@ -183,30 +196,37 @@ public class DataExchangeImpl implements IDataExchange {
                 preparedStatement.setString(21, cleanDnTaskGeneralBasic.getPowerSource());
                 preparedStatement.setString(22, cleanDnTaskGeneralBasic.getProjectType());
                 preparedStatement.setString(23, cleanDnTaskGeneralBasic.getPromiseDay());
-                preparedStatement.setString(24, cleanDnTaskGeneralExtend.getResultType());
-                preparedStatement.setString(25, cleanDnTaskGeneralBasic.getServerType());
-                preparedStatement.setString(26, cleanDnTaskGeneralBasic.getTaskCode());
-                preparedStatement.setString(27, cleanDnTaskGeneralExtend.getTaskGuid());
-                preparedStatement.setString(28, cleanDnTaskGeneralBasic.getTaskHandleItem());
-                preparedStatement.setString(29, cleanDnTaskGeneralBasic.getTaskName());
-                preparedStatement.setString(30, cleanDnTaskGeneralBasic.getTaskState());
-                preparedStatement.setString(31, cleanDnTaskGeneralBasic.getTaskType());
-                preparedStatement.setString(32, cleanDnTaskGeneralBasic.getTaskVersion());
-                preparedStatement.setString(33, cleanDnTaskGeneralBasic.getTransactAddr());
-                preparedStatement.setString(34, cleanDnTaskGeneralBasic.getTransactTime());
+                preparedStatement.setString(24, cleanDnTaskGeneralBasic.getServerType());
+                preparedStatement.setString(25, cleanDnTaskGeneralBasic.getTaskCode());
+                preparedStatement.setString(26, cleanDnTaskGeneralExtend.getTaskGuid());
+                preparedStatement.setString(27, cleanDnTaskGeneralBasic.getTaskHandleItem());
+                preparedStatement.setString(28, cleanDnTaskGeneralBasic.getTaskName());
+                preparedStatement.setString(29, cleanDnTaskGeneralBasic.getTaskState());
+                preparedStatement.setString(30, cleanDnTaskGeneralBasic.getTaskType());
+                preparedStatement.setString(31, cleanDnTaskGeneralBasic.getTaskVersion());
+                preparedStatement.setString(32, cleanDnTaskGeneralBasic.getTransactAddr());
+                preparedStatement.setString(33, cleanDnTaskGeneralBasic.getTransactTime());
+                preparedStatement.setInt(34, 1);
                 preparedStatement.setInt(35, 1);
-                preparedStatement.setInt(36, 1);
-                preparedStatement.setString(37, cleanDnTaskGeneralBasic.getUseLevel());
-                preparedStatement.setInt(38, 1);
+                preparedStatement.setString(36, cleanDnTaskGeneralBasic.getUseLevel());
+                preparedStatement.setInt(37, 1);
+                preparedStatement.setString(38, cleanDnTaskGeneralExtend.getResultType());
+                preparedStatement.setString(39, cleanDnTaskGeneralExtend.getResultName());
+                preparedStatement.setString(40, null);
+                preparedStatement.setString(41, "01");
+                preparedStatement.setString(42, "01");
+                preparedStatement.setString(43, "1");
+                preparedStatement.setString(44, "1");
             }
         };
 
-        String sql = "insert into task.igt_task_basic (id, catalog_code, catalog_name, create_org_id, create_time," +
-                "create_user_id, dept_code, dept_name, dept_type, handle_type, is_batch, is_entry_center, is_express, is_online," +
-                "is_pay_online, is_schedule, is_service_terminals, is_window, link_way, local_catalog_code, local_task_code, " +
-                "power_source, project_type, promise_day, result_group_code, server_type, task_code, task_guid, task_handle_item," +
-                "task_name, task_state, task_type, task_version, transact_addr, transact_time, update_org_id, update_time, update_user_id," +
-                "use_level, version) values(?,?,?,?,sysdate(),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,sysdate(),?,?,?)";
+        String sql = "insert into task.igt_task_basic (id, catalog_code, catalog_name, create_org_id, create_time,\n" +
+                "create_user_id, dept_code, dept_name, dept_type, handle_type, is_batch, is_entry_center, is_express, is_online,\n" +
+                "is_pay_online, is_schedule, is_service_terminals, is_window, link_way, local_catalog_code, local_task_code,\n" +
+                "power_source, project_type, promise_day, server_type, task_code, task_guid, task_handle_item,\n" +
+                "task_name, task_state, task_type, task_version, transact_addr, transact_time, update_org_id, update_time, update_user_id,\n" +
+                "use_level, version, result_type, result_name, result_sample, product_type, product_source_type, task_status, is_high_frequency) \n" +
+                "values(?,?,?,?,sysdate(),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,sysdate(),?,?,?,?,?,?,?,?,?,?)";
 
         jdbcTemplateOne.update(sql, preparedStatementSetter);
     }
@@ -245,25 +265,22 @@ public class DataExchangeImpl implements IDataExchange {
                 preparedStatement.setString(23, cleanDnTaskGeneralBasic.getPlanEffectiveDate());
                 preparedStatement.setString(24, cleanDnTaskGeneralBasic.getPromiseExplain());
                 preparedStatement.setString(25, cleanDnTaskGeneralBasic.getPromiseType());
-                preparedStatement.setString(26, cleanDnTaskGeneralExtend.getResultName());
-                preparedStatement.setString(27, null);
-                preparedStatement.setString(28, null);
-                preparedStatement.setString(29, cleanDnTaskGeneralBasic.getServerType());
-                preparedStatement.setString(30, cleanDnTaskGeneralBasic.getSpecialProcedure());
-                preparedStatement.setString(31, cleanDnTaskGeneralBasic.getSuperviseWay());
-                preparedStatement.setString(32, cleanDnTaskGeneralExtend.getTaskGuid());
-                preparedStatement.setInt(33, 1);
-                preparedStatement.setInt(34, 1);
-                preparedStatement.setInt(35, 1);
+                preparedStatement.setString(26, cleanDnTaskGeneralBasic.getServerType());
+                preparedStatement.setString(27, cleanDnTaskGeneralBasic.getSpecialProcedure());
+                preparedStatement.setString(28, cleanDnTaskGeneralBasic.getSuperviseWay());
+                preparedStatement.setString(29, cleanDnTaskGeneralExtend.getTaskGuid());
+                preparedStatement.setInt(30, 1);
+                preparedStatement.setInt(31, 1);
+                preparedStatement.setInt(32, 1);
             }
         };
 
-        String sql = "insert into task.igt_task_extend (id, accept_condition, anticipate_day, anticipate_explain, anticipate_type," +
-                "app_is_single_login, by_law, by_suppose, create_org_id, create_time, create_user_id, entrust_name, handle_area, " +
-                "handle_flow, is_single_login, limit_scene_explain, limit_scene_num, link_addr, mobile_terminal_url, online_handle_depth, " +
-                "online_handle_url, other_dept, plan_cancel_date, plan_effective_date, promise_explain, promise_type, result_name, " +
-                "result_sample, result_type, service_type, special_procedure, supervise_way, task_guid, update_org_id, update_time, " +
-                "update_user_id, version) values(?,?,?,?,?,?,?,?,?,sysdate(),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,sysdate(),?,?)";
+        String sql = "insert into task.igt_task_extend (id, accept_condition, anticipate_day, anticipate_explain, anticipate_type,\n" +
+                "app_is_single_login, by_law, by_suppose, create_org_id, create_time, create_user_id, entrust_name, handle_area, \n" +
+                "handle_flow, is_single_login, limit_scene_explain, limit_scene_num, link_addr, mobile_terminal_url, online_handle_depth,\n" +
+                "online_handle_url, other_dept, plan_cancel_date, plan_effective_date, promise_explain, promise_type, service_type, special_procedure, \n" +
+                "supervise_way, task_guid, update_org_id, update_time, \n" +
+                "update_user_id, version) values(?,?,?,?,?,?,?,?,?,sysdate(),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,sysdate(),?,?)";
 
         jdbcTemplateOne.update(sql, preparedStatementSetter);
     }
