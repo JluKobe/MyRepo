@@ -2,6 +2,7 @@ package com.myproject.service.impl;
 
 import com.myproject.bean.*;
 import com.myproject.service.IDataExchange;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Slf4j
 public class DataExchangeImpl implements IDataExchange {
 
     @Autowired
@@ -24,14 +26,19 @@ public class DataExchangeImpl implements IDataExchange {
 
     @Override
     public boolean doBusiness(List<String> taskHandleItemList, String isHighFrequency) {
+        log.info("数据导入 start，taskHandleItemList size : {}, 是否高频事项 : {}", taskHandleItemList.size(), isHighFrequency);
 
         for(String taskHandleItem : taskHandleItemList) {
+            log.info("taskHandleItem : {}", taskHandleItem);
+
             //1 根据taskHandleItem查询clean_dn_task_general_extend
             CleanDnTaskGeneralExtend cleanDnTaskGeneralExtend = queryCleanExtend(taskHandleItem);
             String taskGuid = cleanDnTaskGeneralExtend.getTaskGuid();
+            log.info("taskGuid : {}", taskGuid);
 
             //2 根据得到的taskGuid查询clean_dn_task_general_basic
             CleanDnTaskGeneralBasic cleanDnTaskGeneralBasic = queryCleanBasic(taskGuid);
+            log.info("taskName : {}", cleanDnTaskGeneralBasic.getTaskName());
 
             //3 根据得到数据，在igt_task_basic新增数据，基本信息
             insertIgtTaskBasic(cleanDnTaskGeneralBasic, cleanDnTaskGeneralExtend, isHighFrequency);
@@ -41,12 +48,14 @@ public class DataExchangeImpl implements IDataExchange {
 
             //5 根据task_guid查询clean_dn_task_general_material
             List<CleanDnTaskGeneralMaterial> cleanDnTaskGeneralMaterialList = queryCleanMaterial(taskGuid);
+            log.info("materialList size : {}", cleanDnTaskGeneralMaterialList.size());
 
             //6 根据得到数据，在igt_task_material_catalog新增数据，事项材料目录信息
             insertIgtTaskMaterialCatalogTask(cleanDnTaskGeneralMaterialList);
 
             //7 根据taskGuid查询clean_dn_audit_item_condition
             List<CleanDnTaskAuditItemCondition> cleanDnTaskAuditItemConditionList = queryCleanItemCondition(taskGuid);
+            log.info("conditionList size : {}", cleanDnTaskAuditItemConditionList.size());
 
             //8 根据得到数据，在igt_task_condition新增数据，事项情形
             insertIgtTaskCondition(cleanDnTaskAuditItemConditionList);
@@ -58,6 +67,7 @@ public class DataExchangeImpl implements IDataExchange {
                 conditionGuidList.add(conditionGuid);
             }
             List<CleanDnAuditMaterialCondition> cleanDnAuditMaterialConditionList = queryMaterialCondition(conditionGuidList);
+            log.info("materialConditionList size : {}", cleanDnAuditMaterialConditionList.size());
 
             if(cleanDnAuditMaterialConditionList.size() > 0) {
                 //10 根据得到数据，在igt_task_condition_material新增数据，情形材料关系
@@ -66,11 +76,13 @@ public class DataExchangeImpl implements IDataExchange {
 
             //11 根据taskGuid查询clean_dn_task_general_fee_project  收费情况
             List<CleanDnTaskGeneralFeeProject> cleanDnTaskGeneralFeeProjectList = queryCleanFee(taskGuid);
+            log.info("feeList size : {}", cleanDnTaskGeneralFeeProjectList.size());
 
             //12 根据得到数据，在igt_task_fee新增数据，事项收费情况
             insertIgtTaskFee(cleanDnTaskGeneralFeeProjectList);
         }
 
+        log.info("数据导入 end");
         return true;
     }
 
