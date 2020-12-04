@@ -83,8 +83,7 @@ public class DataExchangeImpl implements IDataExchange {
             insertIgtTaskFee(cleanDnTaskGeneralFeeProjectList);
         }
 
-        long end = System.currentTimeMillis();
-        log.info("数据导入 end, {}", end - start);
+        log.info("数据导入 end, {}", System.currentTimeMillis() - start);
         return true;
     }
 
