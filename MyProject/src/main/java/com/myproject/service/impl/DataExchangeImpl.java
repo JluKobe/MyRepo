@@ -27,6 +27,7 @@ public class DataExchangeImpl implements IDataExchange {
     @Override
     public boolean doBusiness(List<String> taskHandleItemList, String isHighFrequency) {
         log.info("数据导入 start，taskHandleItemList size : {}, 是否高频事项 : {}", taskHandleItemList.size(), isHighFrequency);
+        long start = System.currentTimeMillis();
 
         for(String taskHandleItem : taskHandleItemList) {
             log.info("taskHandleItem : {}", taskHandleItem);
@@ -82,7 +83,8 @@ public class DataExchangeImpl implements IDataExchange {
             insertIgtTaskFee(cleanDnTaskGeneralFeeProjectList);
         }
 
-        log.info("数据导入 end");
+        long end = System.currentTimeMillis();
+        log.info("数据导入 end, {}", end - start);
         return true;
     }
 
