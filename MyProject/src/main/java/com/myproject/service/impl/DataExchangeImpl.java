@@ -81,7 +81,7 @@ public class DataExchangeImpl implements IDataExchange {
      */
     public List<CleanDnTaskGeneralMaterial> queryCleanMaterial(String taskGuid) {
         String sql = "select id, taskguid, rowguid, materialname, pagenum, pageformat, materialtype, materialformat, formguid, exampleguid, isneed, " +
-                "sourcetype, sourceexplain, fillexplain, bylaw, acceptstand from task_test.clean_dn_task_general_material " +
+                "sourcetype, sourceexplain, fillexplain, bylaw, acceptstand from integrated_serve_v1.clean_dn_task_general_material " +
                 "where taskguid = ?";
         RowMapper<CleanDnTaskGeneralMaterial> rowMapper = new BeanPropertyRowMapper<>(CleanDnTaskGeneralMaterial.class);
         List<CleanDnTaskGeneralMaterial> cleanDnTaskGeneralMaterialList = jdbcTemplateOne.query(sql, rowMapper, taskGuid);
@@ -94,7 +94,7 @@ public class DataExchangeImpl implements IDataExchange {
      * @return
      */
     public CleanDnTaskGeneralExtend queryCleanExtend(String taskHandleItem) {
-        String sql = "select * from task_test.clean_dn_task_general_extend where taskhandleitem = ?";
+        String sql = "select * from integrated_serve_v1.clean_dn_task_general_extend where taskhandleitem = ?";
         RowMapper<CleanDnTaskGeneralExtend> rowMapper = new BeanPropertyRowMapper<>(CleanDnTaskGeneralExtend.class);
         return jdbcTemplateOne.queryForObject(sql, rowMapper, taskHandleItem);
     }
@@ -105,7 +105,7 @@ public class DataExchangeImpl implements IDataExchange {
      * @return
      */
     public CleanDnTaskGeneralBasic queryCleanBasic(String taskGuid) {
-        String sql = "select * from task_test.clean_dn_task_general_basic where rowguid = ?";
+        String sql = "select * from integrated_serve_v1.clean_dn_task_general_basic where rowguid = ?";
         RowMapper<CleanDnTaskGeneralBasic> rowMapper = new BeanPropertyRowMapper<>(CleanDnTaskGeneralBasic.class);
         return jdbcTemplateOne.queryForObject(sql, rowMapper, taskGuid);
     }
@@ -116,7 +116,7 @@ public class DataExchangeImpl implements IDataExchange {
      * @return
      */
     public List<CleanDnTaskAuditItemCondition> queryCleanItemCondition(String taskGuid) {
-        String sql = "select id, RowGuid, TaskGuid, Condition_Name, CONDITION_DESC from task_test.clean_dn_audit_item_condition where taskguid = ?";
+        String sql = "select id, RowGuid, TaskGuid, Condition_Name, CONDITION_DESC from integrated_serve_v1.clean_dn_audit_item_condition where taskguid = ?";
         RowMapper<CleanDnTaskAuditItemCondition> rowMapper = new BeanPropertyRowMapper<>(CleanDnTaskAuditItemCondition.class);
         List<CleanDnTaskAuditItemCondition> cleanDnTaskAuditItemConditionList = jdbcTemplateOne.query(sql, rowMapper, taskGuid);
         return cleanDnTaskAuditItemConditionList;
@@ -128,7 +128,7 @@ public class DataExchangeImpl implements IDataExchange {
      * @return
      */
     public List<CleanDnTaskGeneralFeeProject> queryCleanFee(String taskGuid) {
-        String sql = "select id, feestand, feename, isdesc, descexplain, taskguid from task_test.clean_dn_task_general_fee_project where taskguid = ?";
+        String sql = "select id, feestand, feename, isdesc, descexplain, taskguid from integrated_serve_v1.clean_dn_task_general_fee_project where taskguid = ?";
         RowMapper<CleanDnTaskGeneralFeeProject> rowMapper = new BeanPropertyRowMapper<>(CleanDnTaskGeneralFeeProject.class);
         List<CleanDnTaskGeneralFeeProject> list = jdbcTemplateOne.query(sql, rowMapper, taskGuid);
         return list;
@@ -141,7 +141,7 @@ public class DataExchangeImpl implements IDataExchange {
      */
     public List<CleanDnAuditMaterialCondition> queryMaterialCondition(List<String> conditionList) {
         List<CleanDnAuditMaterialCondition> cleanDnAuditMaterialConditionList = new ArrayList<>();
-        String sql = "select id, condition_guid, MATERIAL_GUID from task_test.clean_dn_audit_material_condition where condition_guid = ?";
+        String sql = "select id, condition_guid, MATERIAL_GUID from integrated_serve_v1.clean_dn_audit_material_condition where condition_guid = ?";
         RowMapper<CleanDnAuditMaterialCondition> rowMapper = new BeanPropertyRowMapper<>(CleanDnAuditMaterialCondition.class);
         for(String conditionGuid : conditionList) {
             List<CleanDnAuditMaterialCondition> list = jdbcTemplateOne.query(sql, rowMapper, conditionGuid);
@@ -157,7 +157,7 @@ public class DataExchangeImpl implements IDataExchange {
      * @return
      */
     public CleanDnTaskDirectory queryTaskName(String catalogCode) {
-        String sql = "select taskname from task_test.clean_dn_task_directory where catalogcode = ?";
+        String sql = "select taskname from integrated_serve_v1.clean_dn_task_directory where catalogcode = ?";
         RowMapper<CleanDnTaskDirectory> rowMapper = new BeanPropertyRowMapper<>(CleanDnTaskDirectory.class);
         return jdbcTemplateOne.queryForObject(sql, rowMapper, catalogCode);
     }
@@ -220,7 +220,7 @@ public class DataExchangeImpl implements IDataExchange {
             }
         };
 
-        String sql = "insert into task.igt_task_basic (id, catalog_code, catalog_name, create_org_id, create_time,\n" +
+        String sql = "insert into igt_task_v1.igt_task_basic (id, catalog_code, catalog_name, create_org_id, create_time,\n" +
                 "create_user_id, dept_code, dept_name, dept_type, handle_type, is_batch, is_entry_center, is_express, is_online,\n" +
                 "is_pay_online, is_schedule, is_service_terminals, is_window, link_way, local_catalog_code, local_task_code,\n" +
                 "power_source, project_type, promise_day, server_type, task_code, task_guid, task_handle_item,\n" +
@@ -275,7 +275,7 @@ public class DataExchangeImpl implements IDataExchange {
             }
         };
 
-        String sql = "insert into task.igt_task_extend (id, accept_condition, anticipate_day, anticipate_explain, anticipate_type,\n" +
+        String sql = "insert into igt_task_v1.igt_task_extend (id, accept_condition, anticipate_day, anticipate_explain, anticipate_type,\n" +
                 "app_is_single_login, by_law, by_suppose, create_org_id, create_time, create_user_id, entrust_name, handle_area, \n" +
                 "handle_flow, is_single_login, limit_scene_explain, limit_scene_num, link_addr, mobile_terminal_url, online_handle_depth,\n" +
                 "online_handle_url, other_dept, plan_cancel_date, plan_effective_date, promise_explain, promise_type, service_type, special_procedure, \n" +
@@ -290,7 +290,7 @@ public class DataExchangeImpl implements IDataExchange {
      * @param cleanDnTaskGeneralFeeProjectList
      */
     public void insertIgtTaskFee(List<CleanDnTaskGeneralFeeProject> cleanDnTaskGeneralFeeProjectList) {
-        String sql = "insert into task.igt_task_fee (id, create_org_id, create_time, create_user_id, desc_explain, fee_name," +
+        String sql = "insert into igt_task_v1.igt_task_fee (id, create_org_id, create_time, create_user_id, desc_explain, fee_name," +
                 "fee_stand, is_desc, task_guid, update_org_id, update_time, update_user_id, version) values (?, ?, sysdate(), ?, ?, ?, ?, ?, ?, ?, sysdate(), ?, ?)";
         for(CleanDnTaskGeneralFeeProject cleanDnTaskGeneralFeeProject : cleanDnTaskGeneralFeeProjectList) {
             PreparedStatementSetter preparedStatementSetter = new PreparedStatementSetter() {
@@ -319,7 +319,7 @@ public class DataExchangeImpl implements IDataExchange {
      * @param cleanDnTaskAuditItemConditionList
      */
     public void insertIgtTaskCondition(List<CleanDnTaskAuditItemCondition> cleanDnTaskAuditItemConditionList) {
-        String sql = "insert into task.igt_task_condition (id, condition_desc, condition_guid, condition_name, create_org_id, create_time, create_user_id, task_guid, update_org_id," +
+        String sql = "insert into igt_task_v1.igt_task_condition (id, condition_desc, condition_guid, condition_name, create_org_id, create_time, create_user_id, task_guid, update_org_id," +
                 "update_time, update_user_id, version) values(?, ?, ?, ?, ?, sysdate(), ?, ?, ?, sysdate(), ?, ?)";
         for(CleanDnTaskAuditItemCondition cleanDnTaskAuditItemCondition : cleanDnTaskAuditItemConditionList) {
             PreparedStatementSetter preparedStatementSetter = new PreparedStatementSetter() {
@@ -347,7 +347,7 @@ public class DataExchangeImpl implements IDataExchange {
      * @param cleanDnAuditMaterialConditionList
      */
     public void insertIgtTaskConditionMaterial(List<CleanDnAuditMaterialCondition> cleanDnAuditMaterialConditionList) {
-        String sql = "insert into task.igt_task_condition_material(id, condition_guid, create_org_id, create_time, create_user_id," +
+        String sql = "insert into igt_task_v1.igt_task_condition_material(id, condition_guid, create_org_id, create_time, create_user_id," +
                 "material_guid, update_org_id, update_time, update_user_id, version) values(?, ?, ?, SYSDATE(), ?, ?, ?, SYSDATE(), ?, ?)";
         for(CleanDnAuditMaterialCondition cleanDnAuditMaterialCondition : cleanDnAuditMaterialConditionList) {
             PreparedStatementSetter preparedStatementSetter = new PreparedStatementSetter() {
@@ -373,7 +373,7 @@ public class DataExchangeImpl implements IDataExchange {
      * @param cleanDnTaskGeneralMaterialList
      */
     public void insertIgtTaskMaterialCatalogTask(List<CleanDnTaskGeneralMaterial> cleanDnTaskGeneralMaterialList) {
-        String sql = "insert into task.igt_task_material_catalog (id, task_guid, material_guid, " +
+        String sql = "insert into igt_task_v1.igt_task_material_catalog (id, task_guid, material_guid, " +
                 "material_name, page_num, page_format, material_type, material_format, form_guid, example_guid," +
                 "is_need, is_reused, source_type, source_explain, fill_explain, by_law, accept_stand," +
                 "create_org_id, create_time, create_user_id, update_org_id, update_time, update_user_id)" +
