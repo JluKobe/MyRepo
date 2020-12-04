@@ -23,7 +23,7 @@ public class DataExchangeImpl implements IDataExchange {
     private JdbcTemplate jdbcTemplateOne;
 
     @Override
-    public boolean doBusiness(List<String> taskHandleItemList) {
+    public boolean doBusiness(List<String> taskHandleItemList, String isHighFrequency) {
 
         for(String taskHandleItem : taskHandleItemList) {
             //1 根据taskHandleItem查询clean_dn_task_general_extend
@@ -34,7 +34,7 @@ public class DataExchangeImpl implements IDataExchange {
             CleanDnTaskGeneralBasic cleanDnTaskGeneralBasic = queryCleanBasic(taskGuid);
 
             //3 根据得到数据，在igt_task_basic新增数据，基本信息
-            insertIgtTaskBasic(cleanDnTaskGeneralBasic, cleanDnTaskGeneralExtend);
+            insertIgtTaskBasic(cleanDnTaskGeneralBasic, cleanDnTaskGeneralExtend, isHighFrequency);
 
             //4 根据得到数据，在igt_task_extend新增数据，扩展信息
             insertIgtTaskExtend(cleanDnTaskGeneralBasic, cleanDnTaskGeneralExtend);
@@ -167,7 +167,8 @@ public class DataExchangeImpl implements IDataExchange {
      * @param cleanDnTaskGeneralBasic
      * @param cleanDnTaskGeneralExtend
      */
-    public void insertIgtTaskBasic(CleanDnTaskGeneralBasic cleanDnTaskGeneralBasic, CleanDnTaskGeneralExtend cleanDnTaskGeneralExtend) {
+    public void insertIgtTaskBasic(CleanDnTaskGeneralBasic cleanDnTaskGeneralBasic, CleanDnTaskGeneralExtend cleanDnTaskGeneralExtend,
+                                   String isHighFrequency) {
         CleanDnTaskDirectory cleanDnTaskDirectory = queryTaskName(cleanDnTaskGeneralBasic.getCatalogCode());
 
         PreparedStatementSetter preparedStatementSetter = new PreparedStatementSetter() {
@@ -216,7 +217,7 @@ public class DataExchangeImpl implements IDataExchange {
                 preparedStatement.setString(41, "01");
                 preparedStatement.setString(42, "01");
                 preparedStatement.setString(43, "1");
-                preparedStatement.setString(44, "1");
+                preparedStatement.setString(44, isHighFrequency);
             }
         };
 

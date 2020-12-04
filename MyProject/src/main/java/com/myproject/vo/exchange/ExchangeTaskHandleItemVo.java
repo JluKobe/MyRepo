@@ -14,4 +14,6 @@ import java.util.List;
 public class ExchangeTaskHandleItemVo {
 
     List<String> taskHandleItemList;
+
+    private String isHighFrequency;
 }

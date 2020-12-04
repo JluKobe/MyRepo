@@ -22,7 +22,7 @@ public class DataExchangeController {
     @PostMapping(value = "/getBusiness")
     public ResultBean<Boolean> getBusiness(@RequestBody ExchangeTaskHandleItemVo vo) {
         List<String> taskHandleItemList = vo.getTaskHandleItemList();
-        iDataExchange.doBusiness(taskHandleItemList);
+        iDataExchange.doBusiness(taskHandleItemList, vo.getIsHighFrequency());
         return new ResultBean<>(true);
     }
 }
