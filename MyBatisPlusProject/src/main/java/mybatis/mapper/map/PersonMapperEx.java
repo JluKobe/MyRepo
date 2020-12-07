@@ -1,16 +1,15 @@
 package mybatis.mapper.map;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import mybatis.vo.entity.Person;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
- * 不继承BaseMapper
+ * 继承BaseMapper
  */
 
 @Mapper
 @Repository
-public interface PersonMapper {
-    Person findById(@Param("id") Integer id);
+public interface PersonMapperEx extends BaseMapper<Person> {
 }

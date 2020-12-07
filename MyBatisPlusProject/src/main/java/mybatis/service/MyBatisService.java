@@ -1,7 +1,7 @@
 package mybatis.service;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import mybatis.mapper.PlayerMapper;
+import mybatis.mapper.map.PersonMapperEx;
 import mybatis.mapper.map.PersonMapper;
 import mybatis.vo.entity.Person;
 import mybatis.vo.entity.Player;
@@ -17,6 +17,9 @@ public class MyBatisService extends ServiceImpl<PlayerMapper, Player> {
 
     @Autowired
     private PersonMapper mapper;
+
+    @Autowired
+    private PersonMapperEx personMapperEx;
 
     //使用Wrappers，不用xml
     public Player queryByIdUseWrappers(Integer id) {
@@ -53,5 +56,10 @@ public class MyBatisService extends ServiceImpl<PlayerMapper, Player> {
     public List<Player> queryLikeLeftName(String name) {
         List<Player> playerList = baseMapper.selectList(Wrappers.<Player>lambdaQuery().likeLeft(Player::getName, name));
         return playerList;
+    }
+
+    public Person queryByEx(Integer id) {
+        Person person = personMapperEx.selectOne(Wrappers.<Person>lambdaQuery().eq(Person::getId, id));
+        return person;
     }
 }

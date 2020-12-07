@@ -62,4 +62,11 @@ public class MyBatisController {
         List<Player> playerList = service.queryLikeLeftName(name);
         return new ResultBean<>(playerList);
     }
+
+    @ApiOperation(value = "查询person", notes = "查询person")
+    @GetMapping(value = "/queryPerson")
+    public ResultBean<Person> queryByEx(Integer id) {
+        Person person = service.queryByEx(id);
+        return new ResultBean<>(person);
+    }
 }
