@@ -1,6 +1,7 @@
 package mybatis.controller;
 
 import mybatis.service.MyBatisService;
+import mybatis.service.TaskMaterialCatalogService;
 import mybatis.vo.PlayerVo;
 import mybatis.vo.entity.Person;
 import mybatis.vo.entity.Player;
@@ -20,6 +21,9 @@ public class MyBatisController {
 
     @Autowired
     private MyBatisService service;
+
+    @Autowired
+    private TaskMaterialCatalogService taskMaterialCatalogService;
 
     @ApiOperation(value = "查询player 通过wrapper id", notes = "查询player 通过wrapper id")
     @PostMapping(value = "/queryByIdUseWrappers")
@@ -68,5 +72,12 @@ public class MyBatisController {
     public ResultBean<Person> queryByEx(Integer id) {
         Person person = service.queryByEx(id);
         return new ResultBean<>(person);
+    }
+
+    @ApiOperation(value = "更新审查要点", notes = "更新审查要点")
+    @GetMapping(value = "/updateMaterialKeyPoint")
+    public ResultBean<Integer> updateMaterialKeyPoint() {
+        int result = taskMaterialCatalogService.updateKeyPoint();
+        return new ResultBean<>(result);
     }
 }

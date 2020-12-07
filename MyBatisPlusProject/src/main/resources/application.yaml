@@ -4,7 +4,7 @@ spring:
   datasource:
     username: root
     password: aaaa
-    url: jdbc:mysql://127.0.0.1:3306/task?characterEncoding=UTF8
+    url: jdbc:mysql://127.0.0.1:3306/igt_task_v1?characterEncoding=UTF8
     driver-class-name: com.mysql.jdbc.Driver #直接打mysql会有提示
 
 #showSql日志输出，根据自己的包名进行修改
