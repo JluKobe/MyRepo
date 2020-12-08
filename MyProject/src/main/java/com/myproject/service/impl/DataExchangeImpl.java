@@ -231,6 +231,7 @@ public class DataExchangeImpl implements IDataExchange {
                 preparedStatement.setString(42, "01");
                 preparedStatement.setString(43, "1");
                 preparedStatement.setString(44, isHighFrequency);
+                preparedStatement.setString(45, cleanDnTaskGeneralBasic.getCdBatch());
             }
         };
 
@@ -239,8 +240,8 @@ public class DataExchangeImpl implements IDataExchange {
                 "is_pay_online, is_schedule, is_service_terminals, is_window, link_way, local_catalog_code, local_task_code,\n" +
                 "power_source, project_type, promise_day, server_type, task_code, task_guid, task_handle_item,\n" +
                 "task_name, task_state, task_type, task_version, transact_addr, transact_time, update_org_id, update_time, update_user_id,\n" +
-                "use_level, version, result_type, result_name, result_sample, product_type, product_source_type, task_status, is_high_frequency) \n" +
-                "values(?,?,?,?,sysdate(),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,sysdate(),?,?,?,?,?,?,?,?,?,?)";
+                "use_level, version, result_type, result_name, result_sample, product_type, product_source_type, task_status, is_high_frequency, cd_batch) \n" +
+                "values(?,?,?,?,sysdate(),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,sysdate(),?,?,?,?,?,?,?,?,?,?,?)";
 
         jdbcTemplateOne.update(sql, preparedStatementSetter);
     }
