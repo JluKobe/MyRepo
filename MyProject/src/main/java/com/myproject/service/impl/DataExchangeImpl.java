@@ -231,7 +231,6 @@ public class DataExchangeImpl implements IDataExchange {
                 preparedStatement.setString(42, "01");
                 preparedStatement.setString(43, "1");
                 preparedStatement.setString(44, isHighFrequency);
-                preparedStatement.setString(45, cleanDnTaskGeneralBasic.getCdBatch());
             }
         };
 
@@ -240,8 +239,8 @@ public class DataExchangeImpl implements IDataExchange {
                 "is_pay_online, is_schedule, is_service_terminals, is_window, link_way, local_catalog_code, local_task_code,\n" +
                 "power_source, project_type, promise_day, server_type, task_code, task_guid, task_handle_item,\n" +
                 "task_name, task_state, task_type, task_version, transact_addr, transact_time, update_org_id, update_time, update_user_id,\n" +
-                "use_level, version, result_type, result_name, result_sample, product_type, product_source_type, task_status, is_high_frequency, cd_batch) \n" +
-                "values(?,?,?,?,sysdate(),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,sysdate(),?,?,?,?,?,?,?,?,?,?,?)";
+                "use_level, version, result_type, result_name, result_sample, product_type, product_source_type, task_status, is_high_frequency) \n" +
+                "values(?,?,?,?,sysdate(),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,sysdate(),?,?,?,?,?,?,?,?,?,?)";
 
         jdbcTemplateOne.update(sql, preparedStatementSetter);
     }
@@ -287,6 +286,7 @@ public class DataExchangeImpl implements IDataExchange {
                 preparedStatement.setInt(30, 1);
                 preparedStatement.setInt(31, 1);
                 preparedStatement.setInt(32, 1);
+                preparedStatement.setString(33, cleanDnTaskGeneralBasic.getCdBatch());
             }
         };
 
@@ -295,7 +295,7 @@ public class DataExchangeImpl implements IDataExchange {
                 "handle_flow, is_single_login, limit_scene_explain, limit_scene_num, link_addr, mobile_terminal_url, online_handle_depth,\n" +
                 "online_handle_url, other_dept, plan_cancel_date, plan_effective_date, promise_explain, promise_type, service_type, special_procedure, \n" +
                 "supervise_way, task_guid, update_org_id, update_time, \n" +
-                "update_user_id, version) values(?,?,?,?,?,?,?,?,?,sysdate(),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,sysdate(),?,?)";
+                "update_user_id, version, cd_batch) values(?,?,?,?,?,?,?,?,?,sysdate(),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,sysdate(),?,?,?)";
 
         jdbcTemplateOne.update(sql, preparedStatementSetter);
     }
