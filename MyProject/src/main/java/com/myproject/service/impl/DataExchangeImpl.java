@@ -52,7 +52,7 @@ public class DataExchangeImpl implements IDataExchange {
             log.info("materialList size : {}", cleanDnTaskGeneralMaterialList.size());
 
             //6 根据得到数据，在igt_task_material_catalog新增数据，事项材料目录信息
-            insertIgtTaskMaterialCatalogTask(cleanDnTaskGeneralMaterialList);
+            insertIgtTaskMaterialCatalogTask(cleanDnTaskGeneralMaterialList, cleanDnTaskGeneralBasic);
 
             //7 根据taskGuid查询clean_dn_audit_item_condition
             List<CleanDnTaskAuditItemCondition> cleanDnTaskAuditItemConditionList = queryCleanItemCondition(taskGuid);
@@ -387,12 +387,12 @@ public class DataExchangeImpl implements IDataExchange {
      * 根据得到数据，在igt_task_material_catalog新增数据，事项材料目录信息
      * @param cleanDnTaskGeneralMaterialList
      */
-    public void insertIgtTaskMaterialCatalogTask(List<CleanDnTaskGeneralMaterial> cleanDnTaskGeneralMaterialList) {
+    public void insertIgtTaskMaterialCatalogTask(List<CleanDnTaskGeneralMaterial> cleanDnTaskGeneralMaterialList, CleanDnTaskGeneralBasic cleanDnTaskGeneralBasic) {
         String sql = "insert into igt_task_v1.igt_task_material_catalog (id, task_guid, material_guid, " +
                 "material_name, page_num, page_format, material_type, material_format, form_guid, example_guid," +
                 "is_need, is_reused, source_type, source_explain, fill_explain, by_law, accept_stand," +
-                "create_org_id, create_time, create_user_id, update_org_id, update_time, update_user_id)" +
-                "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, '1', SYSDATE(), '1', '1', SYSDATE(), '1')";
+                "create_org_id, create_time, create_user_id, update_org_id, update_time, update_user_id, area_code)" +
+                "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, '1', SYSDATE(), '1', '1', SYSDATE(), '1', ?)";
         for(CleanDnTaskGeneralMaterial cleanDnTaskGeneralMaterial : cleanDnTaskGeneralMaterialList) {
             PreparedStatementSetter preparedStatementSetter = new PreparedStatementSetter() {
                 @Override
@@ -414,6 +414,7 @@ public class DataExchangeImpl implements IDataExchange {
                     preparedStatement.setString(15, cleanDnTaskGeneralMaterial.getFillExplain());
                     preparedStatement.setString(16, cleanDnTaskGeneralMaterial.getByLaw());
                     preparedStatement.setString(17, cleanDnTaskGeneralMaterial.getAcceptStand());
+                    preparedStatement.setString(18, cleanDnTaskGeneralBasic.getAreaCode());
                 }
             };
             jdbcTemplateOne.update(sql, preparedStatementSetter);
