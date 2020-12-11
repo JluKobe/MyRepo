@@ -61,4 +61,7 @@ public class CleanExtend {
 
     @Column(name = "otherdept")
     private String otherdept;
+
+    @Column(name = "taskhandleitem")
+    private String taskhandleitem;
 }

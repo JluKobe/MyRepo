@@ -59,4 +59,6 @@ public class CleanBasic {
     private String transacttime;
 
     private String uselevel;
+
+    private String rowguid;
 }

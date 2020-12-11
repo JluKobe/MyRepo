@@ -19,4 +19,6 @@ public class CleanDirectory {
     private String id;
 
     private String taskname;
+
+    private String catalogcode;
 }
