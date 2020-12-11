@@ -1,0 +1,15 @@
+server:
+  port: 8888
+spring:
+  datasource:
+    username: root
+    password: aaaa
+    url: jdbc:mysql://127.0.0.1:3306/mysql?characterEncoding=UTF8
+    driver-class-name: com.mysql.jdbc.Driver #直接打mysql会有提示
+
+#showSql日志输出，根据自己的包名进行修改
+logging:
+  level:
+    com:
+      example:
+        mapper: debug

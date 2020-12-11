@@ -1,4 +1,4 @@
-package SpringBootBatisPlusProject;
+package ExchangeProject;
 
 /**
  * Hello world!
