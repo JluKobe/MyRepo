@@ -64,4 +64,10 @@ public class CleanExtend {
 
     @Column(name = "taskhandleitem")
     private String taskhandleitem;
+
+    @Column(name = "limitsceneexplain")
+    private String limitsceneexplain;
+
+    @Column(name = "servicetype")
+    private String servicetype;
 }
