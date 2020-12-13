@@ -1,9 +1,8 @@
 package com.service;
 
 import com.bean.response.ExchangeTaskHandleItemResponse;
-
-import java.util.List;
+import com.bean.vo.ExchangeTaskHandleItemVo;
 
 public interface IDataExchange {
-    ExchangeTaskHandleItemResponse doBusiness(List<String> taskHandleItemList, String isHighFrequency, String isBatch);
+    ExchangeTaskHandleItemResponse doBusiness(ExchangeTaskHandleItemVo vo);
 }
