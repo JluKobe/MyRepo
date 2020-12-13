@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
@@ -60,7 +59,7 @@ public class DataExchangeImpl implements IDataExchange {
     private IgtFeeRepository igtFeeRepository;
 
     @Override
-    public ExchangeTaskHandleItemResponse doBusiness(List<String> taskHandleItemList, String isHighFrequency) {
+    public ExchangeTaskHandleItemResponse doBusiness(List<String> taskHandleItemList, String isHighFrequency, String isBatch) {
         log.info("数据导入 start，taskHandleItemList size : {}, 是否高频事项 : {}", taskHandleItemList.size(), isHighFrequency);
         long start = System.currentTimeMillis();
         List<String> taskGuidList = new ArrayList<>();
@@ -81,14 +80,12 @@ public class DataExchangeImpl implements IDataExchange {
             CleanBasic cleanBasic = cleanBasicRepository.selectOne(Wrappers.<CleanBasic>lambdaQuery().eq(CleanBasic::getRowguid, taskGuid));
             log.info("taskName : {}", cleanBasic.getTaskname());
 
-
             //3 查询clean_dn_task_directory得到task_name
             CleanDirectory cleanDirectory = cleanDirectoryRepository.selectOne(Wrappers.<CleanDirectory>lambdaQuery()
                     .eq(CleanDirectory::getCatalogcode, cleanBasic.getCatalogcode()));
 
-
             //4 根据得到数据，在igt_task_basic新增数据，基本信息
-            insertTaskBasic(cleanBasic, cleanExtend, isHighFrequency, cleanDirectory);
+            insertTaskBasic(cleanBasic, cleanExtend, isHighFrequency, cleanDirectory, isBatch);
 
             //5 根据得到数据，在igt_task_extend新增数据，扩展信息
             insertTaskExtend(cleanBasic, cleanExtend);
@@ -152,7 +149,7 @@ public class DataExchangeImpl implements IDataExchange {
         return exchangeTaskHandleItemResponse;
     }
 
-    public void insertTaskBasic(CleanBasic cleanBasic, CleanExtend cleanExtend, String isHighFrequency, CleanDirectory cleanDirectory) {
+    public void insertTaskBasic(CleanBasic cleanBasic, CleanExtend cleanExtend, String isHighFrequency, CleanDirectory cleanDirectory, String isBatch) {
         DbContextHolder.setDbType(DBTypeEnum.db1);
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -169,7 +166,7 @@ public class DataExchangeImpl implements IDataExchange {
                 .deptName(cleanBasic.getDeptname())
                 .deptType(cleanBasic.getDepttype())
                 .handleType(cleanBasic.getHandletype())
-                .isBatch("0")
+                .isBatch(isBatch)
                 .isEntryCenter(cleanExtend.getIsentrycenter())
                 .isExpress(cleanExtend.getIsexpress())
                 .isHighFrequency(isHighFrequency)

@@ -16,4 +16,6 @@ public class ExchangeTaskHandleItemVo {
     List<String> taskHandleItemList;
 
     private String isHighFrequency;
+
+    private String isBatch;
 }
