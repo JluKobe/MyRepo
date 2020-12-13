@@ -25,8 +25,7 @@ public class DataExchangeController {
     @ApiOperation(value = "数据处理", notes = "exchangeData")
     @PostMapping(value = "/exchangeData")
     public ResultBean<ExchangeTaskHandleItemResponse> exchangeData(@RequestBody ExchangeTaskHandleItemVo vo) {
-        List<String> taskHandleItemList = vo.getTaskHandleItemList();
-        ExchangeTaskHandleItemResponse result = iDataExchange.doBusiness(taskHandleItemList, vo.getIsHighFrequency(), vo.getIsBatch());
+        ExchangeTaskHandleItemResponse result = iDataExchange.doBusiness(vo);
         return new ResultBean<>(result);
     }
 }

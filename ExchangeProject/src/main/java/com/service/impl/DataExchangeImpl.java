@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.bean.entity.clean.*;
 import com.bean.entity.igt.*;
 import com.bean.response.ExchangeTaskHandleItemResponse;
+import com.bean.vo.ExchangeTaskHandleItemVo;
 import com.config.DbContextHolder;
 import com.enums.DBTypeEnum;
 import com.repository.*;
@@ -59,8 +60,10 @@ public class DataExchangeImpl implements IDataExchange {
     private IgtFeeRepository igtFeeRepository;
 
     @Override
-    public ExchangeTaskHandleItemResponse doBusiness(List<String> taskHandleItemList, String isHighFrequency, String isBatch) {
-        log.info("数据导入 start，taskHandleItemList size : {}, 是否高频事项 : {}", taskHandleItemList.size(), isHighFrequency);
+    public ExchangeTaskHandleItemResponse doBusiness(ExchangeTaskHandleItemVo vo) {
+        List<String> taskHandleItemList = vo.getTaskHandleItemList();
+
+        log.info("数据导入 start，taskHandleItemList size : {}, 是否高频事项 : {}", taskHandleItemList.size(), vo.getIsHighFrequency());
         long start = System.currentTimeMillis();
         List<String> taskGuidList = new ArrayList<>();
 
@@ -85,10 +88,10 @@ public class DataExchangeImpl implements IDataExchange {
                     .eq(CleanDirectory::getCatalogcode, cleanBasic.getCatalogcode()));
 
             //4 根据得到数据，在igt_task_basic新增数据，基本信息
-            insertTaskBasic(cleanBasic, cleanExtend, isHighFrequency, cleanDirectory, isBatch);
+            insertTaskBasic(cleanBasic, cleanExtend, cleanDirectory, vo);
 
             //5 根据得到数据，在igt_task_extend新增数据，扩展信息
-            insertTaskExtend(cleanBasic, cleanExtend);
+            insertTaskExtend(cleanBasic, cleanExtend, vo);
 
             //6 根据task_guid查询clean_dn_task_general_material
             DbContextHolder.setDbType(DBTypeEnum.db2);
@@ -97,7 +100,7 @@ public class DataExchangeImpl implements IDataExchange {
             log.info("materialList size : {}", cleanMaterialList.size());
 
             //7 根据得到数据，在igt_task_material_catalog新增数据，事项材料目录信息
-            insertMaterial(cleanMaterialList, cleanBasic);
+            insertMaterial(cleanMaterialList, cleanBasic, vo);
 
             //8 根据taskGuid查询clean_dn_audit_item_condition
             DbContextHolder.setDbType(DBTypeEnum.db2);
@@ -106,7 +109,7 @@ public class DataExchangeImpl implements IDataExchange {
             log.info("conditionList size : {}", cleanItemConditionList.size());
 
             //9 根据得到数据，在igt_task_condition新增数据，事项情形
-            insertCondition(cleanItemConditionList);
+            insertCondition(cleanItemConditionList, vo);
 
             //10 根据condition_guid查询clean_dn_audit_material_condition
             List<String> conditionGuidList = new ArrayList<>();
@@ -126,7 +129,7 @@ public class DataExchangeImpl implements IDataExchange {
 
             //11 根据得到数据，在igt_task_condition_material新增数据，情形材料关系
             if(cleanMaterialConditionList.size() > 0) {
-                insertConditionMaterial(cleanMaterialConditionList);
+                insertConditionMaterial(cleanMaterialConditionList, vo);
             }
 
             //12 根据taskGuid查询clean_dn_task_general_fee_project  收费情况
@@ -136,7 +139,7 @@ public class DataExchangeImpl implements IDataExchange {
             log.info("feeList size : {}", cleanFeeProjectList.size());
 
             //13 根据得到数据，在igt_task_fee新增数据，事项收费情况
-            insertFee(cleanFeeProjectList);
+            insertFee(cleanFeeProjectList, vo);
 
             taskGuidList.add(taskGuid);
         }
@@ -149,7 +152,7 @@ public class DataExchangeImpl implements IDataExchange {
         return exchangeTaskHandleItemResponse;
     }
 
-    public void insertTaskBasic(CleanBasic cleanBasic, CleanExtend cleanExtend, String isHighFrequency, CleanDirectory cleanDirectory, String isBatch) {
+    public void insertTaskBasic(CleanBasic cleanBasic, CleanExtend cleanExtend, CleanDirectory cleanDirectory, ExchangeTaskHandleItemVo vo) {
         DbContextHolder.setDbType(DBTypeEnum.db1);
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -159,17 +162,17 @@ public class DataExchangeImpl implements IDataExchange {
                 .id(cleanBasic.getId())
                 .catalogCode(cleanBasic.getCatalogcode())
                 .catalogName(cleanDirectory.getTaskname())
-                .createOrgId("1")
+                .createOrgId(vo.getCreateOrgId())
                 .createTime(currentTime)
-                .createUserId("1")
+                .createUserId(vo.getCreateUserId())
                 .deptCode(cleanBasic.getDeptcode())
                 .deptName(cleanBasic.getDeptname())
                 .deptType(cleanBasic.getDepttype())
                 .handleType(cleanBasic.getHandletype())
-                .isBatch(isBatch)
+                .isBatch(vo.getIsBatch())
                 .isEntryCenter(cleanExtend.getIsentrycenter())
                 .isExpress(cleanExtend.getIsexpress())
-                .isHighFrequency(isHighFrequency)
+                .isHighFrequency(vo.getIsHighFrequency())
                 .isOnline(cleanExtend.getIsonline())
                 .isPayOnline(cleanExtend.getIspayonline())
                 .isSchedule(cleanExtend.getIsschedule())
@@ -198,16 +201,16 @@ public class DataExchangeImpl implements IDataExchange {
                 .taskVersion(cleanBasic.getTaskversion())
                 .transactAddr(cleanBasic.getTransactaddr())
                 .transactTime(cleanBasic.getTransacttime())
-                .updateOrgId("1")
+                .updateOrgId(vo.getUpdateOrgId())
                 .updateTime(currentTime)
-                .updateUserId("1")
+                .updateUserId(vo.getUpdateUserId())
                 .useLevel(cleanBasic.getUselevel())
-                .version("1")
+                .version(vo.getVersion())
                 .build();
         igtBasicRepository.insert(igtTaskBasic);
     }
 
-    public void insertTaskExtend(CleanBasic cleanBasic, CleanExtend cleanExtend) {
+    public void insertTaskExtend(CleanBasic cleanBasic, CleanExtend cleanExtend, ExchangeTaskHandleItemVo vo) {
         DbContextHolder.setDbType(DBTypeEnum.db1);
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -223,9 +226,9 @@ public class DataExchangeImpl implements IDataExchange {
                 .byLaw(cleanBasic.getBylaw())
                 .bySuppose(null)
                 .cdBatch(cleanBasic.getCdBatch())
-                .createOrgId("1")
+                .createOrgId(vo.getCreateOrgId())
                 .createTime(currentTime)
-                .createUserId("1")
+                .createUserId(vo.getCreateUserId())
                 .entrustName(cleanBasic.getEntrustname())
                 .handleArea(cleanExtend.getHandlearea())
                 .handleFlow(cleanBasic.getHandleflow())
@@ -245,15 +248,15 @@ public class DataExchangeImpl implements IDataExchange {
                 .specialProcedure(cleanBasic.getSpecialprocedure())
                 .superviseWay(cleanBasic.getSuperviseway())
                 .taskGuid(cleanExtend.getTaskguid())
-                .updateOrgId("1")
+                .updateOrgId(vo.getUpdateOrgId())
                 .updateTime(currentTime)
-                .updateUserId("1")
-                .version("1")
+                .updateUserId(vo.getUpdateUserId())
+                .version(vo.getVersion())
                 .build();
         igtExtendRepository.insert(igtTaskExtend);
     }
 
-    public void insertMaterial(List<CleanMaterial> cleanMaterialList, CleanBasic cleanBasic) {
+    public void insertMaterial(List<CleanMaterial> cleanMaterialList, CleanBasic cleanBasic, ExchangeTaskHandleItemVo vo) {
         DbContextHolder.setDbType(DBTypeEnum.db1);
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -265,9 +268,9 @@ public class DataExchangeImpl implements IDataExchange {
                     .areaCode(cleanBasic.getAreacode())
                     .acceptStand(cleanMaterial.getAcceptstand())
                     .byLaw(cleanMaterial.getBylaw())
-                    .createOrgId("1")
+                    .createOrgId(vo.getCreateOrgId())
                     .createTime(currentTime)
-                    .createUserId("1")
+                    .createUserId(vo.getCreateUserId())
                     .exampleGuid(cleanMaterial.getExampleguid())
                     .fillExplain(cleanMaterial.getFillexplain())
                     .formGuid(cleanMaterial.getFormguid())
@@ -285,16 +288,16 @@ public class DataExchangeImpl implements IDataExchange {
                     .sourceExplain(cleanMaterial.getSourceexplain())
                     .sourceType(cleanMaterial.getSourcetype())
                     .taskGuid(cleanMaterial.getTaskguid())
-                    .updateOrgId("1")
+                    .updateOrgId(vo.getUpdateOrgId())
                     .updateTime(currentTime)
-                    .updateUserId("1")
-                    .version("1")
+                    .updateUserId(vo.getUpdateUserId())
+                    .version(vo.getVersion())
                     .build();
             igtMaterialRepository.insert(igtTaskMaterial);
         }
     }
 
-    public void insertCondition(List<CleanItemCondition> cleanItemConditionList) {
+    public void insertCondition(List<CleanItemCondition> cleanItemConditionList, ExchangeTaskHandleItemVo vo) {
         DbContextHolder.setDbType(DBTypeEnum.db1);
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -306,20 +309,20 @@ public class DataExchangeImpl implements IDataExchange {
                     .conditionDesc(cleanItemCondition.getConditionDesc())
                     .conditionGuid(cleanItemCondition.getRowguid())
                     .conditionName(cleanItemCondition.getConditionName())
-                    .createOrgId("1")
+                    .createOrgId(vo.getCreateOrgId())
                     .createTime(currentTime)
-                    .createUserId("1")
+                    .createUserId(vo.getCreateUserId())
                     .taskGuid(cleanItemCondition.getTaskguid())
-                    .updateOrgId("1")
+                    .updateOrgId(vo.getUpdateOrgId())
                     .updateTime(currentTime)
-                    .updateUserId("1")
-                    .version("1")
+                    .updateUserId(vo.getUpdateUserId())
+                    .version(vo.getVersion())
                     .build();
             igtConditionRepository.insert(igtTaskCondition);
         }
     }
 
-    public void insertFee(List<CleanFeeProject> cleanFeeProjectList) {
+    public void insertFee(List<CleanFeeProject> cleanFeeProjectList, ExchangeTaskHandleItemVo vo) {
         DbContextHolder.setDbType(DBTypeEnum.db1);
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -328,24 +331,24 @@ public class DataExchangeImpl implements IDataExchange {
         for(CleanFeeProject cleanFeeProject : cleanFeeProjectList) {
             IgtTaskFee igtTaskFee = IgtTaskFee.builder()
                     .id(cleanFeeProject.getId())
-                    .createOrgId("1")
+                    .createOrgId(vo.getCreateOrgId())
                     .createTime(currentTime)
-                    .createUserId("1")
+                    .createUserId(vo.getCreateUserId())
                     .descExplain(cleanFeeProject.getDescexplain())
                     .feeName(cleanFeeProject.getFeename())
                     .feeStand(cleanFeeProject.getFeestand())
                     .isDesc(cleanFeeProject.getIsdesc())
                     .taskGuid(cleanFeeProject.getTaskguid())
-                    .updateOrgId("1")
+                    .updateOrgId(vo.getUpdateOrgId())
                     .updateTime(currentTime)
-                    .updateUserId("1")
-                    .version("1")
+                    .updateUserId(vo.getUpdateUserId())
+                    .version(vo.getVersion())
                     .build();
             igtFeeRepository.insert(igtTaskFee);
         }
     }
 
-    public void insertConditionMaterial(List<CleanMaterialCondition> cleanMaterialConditionList) {
+    public void insertConditionMaterial(List<CleanMaterialCondition> cleanMaterialConditionList, ExchangeTaskHandleItemVo vo) {
         DbContextHolder.setDbType(DBTypeEnum.db1);
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -355,14 +358,14 @@ public class DataExchangeImpl implements IDataExchange {
             IgtTaskConditionMaterial igtTaskConditionMaterial = IgtTaskConditionMaterial.builder()
                     .id(cleanMaterialCondition.getId())
                     .conditionGuid(cleanMaterialCondition.getConditionGuid())
-                    .createOrgId("1")
+                    .createOrgId(vo.getCreateOrgId())
                     .createTime(currentTime)
-                    .createUserId("1")
+                    .createUserId(vo.getCreateUserId())
                     .materialGuid(cleanMaterialCondition.getMaterialGuid())
-                    .updateOrgId("1")
+                    .updateOrgId(vo.getUpdateOrgId())
                     .updateTime(currentTime)
-                    .updateUserId("1")
-                    .version("1")
+                    .updateUserId(vo.getUpdateUserId())
+                    .version(vo.getVersion())
                     .build();
             igtConditionMaterialRepository.insert(igtTaskConditionMaterial);
         }

@@ -1,5 +1,6 @@
 package com.bean.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,4 +19,14 @@ public class ExchangeTaskHandleItemVo {
     private String isHighFrequency;
 
     private String isBatch;
+
+    private String createOrgId;
+
+    private String createUserId;
+
+    private String updateOrgId;
+
+    private String updateUserId;
+
+    private String version;
 }
