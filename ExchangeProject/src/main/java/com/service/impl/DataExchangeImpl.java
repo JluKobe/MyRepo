@@ -2,9 +2,7 @@ package com.service.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.bean.entity.clean.*;
-import com.bean.entity.igt.IgtTaskBasic;
-import com.bean.entity.igt.IgtTaskExtend;
-import com.bean.entity.igt.IgtTaskFee;
+import com.bean.entity.igt.*;
 import com.bean.response.ExchangeTaskHandleItemResponse;
 import com.config.DbContextHolder;
 import com.enums.DBTypeEnum;
@@ -16,10 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -44,10 +39,22 @@ public class DataExchangeImpl implements IDataExchange {
     private CleanDirectoryRepository cleanDirectoryRepository;
 
     @Autowired
+    private CleanMaterialConditionRepository cleanMaterialConditionRepository;
+
+    @Autowired
     private IgtBasicRepository igtBasicRepository;
 
     @Autowired
     private IgtExtendRepository igtExtendRepository;
+
+    @Autowired
+    private IgtMaterialRepository igtMaterialRepository;
+
+    @Autowired
+    private IgtConditionRepository igtConditionRepository;
+
+    @Autowired
+    private IgtConditionMaterialRepository igtConditionMaterialRepository;
 
     @Autowired
     private IgtFeeRepository igtFeeRepository;
@@ -56,6 +63,7 @@ public class DataExchangeImpl implements IDataExchange {
     public ExchangeTaskHandleItemResponse doBusiness(List<String> taskHandleItemList, String isHighFrequency) {
         log.info("数据导入 start，taskHandleItemList size : {}, 是否高频事项 : {}", taskHandleItemList.size(), isHighFrequency);
         long start = System.currentTimeMillis();
+        List<String> taskGuidList = new ArrayList<>();
 
         for(String taskHandleItem : taskHandleItemList) {
             log.info("taskHandleItem : {}", taskHandleItem);
@@ -86,61 +94,62 @@ public class DataExchangeImpl implements IDataExchange {
             insertTaskExtend(cleanBasic, cleanExtend);
 
             //6 根据task_guid查询clean_dn_task_general_material
+            DbContextHolder.setDbType(DBTypeEnum.db2);
+            List<CleanMaterial> cleanMaterialList = cleanMaterialRepository.selectList(Wrappers.<CleanMaterial>lambdaQuery()
+                    .eq(CleanMaterial::getTaskguid, taskGuid));
+            log.info("materialList size : {}", cleanMaterialList.size());
 
             //7 根据得到数据，在igt_task_material_catalog新增数据，事项材料目录信息
+            insertMaterial(cleanMaterialList, cleanBasic);
 
             //8 根据taskGuid查询clean_dn_audit_item_condition
+            DbContextHolder.setDbType(DBTypeEnum.db2);
+            List<CleanItemCondition> cleanItemConditionList = cleanItemConditionRepository.selectList(Wrappers.<CleanItemCondition>lambdaQuery()
+                    .eq(CleanItemCondition::getTaskguid, taskGuid));
+            log.info("conditionList size : {}", cleanItemConditionList.size());
 
             //9 根据得到数据，在igt_task_condition新增数据，事项情形
+            insertCondition(cleanItemConditionList);
 
             //10 根据condition_guid查询clean_dn_audit_material_condition
+            List<String> conditionGuidList = new ArrayList<>();
+            for(CleanItemCondition cleanItemCondition : cleanItemConditionList) {
+                String conditionGuid = cleanItemCondition.getRowguid();
+                conditionGuidList.add(conditionGuid);
+            }
+
+            DbContextHolder.setDbType(DBTypeEnum.db2);
+            List<CleanMaterialCondition> cleanMaterialConditionList = new ArrayList<>();
+            for(String conditionGuid : conditionGuidList) {
+                List<CleanMaterialCondition> cleanMaterialConditions = cleanMaterialConditionRepository
+                        .selectList(Wrappers.<CleanMaterialCondition>lambdaQuery().eq(CleanMaterialCondition::getConditionGuid, conditionGuid));
+                cleanMaterialConditionList.addAll(cleanMaterialConditions);
+            }
+            log.info("materialConditionList size : {}", cleanMaterialConditionList.size());
 
             //11 根据得到数据，在igt_task_condition_material新增数据，情形材料关系
+            if(cleanMaterialConditionList.size() > 0) {
+                insertConditionMaterial(cleanMaterialConditionList);
+            }
 
             //12 根据taskGuid查询clean_dn_task_general_fee_project  收费情况
+            DbContextHolder.setDbType(DBTypeEnum.db2);
+            List<CleanFeeProject> cleanFeeProjectList = cleanFeeProjectRepository.selectList(Wrappers.<CleanFeeProject>lambdaQuery()
+                    .eq(CleanFeeProject::getTaskguid, taskGuid));
+            log.info("feeList size : {}", cleanFeeProjectList.size());
 
             //13 根据得到数据，在igt_task_fee新增数据，事项收费情况
+            insertFee(cleanFeeProjectList);
+
+            taskGuidList.add(taskGuid);
         }
 
-//        CleanFeeProject cleanFeeProject = cleanFeeProjectRepository.selectById(7859);
-//
-//        Date date = new Date();
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//        String currentTime = sdf.format(date);
-//
-//
-//        IgtTaskFee igtTaskFee = IgtTaskFee.builder()
-//                .id(cleanFeeProject.getId())
-//                .descExplain(cleanFeeProject.getDescexplain())
-//                .feeName(cleanFeeProject.getFeename())
-//                .feeStand(cleanFeeProject.getFeestand())
-//                .isDesc(cleanFeeProject.getIsdesc())
-//                .taskGuid(cleanFeeProject.getTaskguid())
-//                .version("1")
-//                .createOrgId("1")
-//                .updateOrgId("1")
-//                .createUserId("1")
-//                .updateUserId("1")
-//                .createTime(currentTime)
-//                .updateTime(currentTime)
-//                .build();
-//
-//        DbContextHolder.setDbType(DBTypeEnum.db1);
-//        igtFeeRepository.insert(igtTaskFee);
+        ExchangeTaskHandleItemResponse exchangeTaskHandleItemResponse = ExchangeTaskHandleItemResponse.builder()
+                .taskGuidList(taskGuidList)
+                .build();
 
-//        CleanExtend cleanExtend = cleanExtendRepository.selectById(8047);
-//
-//        CleanBasic cleanBasic = cleanBasicRepository.selectById(89566);
-//
-//        CleanMaterial cleanMaterial = cleanMaterialRepository.selectById(33359);
-//
-//        CleanItemCondition cleanItemCondition = cleanItemConditionRepository.selectById(701);
-//
-//        CleanDirectory cleanDirectory = cleanDirectoryRepository.selectById(26);
-//
-//        List<CleanFeeProject> cleanFeeProjectList = cleanFeeProjectRepository.selectList(Wrappers.<CleanFeeProject>lambdaQuery());
-//        System.out.println(cleanFeeProjectList.size());
-        return null;
+        log.info("数据导入 end, {}", System.currentTimeMillis() - start);
+        return exchangeTaskHandleItemResponse;
     }
 
     public void insertTaskBasic(CleanBasic cleanBasic, CleanExtend cleanExtend, String isHighFrequency, CleanDirectory cleanDirectory) {
@@ -245,5 +254,120 @@ public class DataExchangeImpl implements IDataExchange {
                 .version("1")
                 .build();
         igtExtendRepository.insert(igtTaskExtend);
+    }
+
+    public void insertMaterial(List<CleanMaterial> cleanMaterialList, CleanBasic cleanBasic) {
+        DbContextHolder.setDbType(DBTypeEnum.db1);
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentTime = sdf.format(date);
+
+        for(CleanMaterial cleanMaterial : cleanMaterialList) {
+            IgtTaskMaterial igtTaskMaterial = IgtTaskMaterial.builder()
+                    .id(cleanMaterial.getId())
+                    .areaCode(cleanBasic.getAreacode())
+                    .acceptStand(cleanMaterial.getAcceptstand())
+                    .byLaw(cleanMaterial.getBylaw())
+                    .createOrgId("1")
+                    .createTime(currentTime)
+                    .createUserId("1")
+                    .exampleGuid(cleanMaterial.getExampleguid())
+                    .fillExplain(cleanMaterial.getFillexplain())
+                    .formGuid(cleanMaterial.getFormguid())
+                    .handleType(cleanBasic.getHandletype())
+                    .isNeed(cleanMaterial.getIsneed())
+                    .isReused("0")
+//                    .materialCategory()
+                    .materialFormat(cleanMaterial.getMaterialformat())
+                    .materialGuid(cleanMaterial.getRowguid())
+//                    .materialKeyPoint()
+                    .materialName(cleanMaterial.getMaterialname())
+                    .materialType(cleanMaterial.getMaterialtype())
+                    .pageFormat(cleanMaterial.getPageformat())
+                    .pageNum(cleanMaterial.getPagenum())
+                    .sourceExplain(cleanMaterial.getSourceexplain())
+                    .sourceType(cleanMaterial.getSourcetype())
+                    .taskGuid(cleanMaterial.getTaskguid())
+                    .updateOrgId("1")
+                    .updateTime(currentTime)
+                    .updateUserId("1")
+                    .version("1")
+                    .build();
+            igtMaterialRepository.insert(igtTaskMaterial);
+        }
+    }
+
+    public void insertCondition(List<CleanItemCondition> cleanItemConditionList) {
+        DbContextHolder.setDbType(DBTypeEnum.db1);
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentTime = sdf.format(date);
+
+        for(CleanItemCondition cleanItemCondition : cleanItemConditionList) {
+            IgtTaskCondition igtTaskCondition = IgtTaskCondition.builder()
+                    .id(cleanItemCondition.getId())
+                    .conditionDesc(cleanItemCondition.getConditionDesc())
+                    .conditionGuid(cleanItemCondition.getRowguid())
+                    .conditionName(cleanItemCondition.getConditionName())
+                    .createOrgId("1")
+                    .createTime(currentTime)
+                    .createUserId("1")
+                    .taskGuid(cleanItemCondition.getTaskguid())
+                    .updateOrgId("1")
+                    .updateTime(currentTime)
+                    .updateUserId("1")
+                    .version("1")
+                    .build();
+            igtConditionRepository.insert(igtTaskCondition);
+        }
+    }
+
+    public void insertFee(List<CleanFeeProject> cleanFeeProjectList) {
+        DbContextHolder.setDbType(DBTypeEnum.db1);
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentTime = sdf.format(date);
+
+        for(CleanFeeProject cleanFeeProject : cleanFeeProjectList) {
+            IgtTaskFee igtTaskFee = IgtTaskFee.builder()
+                    .id(cleanFeeProject.getId())
+                    .createOrgId("1")
+                    .createTime(currentTime)
+                    .createUserId("1")
+                    .descExplain(cleanFeeProject.getDescexplain())
+                    .feeName(cleanFeeProject.getFeename())
+                    .feeStand(cleanFeeProject.getFeestand())
+                    .isDesc(cleanFeeProject.getIsdesc())
+                    .taskGuid(cleanFeeProject.getTaskguid())
+                    .updateOrgId("1")
+                    .updateTime(currentTime)
+                    .updateUserId("1")
+                    .version("1")
+                    .build();
+            igtFeeRepository.insert(igtTaskFee);
+        }
+    }
+
+    public void insertConditionMaterial(List<CleanMaterialCondition> cleanMaterialConditionList) {
+        DbContextHolder.setDbType(DBTypeEnum.db1);
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentTime = sdf.format(date);
+
+        for(CleanMaterialCondition cleanMaterialCondition : cleanMaterialConditionList) {
+            IgtTaskConditionMaterial igtTaskConditionMaterial = IgtTaskConditionMaterial.builder()
+                    .id(cleanMaterialCondition.getId())
+                    .conditionGuid(cleanMaterialCondition.getConditionGuid())
+                    .createOrgId("1")
+                    .createTime(currentTime)
+                    .createUserId("1")
+                    .materialGuid(cleanMaterialCondition.getMaterialGuid())
+                    .updateOrgId("1")
+                    .updateTime(currentTime)
+                    .updateUserId("1")
+                    .version("1")
+                    .build();
+            igtConditionMaterialRepository.insert(igtTaskConditionMaterial);
+        }
     }
 }

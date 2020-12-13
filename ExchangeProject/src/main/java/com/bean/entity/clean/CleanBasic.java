@@ -99,4 +99,6 @@ public class CleanBasic {
     private String superviseway;
 
     private String cdBatch;
+
+    private String areacode;
 }
