@@ -1,4 +1,4 @@
-package ExchangeProject;
+package com;
 
 import static org.junit.Assert.assertTrue;
 
