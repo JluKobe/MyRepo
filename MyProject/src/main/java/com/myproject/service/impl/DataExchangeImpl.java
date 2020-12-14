@@ -268,7 +268,7 @@ public class DataExchangeImpl implements IDataExchange {
                 preparedStatement.setString(12, cleanDnTaskGeneralExtend.getHandleArea());
                 preparedStatement.setString(13, cleanDnTaskGeneralBasic.getHandleFlow());
                 preparedStatement.setString(14, cleanDnTaskGeneralBasic.getIsSingleLogin());
-                preparedStatement.setString(15, cleanDnTaskGeneralExtend.getLimitExplain());
+                preparedStatement.setString(15, cleanDnTaskGeneralExtend.getLimitSceneExplain());
                 preparedStatement.setString(16, cleanDnTaskGeneralBasic.getLimitSceneNum());
                 preparedStatement.setString(17, cleanDnTaskGeneralBasic.getLinkAddr());
                 preparedStatement.setString(18, cleanDnTaskGeneralBasic.getMobileTerminalUrl());
@@ -279,7 +279,7 @@ public class DataExchangeImpl implements IDataExchange {
                 preparedStatement.setString(23, cleanDnTaskGeneralBasic.getPlanEffectiveDate());
                 preparedStatement.setString(24, cleanDnTaskGeneralBasic.getPromiseExplain());
                 preparedStatement.setString(25, cleanDnTaskGeneralBasic.getPromiseType());
-                preparedStatement.setString(26, cleanDnTaskGeneralBasic.getServerType());
+                preparedStatement.setString(26, cleanDnTaskGeneralBasic.getServerType());//错误
                 preparedStatement.setString(27, cleanDnTaskGeneralBasic.getSpecialProcedure());
                 preparedStatement.setString(28, cleanDnTaskGeneralBasic.getSuperviseWay());
                 preparedStatement.setString(29, cleanDnTaskGeneralExtend.getTaskGuid());
