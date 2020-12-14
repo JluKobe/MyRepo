@@ -279,7 +279,7 @@ public class DataExchangeImpl implements IDataExchange {
                 preparedStatement.setString(23, cleanDnTaskGeneralBasic.getPlanEffectiveDate());
                 preparedStatement.setString(24, cleanDnTaskGeneralBasic.getPromiseExplain());
                 preparedStatement.setString(25, cleanDnTaskGeneralBasic.getPromiseType());
-                preparedStatement.setString(26, cleanDnTaskGeneralBasic.getServerType());//错误
+                preparedStatement.setString(26, cleanDnTaskGeneralExtend.getServiceType());
                 preparedStatement.setString(27, cleanDnTaskGeneralBasic.getSpecialProcedure());
                 preparedStatement.setString(28, cleanDnTaskGeneralBasic.getSuperviseWay());
                 preparedStatement.setString(29, cleanDnTaskGeneralExtend.getTaskGuid());
