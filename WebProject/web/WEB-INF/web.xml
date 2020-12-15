@@ -35,4 +35,13 @@
         <servlet-name>MyHttpServlet</servlet-name>
         <url-pattern>/MyHttpServlet</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>FormServlet</servlet-name>
+        <servlet-class>com.http.FormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FormServlet</servlet-name>
+        <url-pattern>/form</url-pattern>
+    </servlet-mapping>
 </web-app>
