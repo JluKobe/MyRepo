@@ -1,11 +1,14 @@
 package com.http;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 
 public class MyHttpServlet extends HttpServlet {
 
@@ -31,5 +34,11 @@ public class MyHttpServlet extends HttpServlet {
         out.flush();
         out.close();
         response.getWriter().append("Served at: ").append(request.getContextPath());
+
+        String servletName = this.getServletName();
+        ServletContext servletContext = this.getServletContext();
+        ServletConfig servletConfig = this.getServletConfig();
+        Enumeration<String> stringEnumeration = this.getInitParameterNames();
+        System.out.println("test");
     }
 }
