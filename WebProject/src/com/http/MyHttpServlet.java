@@ -39,6 +39,15 @@ public class MyHttpServlet extends HttpServlet {
         ServletContext servletContext = this.getServletContext();
         ServletConfig servletConfig = this.getServletConfig();
         Enumeration<String> stringEnumeration = this.getInitParameterNames();
+
+        int port = request.getServerPort();
+        StringBuffer url = request.getRequestURL();
+
+        Enumeration<String> enumeration = request.getParameterNames();
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String[] hobbies = request.getParameterValues("hobby");
+
         System.out.println("test");
     }
 }
