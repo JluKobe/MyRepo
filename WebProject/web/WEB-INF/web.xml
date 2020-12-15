@@ -24,7 +24,15 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>MyServlet</servlet-name>
-        <url-pattern>/test</url-pattern>
+        <url-pattern>/HelloServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>MyHttpServlet</servlet-name>
+        <servlet-class>com.http.MyHttpServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MyHttpServlet</servlet-name>
+        <url-pattern>/MyHttpServlet</url-pattern>
+    </servlet-mapping>
 </web-app>
