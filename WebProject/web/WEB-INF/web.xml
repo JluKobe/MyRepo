@@ -44,4 +44,29 @@
         <servlet-name>FormServlet</servlet-name>
         <url-pattern>/form</url-pattern>
     </servlet-mapping>
+
+    <!-- 监听listener -->
+    <listener>
+        <listener-class>com.http.listener.MyListener</listener-class>
+    </listener>
+
+    <!-- 过滤filter -->
+    <filter>
+        <filter-name>filterDemo1</filter-name>
+        <filter-class>com.http.filter.FilterDemo1</filter-class>
+    </filter>
+    <filter>
+        <filter-name>filterDemo2</filter-name>
+        <filter-class>com.http.filter.FilterDemo2</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>filterDemo1</filter-name>
+        <url-pattern>/*</url-pattern>
+        <!-- /*是对所有的文件进行拦截 -->
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>filterDemo2</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 </web-app>
