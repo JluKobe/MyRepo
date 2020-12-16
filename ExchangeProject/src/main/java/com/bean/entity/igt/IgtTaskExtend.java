@@ -92,4 +92,6 @@ public class IgtTaskExtend implements Serializable {
     private String superviseWay;
 
     private String taskGuid;
+
+    private String taskHandleItem;
 }

@@ -49,4 +49,6 @@ public class IgtTaskFee implements Serializable {
     private String updateUserId;
 
     private String version;
+
+    private String taskHandleItem;
 }

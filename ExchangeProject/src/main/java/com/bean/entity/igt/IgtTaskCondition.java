@@ -46,4 +46,6 @@ public class IgtTaskCondition implements Serializable {
     private String conditionName;
 
     private String taskGuid;
+
+    private String taskHandleItem;
 }

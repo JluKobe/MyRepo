@@ -78,4 +78,6 @@ public class IgtTaskMaterial implements Serializable {
     private String sourceType;
 
     private String taskGuid;
+
+    private String taskHandleItem;
 }
