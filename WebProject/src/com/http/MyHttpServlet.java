@@ -13,6 +13,11 @@ import java.util.Enumeration;
 public class MyHttpServlet extends HttpServlet {
 
     @Override
+    public void init() throws ServletException {
+        System.out.println("this is the init method");
+    }
+
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
