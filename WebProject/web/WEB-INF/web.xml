@@ -52,21 +52,15 @@
 
     <!-- 过滤filter -->
     <filter>
-        <filter-name>filterDemo1</filter-name>
-        <filter-class>com.http.filter.FilterDemo1</filter-class>
+        <filter-name>LogFilter</filter-name>
+        <filter-class>com.http.filter.LogFilter</filter-class>
+        <init-param>
+            <param-name>Site</param-name>
+            <param-value>Log Filter</param-value>
+        </init-param>
     </filter>
-    <filter>
-        <filter-name>filterDemo2</filter-name>
-        <filter-class>com.http.filter.FilterDemo2</filter-class>
-    </filter>
-
     <filter-mapping>
-        <filter-name>filterDemo1</filter-name>
-        <url-pattern>/*</url-pattern>
-        <!-- /*是对所有的文件进行拦截 -->
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>filterDemo2</filter-name>
+        <filter-name>LogFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 </web-app>
