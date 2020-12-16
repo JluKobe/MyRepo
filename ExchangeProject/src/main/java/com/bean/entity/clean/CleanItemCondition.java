@@ -25,4 +25,6 @@ public class CleanItemCondition {
     private String conditionName;
 
     private String conditionDesc;
+
+    private String taskhandleitem;
 }

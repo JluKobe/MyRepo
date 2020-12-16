@@ -27,4 +27,6 @@ public class CleanFeeProject {
     private String descexplain;
 
     private String taskguid;
+
+    private String taskhandleitem;
 }

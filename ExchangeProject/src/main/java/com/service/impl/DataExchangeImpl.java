@@ -252,6 +252,7 @@ public class DataExchangeImpl implements IDataExchange {
                 .updateTime(currentTime)
                 .updateUserId(vo.getUpdateUserId())
                 .version(vo.getVersion())
+                .taskHandleItem(cleanBasic.getTaskhandleitem())
                 .build();
         igtExtendRepository.insert(igtTaskExtend);
     }
@@ -292,6 +293,7 @@ public class DataExchangeImpl implements IDataExchange {
                     .updateTime(currentTime)
                     .updateUserId(vo.getUpdateUserId())
                     .version(vo.getVersion())
+                    .taskHandleItem(cleanBasic.getTaskhandleitem())
                     .build();
             igtMaterialRepository.insert(igtTaskMaterial);
         }
@@ -317,6 +319,7 @@ public class DataExchangeImpl implements IDataExchange {
                     .updateTime(currentTime)
                     .updateUserId(vo.getUpdateUserId())
                     .version(vo.getVersion())
+                    .taskHandleItem(cleanItemCondition.getTaskhandleitem())
                     .build();
             igtConditionRepository.insert(igtTaskCondition);
         }
@@ -343,6 +346,7 @@ public class DataExchangeImpl implements IDataExchange {
                     .updateTime(currentTime)
                     .updateUserId(vo.getUpdateUserId())
                     .version(vo.getVersion())
+                    .taskHandleItem(cleanFeeProject.getTaskhandleitem())
                     .build();
             igtFeeRepository.insert(igtTaskFee);
         }
