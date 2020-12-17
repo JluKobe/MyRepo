@@ -44,6 +44,24 @@
         <servlet-name>FormServlet</servlet-name>
         <url-pattern>/form</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>HelloFormCookie</servlet-name>
+        <servlet-class>com.http.HelloFormCookie</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HelloFormCookie</servlet-name>
+        <url-pattern>/tomcat/HelloFormCookie</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ReadCookies</servlet-name>
+        <servlet-class>com.http.ReadCookies</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReadCookies</servlet-name>
+        <url-pattern>/tomcat/ReadCookies</url-pattern>
+    </servlet-mapping>
 
     <!-- 监听listener -->
     <listener>
