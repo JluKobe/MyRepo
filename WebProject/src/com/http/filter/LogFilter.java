@@ -21,6 +21,10 @@ public class LogFilter implements Filter {
         // 输出站点名称
         System.out.println("站点网址：http://www.runoob.com");
 
+        String name = request.getParameter("name");
+
+        System.out.println(name);
+
         // 把请求传回过滤链
         chain.doFilter(request, response);
     }
