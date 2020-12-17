@@ -50,6 +50,15 @@
         <listener-class>com.http.listener.MyListener</listener-class>
     </listener>
 
+    <filter>
+        <filter-name>MyFilter</filter-name>
+        <filter-class>com.http.filter.MyFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>MyFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <!-- 过滤filter -->
     <filter>
         <filter-name>LogFilter zz</filter-name>
