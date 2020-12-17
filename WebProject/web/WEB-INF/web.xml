@@ -52,15 +52,15 @@
 
     <!-- 过滤filter -->
     <filter>
-        <filter-name>LogFilter</filter-name>
+        <filter-name>LogFilter zz</filter-name>
         <filter-class>com.http.filter.LogFilter</filter-class>
         <init-param>
             <param-name>Site</param-name>
-            <param-value>Log Filter</param-value>
+            <param-value>zhengzhao web name Log Filter</param-value>
         </init-param>
     </filter>
     <filter-mapping>
-        <filter-name>LogFilter</filter-name>
+        <filter-name>LogFilter zz</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 </web-app>

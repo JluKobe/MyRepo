@@ -8,9 +8,12 @@ public class LogFilter implements Filter {
     public void init(FilterConfig config) throws ServletException {
         // 获取初始化参数
         String site = config.getInitParameter("Site");
+        String fileName = config.getFilterName();
 
         // 输出初始化参数
         System.out.println("网站名称: " + site);
+
+        System.out.println(fileName);
     }
 
     @Override
