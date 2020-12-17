@@ -19,7 +19,6 @@ public class ReadCookies extends HttpServlet {
      */
     public ReadCookies() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     /**

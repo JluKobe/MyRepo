@@ -27,9 +27,8 @@ public class HelloFormCookie extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         // 为名字和姓氏创建 Cookie
-        Cookie name = new Cookie("name", URLEncoder.encode(request.getParameter("name"), "UTF-8")); // 中文转码
-        Cookie url = new Cookie("url",
-                request.getParameter("url"));
+        Cookie name = new Cookie("name", request.getParameter("name")); // 中文转码
+        Cookie url = new Cookie("url", request.getParameter("url"));
 
         // 为两个 Cookie 设置过期日期为 24 小时后
         name.setMaxAge(60*60*24);
