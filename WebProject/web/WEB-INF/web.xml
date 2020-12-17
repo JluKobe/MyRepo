@@ -56,7 +56,7 @@
     </filter>
     <filter-mapping>
         <filter-name>MyFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/MyHttpServlet</url-pattern>
     </filter-mapping>
 
     <!-- 过滤filter -->
