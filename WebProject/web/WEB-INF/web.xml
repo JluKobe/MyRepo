@@ -82,6 +82,15 @@
         <url-pattern>/tomcatTest/PageRedirect</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>PageHitCounter</servlet-name>
+        <servlet-class>com.http.PageHitCounter</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PageHitCounter</servlet-name>
+        <url-pattern>/tomcatTest/PageHitCounter</url-pattern>
+    </servlet-mapping>
+    
     <!-- 监听listener -->
     <listener>
         <listener-class>com.http.listener.MyListener</listener-class>
