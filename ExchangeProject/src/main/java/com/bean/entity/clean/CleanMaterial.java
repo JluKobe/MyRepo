@@ -47,4 +47,6 @@ public class CleanMaterial {
     private String bylaw;
 
     private String acceptstand;
+
+    private String taskhandleitem;
 }

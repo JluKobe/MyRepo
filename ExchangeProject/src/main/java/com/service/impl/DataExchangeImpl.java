@@ -79,8 +79,8 @@ public class DataExchangeImpl implements IDataExchange {
             String taskGuid = cleanExtend.getTaskguid();
             log.info("taskGuid : {}", taskGuid);
 
-            //2 根据得到的taskGuid查询clean_dn_task_general_basic
-            CleanBasic cleanBasic = cleanBasicRepository.selectOne(Wrappers.<CleanBasic>lambdaQuery().eq(CleanBasic::getRowguid, taskGuid));
+            //2 根据得到的taskHandleItem查询clean_dn_task_general_basic
+            CleanBasic cleanBasic = cleanBasicRepository.selectOne(Wrappers.<CleanBasic>lambdaQuery().eq(CleanBasic::getTaskhandleitem, taskHandleItem));
             log.info("taskName : {}", cleanBasic.getTaskname());
 
             //3 查询clean_dn_task_directory得到task_name
@@ -93,19 +93,19 @@ public class DataExchangeImpl implements IDataExchange {
             //5 根据得到数据，在igt_task_extend新增数据，扩展信息
             insertTaskExtend(cleanBasic, cleanExtend, vo);
 
-            //6 根据task_guid查询clean_dn_task_general_material
+            //6 根据taskHandleItem查询clean_dn_task_general_material
             DbContextHolder.setDbType(DBTypeEnum.db2);
             List<CleanMaterial> cleanMaterialList = cleanMaterialRepository.selectList(Wrappers.<CleanMaterial>lambdaQuery()
-                    .eq(CleanMaterial::getTaskguid, taskGuid));
+                    .eq(CleanMaterial::getTaskhandleitem, taskHandleItem));
             log.info("materialList size : {}", cleanMaterialList.size());
 
             //7 根据得到数据，在igt_task_material_catalog新增数据，事项材料目录信息
             insertMaterial(cleanMaterialList, cleanBasic, vo);
 
-            //8 根据taskGuid查询clean_dn_audit_item_condition
+            //8 根据taskHandleItem查询clean_dn_audit_item_condition
             DbContextHolder.setDbType(DBTypeEnum.db2);
             List<CleanItemCondition> cleanItemConditionList = cleanItemConditionRepository.selectList(Wrappers.<CleanItemCondition>lambdaQuery()
-                    .eq(CleanItemCondition::getTaskguid, taskGuid));
+                    .eq(CleanItemCondition::getTaskhandleitem, taskHandleItem));
             log.info("conditionList size : {}", cleanItemConditionList.size());
 
             //9 根据得到数据，在igt_task_condition新增数据，事项情形
@@ -132,10 +132,10 @@ public class DataExchangeImpl implements IDataExchange {
                 insertConditionMaterial(cleanMaterialConditionList, vo);
             }
 
-            //12 根据taskGuid查询clean_dn_task_general_fee_project  收费情况
+            //12 根据taskHandleItem查询clean_dn_task_general_fee_project  收费情况
             DbContextHolder.setDbType(DBTypeEnum.db2);
             List<CleanFeeProject> cleanFeeProjectList = cleanFeeProjectRepository.selectList(Wrappers.<CleanFeeProject>lambdaQuery()
-                    .eq(CleanFeeProject::getTaskguid, taskGuid));
+                    .eq(CleanFeeProject::getTaskhandleitem, taskHandleItem));
             log.info("feeList size : {}", cleanFeeProjectList.size());
 
             //13 根据得到数据，在igt_task_fee新增数据，事项收费情况
