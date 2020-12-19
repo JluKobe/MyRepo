@@ -63,7 +63,8 @@ public class DataExchangeImpl implements IDataExchange {
     public ExchangeTaskHandleItemResponse doBusiness(ExchangeTaskHandleItemVo vo) {
         List<String> taskHandleItemList = vo.getTaskHandleItemList();
 
-        log.info("数据导入 start，taskHandleItemList size : {}, 是否高频事项 : {}", taskHandleItemList.size(), vo.getIsHighFrequency());
+        log.info("数据导入 start，taskHandleItemList size : {}, 是否高频事项 : {}, 是否批量 : {}",
+                taskHandleItemList.size(), vo.getIsHighFrequency(), vo.getIsBatch());
         long start = System.currentTimeMillis();
         List<String> taskGuidList = new ArrayList<>();
 
@@ -150,6 +151,19 @@ public class DataExchangeImpl implements IDataExchange {
 
         log.info("数据导入 end, {}", System.currentTimeMillis() - start);
         return exchangeTaskHandleItemResponse;
+    }
+    @Override
+    public void myTest(ExchangeTaskHandleItemVo vo) {
+        List<String> list = vo.getTaskHandleItemList();
+        String taskHandleItem = list.get(0);
+
+        DbContextHolder.setDbType(DBTypeEnum.db1);
+        IgtTaskBasic igtTaskBasic = igtBasicRepository.selectOne(Wrappers.<IgtTaskBasic>lambdaQuery()
+                .eq(IgtTaskBasic::getTaskHandleItem, taskHandleItem));
+
+        igtTaskBasic.setCatalogCode("aaaa");
+        igtBasicRepository.update(igtTaskBasic, Wrappers.<IgtTaskBasic>lambdaQuery()
+                .eq(IgtTaskBasic::getTaskHandleItem, taskHandleItem));
     }
 
     public void insertTaskBasic(CleanBasic cleanBasic, CleanExtend cleanExtend, CleanDirectory cleanDirectory, ExchangeTaskHandleItemVo vo) {
