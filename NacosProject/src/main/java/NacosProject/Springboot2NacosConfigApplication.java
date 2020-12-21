@@ -18,7 +18,6 @@ public class Springboot2NacosConfigApplication {
     }
 
     @NacosValue(value = "${nacos.test.propertie}", autoRefreshed = true)
-//    @Value("${nacos.test.propertie}")
     private String testProperties;
 
     @GetMapping("/test")
