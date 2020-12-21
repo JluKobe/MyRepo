@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-@NacosPropertySource(dataId = "springboot2-nacos-config", autoRefreshed = true)
+@NacosPropertySource(dataId = "springboot2-nacos-config", groupId = "EXCHANGE", autoRefreshed = true)
 @RestController
 public class Springboot2NacosConfigApplication {
 
