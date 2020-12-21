@@ -23,7 +23,7 @@ public class SendEmail extends HttpServlet {
         String from = "zhengzhaomoshou@126.com";
 
         // 假设您是从本地主机发送电子邮件
-        String host = "localhost";
+        String host = "smtpdm.aliyun.com";  //
 
         // 获取系统的属性
         Properties properties = System.getProperties();
