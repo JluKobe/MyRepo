@@ -1,5 +1,6 @@
 package com.schedule;
 
+import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.bean.entity.clean.CleanBasic;
 import com.config.DbContextHolder;
@@ -27,16 +28,20 @@ public class ScheduleTask {
     @Autowired
     private CleanBasicRepository cleanBasicRepository;
 
+//    @NacosValue(value = "${exchange.taskHandleItem}", autoRefreshed = true)
+//    private String taskHandleItem;
+
     //3.添加定时任务
 //    @Scheduled(cron = "0/5 * * * * ?")
     //或直接指定时间间隔，例如：5秒
     //@Scheduled(fixedRate=5000)
     private void configureTasks() {
-        System.err.println("执行静态定时任务时间: " + LocalDateTime.now());
-        log.info("执行静态定时任务时间, {}", LocalDateTime.now());
+        System.out.println("执行静态定时任务时间: " + LocalDateTime.now());
+//        log.info("执行静态定时任务时间, {}", LocalDateTime.now());
         DbContextHolder.setDbType(DBTypeEnum.db2);
         CleanBasic cleanBasic = cleanBasicRepository.selectOne(Wrappers.<CleanBasic>lambdaQuery()
-                .eq(CleanBasic::getRowguid, "9351e739-c5ba-ee0a-1f63-538e2035d0b5"));
+                .eq(CleanBasic::getTaskhandleitem, ""));
         System.out.println(cleanBasic.getTaskname());
+        System.out.println(cleanBasic.getDeptname());
     }
 }

@@ -1,6 +1,8 @@
 package com.config;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
+import com.alibaba.nacos.api.config.annotation.NacosValue;
+import com.alibaba.nacos.spring.context.annotation.config.NacosPropertySource;
 import com.baomidou.mybatisplus.core.MybatisConfiguration;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
@@ -9,7 +11,9 @@ import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.type.JdbcType;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -25,22 +29,53 @@ import java.util.Map;
 @Configuration
 public class MybatisPlusConfig {
 
+    @Value("${db1.url}")
+    private String db1Url;
+
+    @Value("${db1.username}")
+    private String db1Username;
+
+    @Value("${db1.password}")
+    private String db1Password;
+
+    @Value("${db2.url}")
+    private String db2Url;
+
+    @Value("${db2.username}")
+    private String db2Username;
+
+    @Value("${db2.password}")
+    private String db2Password;
+
+    @Value("${driver}")
+    public String driver;
+
     // 分页拦截器
     @Bean
     public PaginationInterceptor paginationInterceptor() {
         return new PaginationInterceptor();
     }
+
     //定义db1
     @Bean(name = "db1")
-    @ConfigurationProperties(prefix = "spring.datasource.db1")//与配置文件中的层次结构相同
     public DataSource db1() {
-        return DruidDataSourceBuilder.create().build();
+        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
+        dataSourceBuilder.url(db1Url);
+        dataSourceBuilder.username(db1Username);
+        dataSourceBuilder.password(db1Password);
+        dataSourceBuilder.driverClassName(driver);
+        return dataSourceBuilder.build();
     }
+
     //定义db2
     @Bean(name = "db2")
-    @ConfigurationProperties(prefix = "spring.datasource.db2")//与配置文件中的层次结构相同
     public DataSource db2() {
-        return DruidDataSourceBuilder.create().build();
+        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
+        dataSourceBuilder.url(db2Url);
+        dataSourceBuilder.username(db2Username);
+        dataSourceBuilder.password(db2Password);
+        dataSourceBuilder.driverClassName(driver);
+        return dataSourceBuilder.build();
     }
 
     /**
