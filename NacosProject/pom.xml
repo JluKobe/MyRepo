@@ -13,7 +13,7 @@
   <artifactId>NacosProject</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>NacosProject</name>
+  <name>nacos</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -50,6 +50,10 @@
       <groupId>com.alibaba.boot</groupId>
       <artifactId>nacos-config-spring-boot-starter</artifactId>
       <version>0.2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
     </dependency>
   </dependencies>
 

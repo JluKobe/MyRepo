@@ -1,4 +1,4 @@
-package NacosProject;
+package nacos;
 
 import static org.junit.Assert.assertTrue;
 
