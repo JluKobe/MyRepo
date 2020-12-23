@@ -4,12 +4,11 @@ import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.alibaba.nacos.spring.context.annotation.config.NacosPropertySource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-@NacosPropertySource(dataId = "springboot2-nacos-config", groupId = "EXCHANGE", autoRefreshed = true)
+@NacosPropertySource(dataId = "nacos-config", groupId = "EXCHANGE", autoRefreshed = true)
 @RestController
 public class Springboot2NacosConfigApplication {
 
