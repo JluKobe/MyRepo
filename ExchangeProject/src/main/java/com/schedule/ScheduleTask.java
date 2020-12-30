@@ -1,23 +1,17 @@
 package com.schedule;
 
-import com.alibaba.nacos.api.config.annotation.NacosValue;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.bean.entity.clean.CleanBasic;
-import com.bean.entity.igt.IgtTaskBasic;
-import com.config.DbContextHolder;
-import com.enums.DBTypeEnum;
-import com.repository.CleanBasicRepository;
-import com.repository.IgtBasicRepository;
+import com.bean.vo.ExchangeTaskHandleItemVo;
+import com.service.IDataExchange;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 定时任务demo
@@ -29,34 +23,37 @@ import java.util.Date;
 @Slf4j
 public class ScheduleTask {
 
-    @Autowired
-    private CleanBasicRepository cleanBasicRepository;
+    @Value("${task.handle.item}")
+    private String taskHandleItemList;
 
     @Autowired
-    private IgtBasicRepository igtBasicRepository;
-
-//    @NacosValue(value = "${exchange.taskHandleItem}", autoRefreshed = true)
-//    private String taskHandleItem;
+    IDataExchange iDataExchange;
 
     //3.添加定时任务
-//    @Scheduled(cron = "0/5 * * * * ?")
     //或直接指定时间间隔，例如：5秒
     //@Scheduled(fixedRate=5000)
-    private void configureTasks() {
-        System.out.println("执行静态定时任务时间: " + LocalDateTime.now());
-        log.info("执行静态定时任务时间, {}", LocalDateTime.now());
-        DbContextHolder.setDbType(DBTypeEnum.db1);
+//    @Scheduled(cron = "0/5 * * * * ?")
+    private void exchangeTask() {
+        List<String> taskHandleItemList = getTaskHandleItemList();
+        ExchangeTaskHandleItemVo vo = ExchangeTaskHandleItemVo.builder()
+                .createOrgId("1")
+                .createUserId("1")
+                .isHighFrequency("1")
+                .updateOrgId("1")
+                .updateUserId("1")
+                .isBatch("0")
+                .version("1")
+                .taskHandleItemList(taskHandleItemList)
+                .build();
+        iDataExchange.doBusiness(vo);
+    }
 
-        IgtTaskBasic igtTaskBasic = igtBasicRepository.selectOne(Wrappers.<IgtTaskBasic>lambdaQuery()
-                .eq(IgtTaskBasic::getTaskHandleItem, "11220000MB15280770200017203000001"));
-
-        Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String currentTime = sdf.format(date);
-        igtTaskBasic.setUpdateTime(currentTime);
-
-        igtBasicRepository.update(igtTaskBasic, Wrappers.<IgtTaskBasic>lambdaQuery()
-                .eq(IgtTaskBasic::getTaskHandleItem, "11220000MB15280770200017203000001"));
-        log.info("current time : {}", currentTime);
+    public List getTaskHandleItemList() {
+        List<String> list = new ArrayList<>();
+        String[] arr = taskHandleItemList.split("   ");
+        for(String taskHandleItem : arr) {
+            list.add(taskHandleItem);
+        }
+        return list;
     }
 }
