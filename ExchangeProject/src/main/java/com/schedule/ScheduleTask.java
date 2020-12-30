@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 定时任务demo
+ * 定时任务
  */
 
 @Component
@@ -26,22 +26,28 @@ public class ScheduleTask {
     @Value("${task.handle.item}")
     private String taskHandleItemList;
 
+    @Value("${high.frequency}")
+    private String isHighFrequency;
+
+    @Value("${batch}")
+    private String isBatch;
+
     @Autowired
     IDataExchange iDataExchange;
 
     //3.添加定时任务
     //或直接指定时间间隔，例如：5秒
     //@Scheduled(fixedRate=5000)
-//    @Scheduled(cron = "0/5 * * * * ?")
+    @Scheduled(cron = "0/5 * * * * ?")
     private void exchangeTask() {
         List<String> taskHandleItemList = getTaskHandleItemList();
         ExchangeTaskHandleItemVo vo = ExchangeTaskHandleItemVo.builder()
                 .createOrgId("1")
                 .createUserId("1")
-                .isHighFrequency("1")
+                .isHighFrequency(isHighFrequency)
                 .updateOrgId("1")
                 .updateUserId("1")
-                .isBatch("0")
+                .isBatch(isBatch)
                 .version("1")
                 .taskHandleItemList(taskHandleItemList)
                 .build();
@@ -50,7 +56,7 @@ public class ScheduleTask {
 
     public List getTaskHandleItemList() {
         List<String> list = new ArrayList<>();
-        String[] arr = taskHandleItemList.split("   ");
+        String[] arr = taskHandleItemList.split(",");
         for(String taskHandleItem : arr) {
             list.add(taskHandleItem);
         }
