@@ -23,11 +23,4 @@ public class DataExchangeController {
         ExchangeTaskHandleItemResponse result = iDataExchange.doBusiness(vo);
         return new ResultBean<>(result);
     }
-
-    @ApiOperation(value = "myTest", notes = "myTest")
-    @PostMapping(value = "/myTest")
-    public ResultBean<Boolean> myTest(@RequestBody ExchangeTaskHandleItemVo vo) {
-        iDataExchange.myTest(vo);
-        return new ResultBean<>(true);
-    }
 }
