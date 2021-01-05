@@ -51,6 +51,9 @@ public class DataExchangeImpl implements IDataExchange {
     private CleanPublicMaterialRepository cleanPublicMaterialRepository;
 
     @Autowired
+    private CleanPublicFeeRepository cleanPublicFeeRepository;
+
+    @Autowired
     private IgtBasicRepository igtBasicRepository;
 
     @Autowired
@@ -92,11 +95,11 @@ public class DataExchangeImpl implements IDataExchange {
                     .eq(CleanPublicExtend::getTaskhandleitem, taskHandleItem));
 
             if(cleanExtend != null) {
-                taskGuidList = cleanGeneralTask(cleanExtend, taskHandleItem, vo);
+                taskGuidList.addAll(cleanGeneralTask(cleanExtend, taskHandleItem, vo));
             }
 
             if(cleanPublicExtend != null) {
-                taskGuidList = cleanPublicTask(cleanPublicExtend, taskHandleItem, vo);
+                taskGuidList.addAll(cleanPublicTask(cleanPublicExtend, taskHandleItem, vo));
             }
         }
 
@@ -268,6 +271,18 @@ public class DataExchangeImpl implements IDataExchange {
         if(cleanMaterialConditionList.size() > 0) {
             insertConditionMaterial(cleanMaterialConditionList, vo);
         }
+
+        //12 根据taskHandleItem查询clean_dn_task_general_fee_project  收费情况
+        DbContextHolder.setDbType(DBTypeEnum.db2);
+        List<CleanPublicFeeProject> cleanFeeProjectList = cleanPublicFeeRepository.selectList(Wrappers.<CleanPublicFeeProject>lambdaQuery()
+                .eq(CleanPublicFeeProject::getTaskhandleitem, taskHandleItem));
+        log.info("feeList size : {}", cleanFeeProjectList.size());
+
+        //13 根据得到数据，在igt_task_fee新增数据，事项收费情况
+        DbContextHolder.setDbType(DBTypeEnum.db1);
+        igtFeeRepository.delete(Wrappers.<IgtTaskFee>lambdaQuery()
+                .eq(IgtTaskFee::getTaskHandleItem, taskHandleItem));
+        insertPublicFee(cleanFeeProjectList, vo);
 
         return taskGuidList;
     }
@@ -781,6 +796,32 @@ public class DataExchangeImpl implements IDataExchange {
                     .updateUserId(vo.getUpdateUserId())
                     .version(vo.getVersion())
                     .taskHandleItem(cleanFeeProject.getTaskhandleitem())
+                    .build();
+            igtFeeRepository.insert(igtTaskFee);
+        }
+    }
+
+    public void insertPublicFee(List<CleanPublicFeeProject> cleanPublicFeeProjectList, ExchangeTaskHandleItemVo vo) {
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentTime = sdf.format(date);
+
+        for(CleanPublicFeeProject cleanPublicFeeProject : cleanPublicFeeProjectList) {
+            IgtTaskFee igtTaskFee = IgtTaskFee.builder()
+                    .id(cleanPublicFeeProject.getId())
+                    .createOrgId(vo.getCreateOrgId())
+                    .createTime(currentTime)
+                    .createUserId(vo.getCreateUserId())
+                    .descExplain(cleanPublicFeeProject.getDescexplain())
+                    .feeName(cleanPublicFeeProject.getFeename())
+                    .feeStand(cleanPublicFeeProject.getFeestand())
+                    .isDesc(cleanPublicFeeProject.getIsdesc())
+                    .taskGuid(cleanPublicFeeProject.getTaskguid())
+                    .updateOrgId(vo.getUpdateOrgId())
+                    .updateTime(currentTime)
+                    .updateUserId(vo.getUpdateUserId())
+                    .version(vo.getVersion())
+                    .taskHandleItem(cleanPublicFeeProject.getTaskhandleitem())
                     .build();
             igtFeeRepository.insert(igtTaskFee);
         }
