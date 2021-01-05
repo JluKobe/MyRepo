@@ -142,45 +142,8 @@ public class DataExchangeImpl implements IDataExchange {
                 .eq(IgtTaskMaterial::getTaskHandleItem, taskHandleItem));
         insertMaterial(cleanMaterialList, cleanBasic, vo);
 
-        //8 根据taskHandleItem查询clean_dn_audit_item_condition
-        DbContextHolder.setDbType(DBTypeEnum.db2);
-        List<CleanItemCondition> cleanItemConditionList = cleanItemConditionRepository.selectList(Wrappers.<CleanItemCondition>lambdaQuery()
-                .eq(CleanItemCondition::getTaskhandleitem, taskHandleItem));
-        log.info("conditionList size : {}", cleanItemConditionList.size());
-
-        //9 根据得到数据，在igt_task_condition新增数据，事项情形
-        DbContextHolder.setDbType(DBTypeEnum.db1);
-        List<IgtTaskCondition> igtTaskConditionList = igtConditionRepository.selectList(Wrappers.<IgtTaskCondition>lambdaQuery()
-                .eq(IgtTaskCondition::getTaskHandleItem, taskHandleItem));
-        igtConditionRepository.delete(Wrappers.<IgtTaskCondition>lambdaQuery()
-                .eq(IgtTaskCondition::getTaskHandleItem, taskHandleItem));
-        insertCondition(cleanItemConditionList, vo);
-        for(IgtTaskCondition igtTaskCondition : igtTaskConditionList) {
-            igtConditionMaterialRepository.delete(Wrappers.<IgtTaskConditionMaterial>lambdaQuery()
-                    .eq(IgtTaskConditionMaterial::getConditionGuid, igtTaskCondition.getConditionGuid()));
-        }
-
-        //10 根据condition_guid查询clean_dn_audit_material_condition
-        List<String> conditionGuidList = new ArrayList<>();
-        for(CleanItemCondition cleanItemCondition : cleanItemConditionList) {
-            String conditionGuid = cleanItemCondition.getRowguid();
-            conditionGuidList.add(conditionGuid);
-        }
-
-        DbContextHolder.setDbType(DBTypeEnum.db2);
-        List<CleanMaterialCondition> cleanMaterialConditionList = new ArrayList<>();
-        for(String conditionGuid : conditionGuidList) {
-            List<CleanMaterialCondition> cleanMaterialConditions = cleanMaterialConditionRepository
-                    .selectList(Wrappers.<CleanMaterialCondition>lambdaQuery().eq(CleanMaterialCondition::getConditionGuid, conditionGuid));
-            cleanMaterialConditionList.addAll(cleanMaterialConditions);
-        }
-        log.info("materialConditionList size : {}", cleanMaterialConditionList.size());
-
-        //11 根据得到数据，在igt_task_condition_material新增数据，情形材料关系
-        DbContextHolder.setDbType(DBTypeEnum.db1);
-        if(cleanMaterialConditionList.size() > 0) {
-            insertConditionMaterial(cleanMaterialConditionList, vo);
-        }
+        //情形，情形关系导入
+        conditionMaterialBusiness(taskHandleItem, vo);
 
         //12 根据taskHandleItem查询clean_dn_task_general_fee_project  收费情况
         DbContextHolder.setDbType(DBTypeEnum.db2);
@@ -197,6 +160,48 @@ public class DataExchangeImpl implements IDataExchange {
         taskGuidList.add(taskGuid);
 
         return taskGuidList;
+    }
+
+    private void conditionMaterialBusiness(String taskHandleItem, ExchangeTaskHandleItemVo vo) {
+        //8 根据taskHandleItem查询clean_dn_audit_item_condition
+        DbContextHolder.setDbType(DBTypeEnum.db2);
+        List<CleanItemCondition> cleanItemConditionList = cleanItemConditionRepository.selectList(Wrappers.<CleanItemCondition>lambdaQuery()
+                .eq(CleanItemCondition::getTaskhandleitem, taskHandleItem));
+        log.info("conditionList size : {}", cleanItemConditionList.size());
+
+        //9 根据得到数据，在igt_task_condition新增数据，事项情形
+        DbContextHolder.setDbType(DBTypeEnum.db1);
+        List<IgtTaskCondition> igtTaskConditionList = igtConditionRepository.selectList(Wrappers.<IgtTaskCondition>lambdaQuery()
+                .eq(IgtTaskCondition::getTaskHandleItem, taskHandleItem));
+        igtConditionRepository.delete(Wrappers.<IgtTaskCondition>lambdaQuery()
+                .eq(IgtTaskCondition::getTaskHandleItem, taskHandleItem));
+        insertCondition(cleanItemConditionList, vo);
+        for (IgtTaskCondition igtTaskCondition : igtTaskConditionList) {
+            igtConditionMaterialRepository.delete(Wrappers.<IgtTaskConditionMaterial>lambdaQuery()
+                    .eq(IgtTaskConditionMaterial::getConditionGuid, igtTaskCondition.getConditionGuid()));
+        }
+
+        //10 根据condition_guid查询clean_dn_audit_material_condition
+        List<String> conditionGuidList = new ArrayList<>();
+        for (CleanItemCondition cleanItemCondition : cleanItemConditionList) {
+            String conditionGuid = cleanItemCondition.getRowguid();
+            conditionGuidList.add(conditionGuid);
+        }
+
+        DbContextHolder.setDbType(DBTypeEnum.db2);
+        List<CleanMaterialCondition> cleanMaterialConditionList = new ArrayList<>();
+        for (String conditionGuid : conditionGuidList) {
+            List<CleanMaterialCondition> cleanMaterialConditions = cleanMaterialConditionRepository
+                    .selectList(Wrappers.<CleanMaterialCondition>lambdaQuery().eq(CleanMaterialCondition::getConditionGuid, conditionGuid));
+            cleanMaterialConditionList.addAll(cleanMaterialConditions);
+        }
+        log.info("materialConditionList size : {}", cleanMaterialConditionList.size());
+
+        //11 根据得到数据，在igt_task_condition_material新增数据，情形材料关系
+        DbContextHolder.setDbType(DBTypeEnum.db1);
+        if (cleanMaterialConditionList.size() > 0) {
+            insertConditionMaterial(cleanMaterialConditionList, vo);
+        }
     }
 
     public List<String> cleanPublicTask(CleanPublicExtend cleanPublicExtend, String taskHandleItem, ExchangeTaskHandleItemVo vo) {
@@ -232,45 +237,8 @@ public class DataExchangeImpl implements IDataExchange {
         insertPublicMaterial(cleanPublicMaterialList, cleanPublicBasic, vo);
         taskGuidList.add(taskGuid);
 
-        //8 根据taskHandleItem查询clean_dn_audit_item_condition
-        DbContextHolder.setDbType(DBTypeEnum.db2);
-        List<CleanItemCondition> cleanItemConditionList = cleanItemConditionRepository.selectList(Wrappers.<CleanItemCondition>lambdaQuery()
-                .eq(CleanItemCondition::getTaskhandleitem, taskHandleItem));
-        log.info("conditionList size : {}", cleanItemConditionList.size());
-
-        //9 根据得到数据，在igt_task_condition新增数据，事项情形
-        DbContextHolder.setDbType(DBTypeEnum.db1);
-        List<IgtTaskCondition> igtTaskConditionList = igtConditionRepository.selectList(Wrappers.<IgtTaskCondition>lambdaQuery()
-                .eq(IgtTaskCondition::getTaskHandleItem, taskHandleItem));
-        igtConditionRepository.delete(Wrappers.<IgtTaskCondition>lambdaQuery()
-                .eq(IgtTaskCondition::getTaskHandleItem, taskHandleItem));
-        insertCondition(cleanItemConditionList, vo);
-        for(IgtTaskCondition igtTaskCondition : igtTaskConditionList) {
-            igtConditionMaterialRepository.delete(Wrappers.<IgtTaskConditionMaterial>lambdaQuery()
-                    .eq(IgtTaskConditionMaterial::getConditionGuid, igtTaskCondition.getConditionGuid()));
-        }
-
-        //10 根据condition_guid查询clean_dn_audit_material_condition
-        List<String> conditionGuidList = new ArrayList<>();
-        for(CleanItemCondition cleanItemCondition : cleanItemConditionList) {
-            String conditionGuid = cleanItemCondition.getRowguid();
-            conditionGuidList.add(conditionGuid);
-        }
-
-        DbContextHolder.setDbType(DBTypeEnum.db2);
-        List<CleanMaterialCondition> cleanMaterialConditionList = new ArrayList<>();
-        for(String conditionGuid : conditionGuidList) {
-            List<CleanMaterialCondition> cleanMaterialConditions = cleanMaterialConditionRepository
-                    .selectList(Wrappers.<CleanMaterialCondition>lambdaQuery().eq(CleanMaterialCondition::getConditionGuid, conditionGuid));
-            cleanMaterialConditionList.addAll(cleanMaterialConditions);
-        }
-        log.info("materialConditionList size : {}", cleanMaterialConditionList.size());
-
-        //11 根据得到数据，在igt_task_condition_material新增数据，情形材料关系
-        DbContextHolder.setDbType(DBTypeEnum.db1);
-        if(cleanMaterialConditionList.size() > 0) {
-            insertConditionMaterial(cleanMaterialConditionList, vo);
-        }
+        //情形，情形关系导入
+        conditionMaterialBusiness(taskHandleItem, vo);
 
         //12 根据taskHandleItem查询clean_dn_task_general_fee_project  收费情况
         DbContextHolder.setDbType(DBTypeEnum.db2);
