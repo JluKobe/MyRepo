@@ -42,6 +42,15 @@ public class DataExchangeImpl implements IDataExchange {
     private CleanMaterialConditionRepository cleanMaterialConditionRepository;
 
     @Autowired
+    private CleanPublicExtendRepository cleanPublicExtendRepository;
+
+    @Autowired
+    private CleanPublicBasicRepository cleanPublicBasicRepository;
+
+    @Autowired
+    private CleanPublicMaterialRepository cleanPublicMaterialRepository;
+
+    @Autowired
     private IgtBasicRepository igtBasicRepository;
 
     @Autowired
@@ -77,88 +86,17 @@ public class DataExchangeImpl implements IDataExchange {
             //1 根据taskHandleItem查询clean_dn_task_general_extend
             CleanExtend cleanExtend = cleanExtendRepository.selectOne(Wrappers.<CleanExtend>lambdaQuery()
                     .eq(CleanExtend::getTaskhandleitem, taskHandleItem));
-            String taskGuid = cleanExtend.getTaskguid();
-            log.info("taskGuid : {}", taskGuid);
 
-            //2 根据得到的taskHandleItem查询clean_dn_task_general_basic
-            CleanBasic cleanBasic = cleanBasicRepository.selectOne(Wrappers.<CleanBasic>lambdaQuery().eq(CleanBasic::getTaskhandleitem, taskHandleItem));
-            log.info("taskName : {}", cleanBasic.getTaskname());
+            CleanPublicExtend cleanPublicExtend = cleanPublicExtendRepository.selectOne(Wrappers.<CleanPublicExtend>lambdaQuery()
+                    .eq(CleanPublicExtend::getTaskhandleitem, taskHandleItem));
 
-            //3 查询clean_dn_task_directory得到task_name
-            CleanDirectory cleanDirectory = cleanDirectoryRepository.selectOne(Wrappers.<CleanDirectory>lambdaQuery()
-                    .eq(CleanDirectory::getCatalogcode, cleanBasic.getCatalogcode()));
-
-            //4 根据得到数据，在igt_task_basic新增数据，基本信息
-            updateTaskBasic(cleanBasic, cleanExtend, cleanDirectory, vo);
-
-            //5 根据得到数据，在igt_task_extend新增数据，扩展信息
-            updateTaskExtend(cleanBasic, cleanExtend, vo);
-
-            //6 根据taskHandleItem查询clean_dn_task_general_material
-            DbContextHolder.setDbType(DBTypeEnum.db2);
-            List<CleanMaterial> cleanMaterialList = cleanMaterialRepository.selectList(Wrappers.<CleanMaterial>lambdaQuery()
-                    .eq(CleanMaterial::getTaskhandleitem, taskHandleItem));
-            log.info("materialList size : {}", cleanMaterialList.size());
-
-            //7 根据得到数据，在igt_task_material_catalog新增数据，事项材料目录信息
-            DbContextHolder.setDbType(DBTypeEnum.db1);
-            igtMaterialRepository.delete(Wrappers.<IgtTaskMaterial>lambdaQuery()
-                    .eq(IgtTaskMaterial::getTaskHandleItem, taskHandleItem));
-            insertMaterial(cleanMaterialList, cleanBasic, vo);
-
-            //8 根据taskHandleItem查询clean_dn_audit_item_condition
-            DbContextHolder.setDbType(DBTypeEnum.db2);
-            List<CleanItemCondition> cleanItemConditionList = cleanItemConditionRepository.selectList(Wrappers.<CleanItemCondition>lambdaQuery()
-                    .eq(CleanItemCondition::getTaskhandleitem, taskHandleItem));
-            log.info("conditionList size : {}", cleanItemConditionList.size());
-
-            //9 根据得到数据，在igt_task_condition新增数据，事项情形
-            DbContextHolder.setDbType(DBTypeEnum.db1);
-            List<IgtTaskCondition> igtTaskConditionList = igtConditionRepository.selectList(Wrappers.<IgtTaskCondition>lambdaQuery()
-                    .eq(IgtTaskCondition::getTaskHandleItem, taskHandleItem));
-            igtConditionRepository.delete(Wrappers.<IgtTaskCondition>lambdaQuery()
-                    .eq(IgtTaskCondition::getTaskHandleItem, taskHandleItem));
-            insertCondition(cleanItemConditionList, vo);
-            for(IgtTaskCondition igtTaskCondition : igtTaskConditionList) {
-                igtConditionMaterialRepository.delete(Wrappers.<IgtTaskConditionMaterial>lambdaQuery()
-                        .eq(IgtTaskConditionMaterial::getConditionGuid, igtTaskCondition.getConditionGuid()));
+            if(cleanExtend != null) {
+                taskGuidList = cleanGeneralTask(cleanExtend, taskHandleItem, vo);
             }
 
-            //10 根据condition_guid查询clean_dn_audit_material_condition
-            List<String> conditionGuidList = new ArrayList<>();
-            for(CleanItemCondition cleanItemCondition : cleanItemConditionList) {
-                String conditionGuid = cleanItemCondition.getRowguid();
-                conditionGuidList.add(conditionGuid);
+            if(cleanPublicExtend != null) {
+                taskGuidList = cleanPublicTask(cleanPublicExtend, taskHandleItem, vo);
             }
-
-            DbContextHolder.setDbType(DBTypeEnum.db2);
-            List<CleanMaterialCondition> cleanMaterialConditionList = new ArrayList<>();
-            for(String conditionGuid : conditionGuidList) {
-                List<CleanMaterialCondition> cleanMaterialConditions = cleanMaterialConditionRepository
-                        .selectList(Wrappers.<CleanMaterialCondition>lambdaQuery().eq(CleanMaterialCondition::getConditionGuid, conditionGuid));
-                cleanMaterialConditionList.addAll(cleanMaterialConditions);
-            }
-            log.info("materialConditionList size : {}", cleanMaterialConditionList.size());
-
-            //11 根据得到数据，在igt_task_condition_material新增数据，情形材料关系
-            DbContextHolder.setDbType(DBTypeEnum.db1);
-            if(cleanMaterialConditionList.size() > 0) {
-                insertConditionMaterial(cleanMaterialConditionList, vo);
-            }
-
-            //12 根据taskHandleItem查询clean_dn_task_general_fee_project  收费情况
-            DbContextHolder.setDbType(DBTypeEnum.db2);
-            List<CleanFeeProject> cleanFeeProjectList = cleanFeeProjectRepository.selectList(Wrappers.<CleanFeeProject>lambdaQuery()
-                    .eq(CleanFeeProject::getTaskhandleitem, taskHandleItem));
-            log.info("feeList size : {}", cleanFeeProjectList.size());
-
-            //13 根据得到数据，在igt_task_fee新增数据，事项收费情况
-            DbContextHolder.setDbType(DBTypeEnum.db1);
-            igtFeeRepository.delete(Wrappers.<IgtTaskFee>lambdaQuery()
-                    .eq(IgtTaskFee::getTaskHandleItem, taskHandleItem));
-            insertFee(cleanFeeProjectList, vo);
-
-            taskGuidList.add(taskGuid);
         }
 
         ExchangeTaskHandleItemResponse exchangeTaskHandleItemResponse = ExchangeTaskHandleItemResponse.builder()
@@ -167,6 +105,236 @@ public class DataExchangeImpl implements IDataExchange {
 
         log.info("数据导入 end, {}", System.currentTimeMillis() - start);
         return exchangeTaskHandleItemResponse;
+    }
+
+    public List<String> cleanGeneralTask(CleanExtend cleanExtend, String taskHandleItem, ExchangeTaskHandleItemVo vo) {
+        List<String> taskGuidList = new ArrayList<>();
+        String taskGuid = cleanExtend.getTaskguid();
+        log.info("taskGuid : {}", taskGuid);
+
+        //2 根据得到的taskHandleItem查询clean_dn_task_general_basic
+        CleanBasic cleanBasic = cleanBasicRepository.selectOne(Wrappers.<CleanBasic>lambdaQuery().eq(CleanBasic::getTaskhandleitem, taskHandleItem));
+        log.info("taskName : {}", cleanBasic.getTaskname());
+
+        //3 查询clean_dn_task_directory得到task_name
+        CleanDirectory cleanDirectory = cleanDirectoryRepository.selectOne(Wrappers.<CleanDirectory>lambdaQuery()
+                .eq(CleanDirectory::getCatalogcode, cleanBasic.getCatalogcode()));
+
+        //4 根据得到数据，在igt_task_basic新增数据，基本信息
+        updateTaskBasic(cleanBasic, cleanExtend, cleanDirectory, vo);
+
+        //5 根据得到数据，在igt_task_extend新增数据，扩展信息
+        updateTaskExtend(cleanBasic, cleanExtend, vo);
+
+        //6 根据taskHandleItem查询clean_dn_task_general_material
+        DbContextHolder.setDbType(DBTypeEnum.db2);
+        List<CleanMaterial> cleanMaterialList = cleanMaterialRepository.selectList(Wrappers.<CleanMaterial>lambdaQuery()
+                .eq(CleanMaterial::getTaskhandleitem, taskHandleItem));
+        log.info("materialList size : {}", cleanMaterialList.size());
+
+        //7 根据得到数据，在igt_task_material_catalog新增数据，事项材料目录信息
+        DbContextHolder.setDbType(DBTypeEnum.db1);
+        igtMaterialRepository.delete(Wrappers.<IgtTaskMaterial>lambdaQuery()
+                .eq(IgtTaskMaterial::getTaskHandleItem, taskHandleItem));
+        insertMaterial(cleanMaterialList, cleanBasic, vo);
+
+        //8 根据taskHandleItem查询clean_dn_audit_item_condition
+        DbContextHolder.setDbType(DBTypeEnum.db2);
+        List<CleanItemCondition> cleanItemConditionList = cleanItemConditionRepository.selectList(Wrappers.<CleanItemCondition>lambdaQuery()
+                .eq(CleanItemCondition::getTaskhandleitem, taskHandleItem));
+        log.info("conditionList size : {}", cleanItemConditionList.size());
+
+        //9 根据得到数据，在igt_task_condition新增数据，事项情形
+        DbContextHolder.setDbType(DBTypeEnum.db1);
+        List<IgtTaskCondition> igtTaskConditionList = igtConditionRepository.selectList(Wrappers.<IgtTaskCondition>lambdaQuery()
+                .eq(IgtTaskCondition::getTaskHandleItem, taskHandleItem));
+        igtConditionRepository.delete(Wrappers.<IgtTaskCondition>lambdaQuery()
+                .eq(IgtTaskCondition::getTaskHandleItem, taskHandleItem));
+        insertCondition(cleanItemConditionList, vo);
+        for(IgtTaskCondition igtTaskCondition : igtTaskConditionList) {
+            igtConditionMaterialRepository.delete(Wrappers.<IgtTaskConditionMaterial>lambdaQuery()
+                    .eq(IgtTaskConditionMaterial::getConditionGuid, igtTaskCondition.getConditionGuid()));
+        }
+
+        //10 根据condition_guid查询clean_dn_audit_material_condition
+        List<String> conditionGuidList = new ArrayList<>();
+        for(CleanItemCondition cleanItemCondition : cleanItemConditionList) {
+            String conditionGuid = cleanItemCondition.getRowguid();
+            conditionGuidList.add(conditionGuid);
+        }
+
+        DbContextHolder.setDbType(DBTypeEnum.db2);
+        List<CleanMaterialCondition> cleanMaterialConditionList = new ArrayList<>();
+        for(String conditionGuid : conditionGuidList) {
+            List<CleanMaterialCondition> cleanMaterialConditions = cleanMaterialConditionRepository
+                    .selectList(Wrappers.<CleanMaterialCondition>lambdaQuery().eq(CleanMaterialCondition::getConditionGuid, conditionGuid));
+            cleanMaterialConditionList.addAll(cleanMaterialConditions);
+        }
+        log.info("materialConditionList size : {}", cleanMaterialConditionList.size());
+
+        //11 根据得到数据，在igt_task_condition_material新增数据，情形材料关系
+        DbContextHolder.setDbType(DBTypeEnum.db1);
+        if(cleanMaterialConditionList.size() > 0) {
+            insertConditionMaterial(cleanMaterialConditionList, vo);
+        }
+
+        //12 根据taskHandleItem查询clean_dn_task_general_fee_project  收费情况
+        DbContextHolder.setDbType(DBTypeEnum.db2);
+        List<CleanFeeProject> cleanFeeProjectList = cleanFeeProjectRepository.selectList(Wrappers.<CleanFeeProject>lambdaQuery()
+                .eq(CleanFeeProject::getTaskhandleitem, taskHandleItem));
+        log.info("feeList size : {}", cleanFeeProjectList.size());
+
+        //13 根据得到数据，在igt_task_fee新增数据，事项收费情况
+        DbContextHolder.setDbType(DBTypeEnum.db1);
+        igtFeeRepository.delete(Wrappers.<IgtTaskFee>lambdaQuery()
+                .eq(IgtTaskFee::getTaskHandleItem, taskHandleItem));
+        insertFee(cleanFeeProjectList, vo);
+
+        taskGuidList.add(taskGuid);
+
+        return taskGuidList;
+    }
+
+    public List<String> cleanPublicTask(CleanPublicExtend cleanPublicExtend, String taskHandleItem, ExchangeTaskHandleItemVo vo) {
+        List<String> taskGuidList = new ArrayList<>();
+        String taskGuid = cleanPublicExtend.getTaskguid();
+        log.info("taskGuid : {}", taskGuid);
+
+        //2 根据得到的taskHandleItem查询clean_dn_task_public_basic
+        CleanPublicBasic cleanPublicBasic = cleanPublicBasicRepository.selectOne(Wrappers.<CleanPublicBasic>lambdaQuery()
+                .eq(CleanPublicBasic::getTaskhandleitem, taskHandleItem));
+        log.info("taskName : {}", cleanPublicBasic.getTaskname());
+
+        //3 查询clean_dn_task_directory得到task_name
+        CleanDirectory cleanDirectory = cleanDirectoryRepository.selectOne(Wrappers.<CleanDirectory>lambdaQuery()
+                .eq(CleanDirectory::getCatalogcode, cleanPublicBasic.getCatalogcode()));
+
+        //4 根据得到数据，在igt_task_basic新增数据，基本信息
+        updatePublicBasic(cleanPublicBasic, cleanPublicExtend, cleanDirectory, vo);
+
+        //5 根据得到数据，在igt_task_extend新增数据，扩展信息
+        updatePublicExtend(cleanPublicBasic, cleanPublicExtend, vo);
+
+        //6 根据taskHandleItem查询clean_dn_task_general_material
+        DbContextHolder.setDbType(DBTypeEnum.db2);
+        List<CleanPublicMaterial> cleanPublicMaterialList = cleanPublicMaterialRepository.selectList(Wrappers.<CleanPublicMaterial>lambdaQuery()
+                .eq(CleanPublicMaterial::getTaskhandleitem, taskHandleItem));
+        log.info("materialList size : {}", cleanPublicMaterialList.size());
+
+        //7 根据得到数据，在igt_task_material_catalog新增数据，事项材料目录信息
+        DbContextHolder.setDbType(DBTypeEnum.db1);
+        igtMaterialRepository.delete(Wrappers.<IgtTaskMaterial>lambdaQuery()
+                .eq(IgtTaskMaterial::getTaskHandleItem, taskHandleItem));
+        insertPublicMaterial(cleanPublicMaterialList, cleanPublicBasic, vo);
+        taskGuidList.add(taskGuid);
+
+        return taskGuidList;
+    }
+
+    public void updatePublicBasic(CleanPublicBasic cleanPublicBasic, CleanPublicExtend cleanPublicExtend,
+                                  CleanDirectory cleanDirectory, ExchangeTaskHandleItemVo vo) {
+        DbContextHolder.setDbType(DBTypeEnum.db1);
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentTime = sdf.format(date);
+
+        IgtTaskBasic igtTaskBasic = igtBasicRepository.selectOne(Wrappers.<IgtTaskBasic>lambdaQuery()
+                .eq(IgtTaskBasic::getTaskHandleItem, cleanPublicBasic.getTaskhandleitem()));
+
+        if(igtTaskBasic == null) {
+            IgtTaskBasic igtTaskBasicObj = IgtTaskBasic.builder()
+                    .id(cleanPublicBasic.getId())
+                    .catalogCode(cleanPublicBasic.getCatalogcode())
+                    .catalogName(cleanDirectory.getTaskname())
+                    .createOrgId(vo.getCreateOrgId())
+                    .createTime(currentTime)
+                    .createUserId(vo.getCreateUserId())
+                    .deptCode(cleanPublicBasic.getDeptcode())
+                    .deptName(cleanPublicBasic.getDeptname())
+                    .deptType(cleanPublicBasic.getDepttype())
+                    .handleType(cleanPublicBasic.getHandletype())
+                    .isBatch(vo.getIsBatch())
+                    .isEntryCenter(cleanPublicExtend.getIsentrycenter())
+                    .isExpress(cleanPublicExtend.getIsexpress())
+                    .isHighFrequency(vo.getIsHighFrequency())
+                    .isOnline(cleanPublicExtend.getIsonline())
+                    .isPayOnline(cleanPublicExtend.getIspayonline())
+                    .isSchedule(cleanPublicExtend.getIsschedule())
+                    .isServiceTerminals(cleanPublicExtend.getIsserviceterminals())
+                    .isWindow(cleanPublicExtend.getIsentrycenter())
+                    .linkWay(cleanPublicBasic.getLinkway())
+                    .localCatalogCode(cleanPublicBasic.getLocalcatalogcode())
+                    .localTaskCode(cleanPublicBasic.getLocaltaskcode())
+                    .powerSource(null)
+                    .productSourceType("01")
+                    .productType("01")
+                    .projectType(cleanPublicBasic.getProjecttype())
+                    .promiseDay(cleanPublicBasic.getPromiseday())
+                    .resultName(cleanPublicExtend.getResultname())
+                    .resultType(cleanPublicExtend.getResulttype())
+                    .resultSample(null)
+                    .serverType(cleanPublicBasic.getServertype())
+                    .taskArea(null)
+                    .taskCode(cleanPublicBasic.getTaskcode())
+                    .taskGuid(cleanPublicExtend.getTaskguid())
+                    .taskHandleItem(cleanPublicBasic.getTaskhandleitem())
+                    .taskName(cleanPublicBasic.getTaskname())
+                    .taskState(cleanPublicBasic.getTaskstate())
+                    .taskStatus("1")
+                    .taskType(cleanPublicBasic.getTasktype())
+                    .taskVersion(cleanPublicBasic.getTaskversion())
+                    .transactAddr(cleanPublicBasic.getTransactaddr())
+                    .transactTime(cleanPublicBasic.getTransacttime())
+                    .updateOrgId(vo.getUpdateOrgId())
+                    .updateTime(currentTime)
+                    .updateUserId(vo.getUpdateUserId())
+                    .useLevel(cleanPublicBasic.getUselevel())
+                    .version(vo.getVersion())
+                    .build();
+            igtBasicRepository.insert(igtTaskBasicObj);
+        }
+
+        else {
+            igtTaskBasic.setId(cleanPublicBasic.getId());
+            igtTaskBasic.setCatalogCode(cleanPublicBasic.getCatalogcode());
+            igtTaskBasic.setCatalogName(cleanDirectory.getTaskname());
+            igtTaskBasic.setDeptCode(cleanPublicBasic.getDeptcode());
+            igtTaskBasic.setDeptName(cleanPublicBasic.getDeptname());
+            igtTaskBasic.setDeptType(cleanPublicBasic.getDepttype());
+            igtTaskBasic.setHandleType(cleanPublicBasic.getHandletype());
+            igtTaskBasic.setIsBatch(vo.getIsBatch());
+            igtTaskBasic.setIsEntryCenter(cleanPublicExtend.getIsentrycenter());
+            igtTaskBasic.setIsExpress(cleanPublicExtend.getIsexpress());
+            igtTaskBasic.setIsHighFrequency(vo.getIsHighFrequency());
+            igtTaskBasic.setIsOnline(cleanPublicExtend.getIsonline());
+            igtTaskBasic.setIsPayOnline(cleanPublicExtend.getIspayonline());
+            igtTaskBasic.setIsSchedule(cleanPublicExtend.getIsschedule());
+            igtTaskBasic.setIsServiceTerminals(cleanPublicExtend.getIsserviceterminals());
+            igtTaskBasic.setIsWindow(cleanPublicExtend.getIsentrycenter());
+            igtTaskBasic.setLinkWay(cleanPublicBasic.getLinkway());
+            igtTaskBasic.setLocalCatalogCode(cleanPublicBasic.getLocalcatalogcode());
+            igtTaskBasic.setLocalTaskCode(cleanPublicBasic.getLocaltaskcode());
+            igtTaskBasic.setPowerSource(null);
+            igtTaskBasic.setProjectType(cleanPublicBasic.getProjecttype());
+            igtTaskBasic.setPromiseDay(cleanPublicBasic.getPromiseday());
+            igtTaskBasic.setResultName(cleanPublicExtend.getResultname());
+            igtTaskBasic.setResultType(cleanPublicExtend.getResulttype());
+            igtTaskBasic.setServerType(cleanPublicBasic.getServertype());
+            igtTaskBasic.setTaskCode(cleanPublicBasic.getTaskcode());
+            igtTaskBasic.setTaskGuid(cleanPublicExtend.getTaskguid());
+            igtTaskBasic.setTaskName(cleanPublicBasic.getTaskname());
+            igtTaskBasic.setTaskState(cleanPublicBasic.getTaskstate());
+            igtTaskBasic.setTaskType(cleanPublicBasic.getTasktype());
+            igtTaskBasic.setTaskVersion(cleanPublicBasic.getTaskversion());
+            igtTaskBasic.setTransactAddr(cleanPublicBasic.getTransactaddr());
+            igtTaskBasic.setTransactTime(cleanPublicBasic.getTransacttime());
+            igtTaskBasic.setUpdateTime(currentTime);
+            igtTaskBasic.setUseLevel(cleanPublicBasic.getUselevel());
+            igtTaskBasic.setVersion(vo.getVersion());
+
+            igtBasicRepository.update(igtTaskBasic, Wrappers.<IgtTaskBasic>lambdaQuery()
+                    .eq(IgtTaskBasic::getTaskHandleItem, cleanPublicBasic.getTaskhandleitem()));
+        }
     }
 
     public void updateTaskBasic(CleanBasic cleanBasic, CleanExtend cleanExtend, CleanDirectory cleanDirectory, ExchangeTaskHandleItemVo vo) {
@@ -274,6 +442,93 @@ public class DataExchangeImpl implements IDataExchange {
         }
     }
 
+    public void updatePublicExtend(CleanPublicBasic cleanPublicBasic, CleanPublicExtend cleanPublicExtend, ExchangeTaskHandleItemVo vo) {
+        DbContextHolder.setDbType(DBTypeEnum.db1);
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentTime = sdf.format(date);
+
+        IgtTaskExtend igtTaskExtend = igtExtendRepository.selectOne(Wrappers.<IgtTaskExtend>lambdaQuery()
+                .eq(IgtTaskExtend::getTaskHandleItem, cleanPublicBasic.getTaskhandleitem()));
+
+        if(igtTaskExtend == null) {
+            IgtTaskExtend igtTaskExtendObj = IgtTaskExtend.builder()
+                    .id(cleanPublicBasic.getId())
+                    .acceptCondition(cleanPublicBasic.getAcceptcondition())
+                    .anticipateDay(cleanPublicBasic.getAnticipateday())
+                    .anticipateExplain(cleanPublicBasic.getAnticipateexplain())
+                    .anticipateType(cleanPublicBasic.getAnticipatetype())
+                    .appIsSingleLogin(cleanPublicBasic.getAppissinglelogin())
+                    .byLaw(cleanPublicBasic.getBylaw())
+                    .bySuppose(null)
+                    .cdBatch(cleanPublicBasic.getCdBatch())
+                    .createOrgId(vo.getCreateOrgId())
+                    .createTime(currentTime)
+                    .createUserId(vo.getCreateUserId())
+                    .entrustName(cleanPublicBasic.getEntrustname())
+                    .handleArea(cleanPublicExtend.getHandlearea())
+                    .handleFlow(cleanPublicBasic.getHandleflow())
+                    .isSingleLogin(cleanPublicBasic.getIssinglelogin())
+                    .limitSceneExplain(cleanPublicExtend.getLimitsceneexplain())
+                    .limitSceneNum(cleanPublicBasic.getLimitscenenum())
+                    .linkAddr(cleanPublicBasic.getLinkaddr())
+                    .mobileTerminalUrl(cleanPublicBasic.getMobileterminalurl())
+                    .onlineHandleDepth(cleanPublicExtend.getOnlinehandledepth())
+                    .onlineHandleUrl(cleanPublicExtend.getOnlinehandleurl())
+                    .otherDept(cleanPublicExtend.getOtherdept())
+                    .planCancelDate(cleanPublicBasic.getPlancanceldate())
+                    .planEffectiveDate(cleanPublicBasic.getPlaneffectivedate())
+                    .promiseExplain(cleanPublicBasic.getPromiseexplain())
+                    .promiseType(cleanPublicBasic.getPromisetype())
+                    .serviceType(cleanPublicExtend.getServicetype())
+                    .specialProcedure(cleanPublicBasic.getSpecialprocedure())
+                    .superviseWay(cleanPublicBasic.getSuperviseway())
+                    .taskGuid(cleanPublicExtend.getTaskguid())
+                    .updateOrgId(vo.getUpdateOrgId())
+                    .updateTime(currentTime)
+                    .updateUserId(vo.getUpdateUserId())
+                    .version(vo.getVersion())
+                    .taskHandleItem(cleanPublicBasic.getTaskhandleitem())
+                    .build();
+            igtExtendRepository.insert(igtTaskExtendObj);
+        }
+
+        else {
+            igtTaskExtend.setId(cleanPublicExtend.getId());
+            igtTaskExtend.setAcceptCondition(cleanPublicBasic.getAcceptcondition());
+            igtTaskExtend.setAnticipateDay(cleanPublicBasic.getAnticipateday());
+            igtTaskExtend.setAnticipateExplain(cleanPublicBasic.getAnticipateexplain());
+            igtTaskExtend.setAnticipateType(cleanPublicBasic.getAnticipatetype());
+            igtTaskExtend.setAppIsSingleLogin(cleanPublicBasic.getAppissinglelogin());
+            igtTaskExtend.setByLaw(cleanPublicBasic.getBylaw());
+            igtTaskExtend.setCdBatch(cleanPublicBasic.getCdBatch());
+            igtTaskExtend.setEntrustName(cleanPublicBasic.getEntrustname());
+            igtTaskExtend.setHandleArea(cleanPublicExtend.getHandlearea());
+            igtTaskExtend.setHandleFlow(cleanPublicBasic.getHandleflow());
+            igtTaskExtend.setIsSingleLogin(cleanPublicBasic.getIssinglelogin());
+            igtTaskExtend.setLimitSceneExplain(cleanPublicExtend.getLimitsceneexplain());
+            igtTaskExtend.setLimitSceneNum(cleanPublicBasic.getLimitscenenum());
+            igtTaskExtend.setLinkAddr(cleanPublicBasic.getLinkaddr());
+            igtTaskExtend.setMobileTerminalUrl(cleanPublicBasic.getMobileterminalurl());
+            igtTaskExtend.setOnlineHandleDepth(cleanPublicExtend.getOnlinehandledepth());
+            igtTaskExtend.setOnlineHandleUrl(cleanPublicExtend.getOnlinehandleurl());
+            igtTaskExtend.setOtherDept(cleanPublicExtend.getOtherdept());
+            igtTaskExtend.setPlanCancelDate(cleanPublicBasic.getPlancanceldate());
+            igtTaskExtend.setPlanEffectiveDate(cleanPublicBasic.getPlaneffectivedate());
+            igtTaskExtend.setPromiseExplain(cleanPublicBasic.getPromiseexplain());
+            igtTaskExtend.setPromiseType(cleanPublicBasic.getPromisetype());
+            igtTaskExtend.setServiceType(cleanPublicExtend.getServicetype());
+            igtTaskExtend.setSpecialProcedure(cleanPublicBasic.getSpecialprocedure());
+            igtTaskExtend.setSuperviseWay(cleanPublicBasic.getSuperviseway());
+            igtTaskExtend.setTaskGuid(cleanPublicExtend.getTaskguid());
+            igtTaskExtend.setUpdateTime(currentTime);
+            igtTaskExtend.setVersion(vo.getVersion());
+
+            igtExtendRepository.update(igtTaskExtend, Wrappers.<IgtTaskExtend>lambdaQuery()
+                    .eq(IgtTaskExtend::getTaskHandleItem, cleanPublicBasic.getTaskhandleitem()));
+        }
+    }
+
     public void updateTaskExtend(CleanBasic cleanBasic, CleanExtend cleanExtend, ExchangeTaskHandleItemVo vo) {
         DbContextHolder.setDbType(DBTypeEnum.db1);
         Date date = new Date();
@@ -361,6 +616,45 @@ public class DataExchangeImpl implements IDataExchange {
         }
     }
 
+    public void insertPublicMaterial(List<CleanPublicMaterial> cleanPublicMaterialList, CleanPublicBasic cleanPublicBasic,ExchangeTaskHandleItemVo vo) {
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentTime = sdf.format(date);
+
+        for(CleanPublicMaterial cleanMaterial : cleanPublicMaterialList) {
+            IgtTaskMaterial igtTaskMaterial = IgtTaskMaterial.builder()
+                    .id(cleanMaterial.getId())
+                    .areaCode(cleanPublicBasic.getAreacode())
+                    .acceptStand(cleanMaterial.getAcceptstand())
+                    .byLaw(cleanMaterial.getBylaw())
+                    .createOrgId(vo.getCreateOrgId())
+                    .createTime(currentTime)
+                    .createUserId(vo.getCreateUserId())
+                    .exampleGuid(cleanMaterial.getExampleguid())
+                    .fillExplain(cleanMaterial.getFillexplain())
+                    .formGuid(cleanMaterial.getFormguid())
+                    .handleType(cleanPublicBasic.getHandletype())
+                    .isNeed(cleanMaterial.getIsneed())
+                    .isReused("0")
+                    .materialFormat(cleanMaterial.getMaterialformat())
+                    .materialGuid(cleanMaterial.getRowguid())
+                    .materialName(cleanMaterial.getMaterialname())
+                    .materialType(cleanMaterial.getMaterialtype())
+                    .pageFormat(cleanMaterial.getPageformat())
+                    .pageNum(cleanMaterial.getPagenum())
+                    .sourceExplain(cleanMaterial.getSourceexplain())
+                    .sourceType(cleanMaterial.getSourcetype())
+                    .taskGuid(cleanMaterial.getTaskguid())
+                    .updateOrgId(vo.getUpdateOrgId())
+                    .updateTime(currentTime)
+                    .updateUserId(vo.getUpdateUserId())
+                    .version(vo.getVersion())
+                    .taskHandleItem(cleanPublicBasic.getTaskhandleitem())
+                    .build();
+            igtMaterialRepository.insert(igtTaskMaterial);
+        }
+    }
+
     public void insertMaterial(List<CleanMaterial> cleanMaterialList, CleanBasic cleanBasic, ExchangeTaskHandleItemVo vo) {
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -381,10 +675,8 @@ public class DataExchangeImpl implements IDataExchange {
                     .handleType(cleanBasic.getHandletype())
                     .isNeed(cleanMaterial.getIsneed())
                     .isReused("0")
-//                    .materialCategory()
                     .materialFormat(cleanMaterial.getMaterialformat())
                     .materialGuid(cleanMaterial.getRowguid())
-//                    .materialKeyPoint()
                     .materialName(cleanMaterial.getMaterialname())
                     .materialType(cleanMaterial.getMaterialtype())
                     .pageFormat(cleanMaterial.getPageformat())
