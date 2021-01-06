@@ -6,7 +6,9 @@ import com.bean.entity.igt.*;
 import com.bean.response.ExchangeTaskHandleItemResponse;
 import com.bean.vo.ExchangeTaskHandleItemVo;
 import com.config.DbContextHolder;
+import com.enums.ConstantEnum;
 import com.enums.DBTypeEnum;
+import com.enums.DateFormatConstant;
 import com.repository.*;
 import com.service.IDataExchange;
 import lombok.extern.slf4j.Slf4j;
@@ -84,7 +86,7 @@ public class DataExchangeImpl implements IDataExchange {
             log.info("taskHandleItem : {}", taskHandleItem);
 
             //使用db2
-            DbContextHolder.setDbType(DBTypeEnum.db2);
+            DbContextHolder.setDbType(DBTypeEnum.DB2);
 
             //1 根据taskHandleItem查询clean_dn_task_general_extend
             CleanExtend cleanExtend = cleanExtendRepository.selectOne(Wrappers.<CleanExtend>lambdaQuery()
@@ -131,13 +133,13 @@ public class DataExchangeImpl implements IDataExchange {
         updateTaskExtend(cleanBasic, cleanExtend, vo);
 
         //6 根据taskHandleItem查询clean_dn_task_general_material
-        DbContextHolder.setDbType(DBTypeEnum.db2);
+        DbContextHolder.setDbType(DBTypeEnum.DB2);
         List<CleanMaterial> cleanMaterialList = cleanMaterialRepository.selectList(Wrappers.<CleanMaterial>lambdaQuery()
                 .eq(CleanMaterial::getTaskhandleitem, taskHandleItem));
         log.info("materialList size : {}", cleanMaterialList.size());
 
         //7 根据得到数据，在igt_task_material_catalog新增数据，事项材料目录信息
-        DbContextHolder.setDbType(DBTypeEnum.db1);
+        DbContextHolder.setDbType(DBTypeEnum.DB1);
         igtMaterialRepository.delete(Wrappers.<IgtTaskMaterial>lambdaQuery()
                 .eq(IgtTaskMaterial::getTaskHandleItem, taskHandleItem));
         insertMaterial(cleanMaterialList, cleanBasic, vo);
@@ -146,13 +148,13 @@ public class DataExchangeImpl implements IDataExchange {
         conditionMaterialBusiness(taskHandleItem, vo);
 
         //12 根据taskHandleItem查询clean_dn_task_general_fee_project  收费情况
-        DbContextHolder.setDbType(DBTypeEnum.db2);
+        DbContextHolder.setDbType(DBTypeEnum.DB2);
         List<CleanFeeProject> cleanFeeProjectList = cleanFeeProjectRepository.selectList(Wrappers.<CleanFeeProject>lambdaQuery()
                 .eq(CleanFeeProject::getTaskhandleitem, taskHandleItem));
         log.info("feeList size : {}", cleanFeeProjectList.size());
 
         //13 根据得到数据，在igt_task_fee新增数据，事项收费情况
-        DbContextHolder.setDbType(DBTypeEnum.db1);
+        DbContextHolder.setDbType(DBTypeEnum.DB1);
         igtFeeRepository.delete(Wrappers.<IgtTaskFee>lambdaQuery()
                 .eq(IgtTaskFee::getTaskHandleItem, taskHandleItem));
         insertFee(cleanFeeProjectList, vo);
@@ -164,13 +166,13 @@ public class DataExchangeImpl implements IDataExchange {
 
     private void conditionMaterialBusiness(String taskHandleItem, ExchangeTaskHandleItemVo vo) {
         //8 根据taskHandleItem查询clean_dn_audit_item_condition
-        DbContextHolder.setDbType(DBTypeEnum.db2);
+        DbContextHolder.setDbType(DBTypeEnum.DB2);
         List<CleanItemCondition> cleanItemConditionList = cleanItemConditionRepository.selectList(Wrappers.<CleanItemCondition>lambdaQuery()
                 .eq(CleanItemCondition::getTaskhandleitem, taskHandleItem));
         log.info("conditionList size : {}", cleanItemConditionList.size());
 
         //9 根据得到数据，在igt_task_condition新增数据，事项情形
-        DbContextHolder.setDbType(DBTypeEnum.db1);
+        DbContextHolder.setDbType(DBTypeEnum.DB1);
         List<IgtTaskCondition> igtTaskConditionList = igtConditionRepository.selectList(Wrappers.<IgtTaskCondition>lambdaQuery()
                 .eq(IgtTaskCondition::getTaskHandleItem, taskHandleItem));
         igtConditionRepository.delete(Wrappers.<IgtTaskCondition>lambdaQuery()
@@ -188,7 +190,7 @@ public class DataExchangeImpl implements IDataExchange {
             conditionGuidList.add(conditionGuid);
         }
 
-        DbContextHolder.setDbType(DBTypeEnum.db2);
+        DbContextHolder.setDbType(DBTypeEnum.DB2);
         List<CleanMaterialCondition> cleanMaterialConditionList = new ArrayList<>();
         for (String conditionGuid : conditionGuidList) {
             List<CleanMaterialCondition> cleanMaterialConditions = cleanMaterialConditionRepository
@@ -198,7 +200,7 @@ public class DataExchangeImpl implements IDataExchange {
         log.info("materialConditionList size : {}", cleanMaterialConditionList.size());
 
         //11 根据得到数据，在igt_task_condition_material新增数据，情形材料关系
-        DbContextHolder.setDbType(DBTypeEnum.db1);
+        DbContextHolder.setDbType(DBTypeEnum.DB1);
         if (cleanMaterialConditionList.size() > 0) {
             insertConditionMaterial(cleanMaterialConditionList, vo);
         }
@@ -225,13 +227,13 @@ public class DataExchangeImpl implements IDataExchange {
         updatePublicExtend(cleanPublicBasic, cleanPublicExtend, vo);
 
         //6 根据taskHandleItem查询clean_dn_task_general_material
-        DbContextHolder.setDbType(DBTypeEnum.db2);
+        DbContextHolder.setDbType(DBTypeEnum.DB2);
         List<CleanPublicMaterial> cleanPublicMaterialList = cleanPublicMaterialRepository.selectList(Wrappers.<CleanPublicMaterial>lambdaQuery()
                 .eq(CleanPublicMaterial::getTaskhandleitem, taskHandleItem));
         log.info("materialList size : {}", cleanPublicMaterialList.size());
 
         //7 根据得到数据，在igt_task_material_catalog新增数据，事项材料目录信息
-        DbContextHolder.setDbType(DBTypeEnum.db1);
+        DbContextHolder.setDbType(DBTypeEnum.DB1);
         igtMaterialRepository.delete(Wrappers.<IgtTaskMaterial>lambdaQuery()
                 .eq(IgtTaskMaterial::getTaskHandleItem, taskHandleItem));
         insertPublicMaterial(cleanPublicMaterialList, cleanPublicBasic, vo);
@@ -241,13 +243,13 @@ public class DataExchangeImpl implements IDataExchange {
         conditionMaterialBusiness(taskHandleItem, vo);
 
         //12 根据taskHandleItem查询clean_dn_task_general_fee_project  收费情况
-        DbContextHolder.setDbType(DBTypeEnum.db2);
+        DbContextHolder.setDbType(DBTypeEnum.DB2);
         List<CleanPublicFeeProject> cleanFeeProjectList = cleanPublicFeeRepository.selectList(Wrappers.<CleanPublicFeeProject>lambdaQuery()
                 .eq(CleanPublicFeeProject::getTaskhandleitem, taskHandleItem));
         log.info("feeList size : {}", cleanFeeProjectList.size());
 
         //13 根据得到数据，在igt_task_fee新增数据，事项收费情况
-        DbContextHolder.setDbType(DBTypeEnum.db1);
+        DbContextHolder.setDbType(DBTypeEnum.DB1);
         igtFeeRepository.delete(Wrappers.<IgtTaskFee>lambdaQuery()
                 .eq(IgtTaskFee::getTaskHandleItem, taskHandleItem));
         insertPublicFee(cleanFeeProjectList, vo);
@@ -257,10 +259,8 @@ public class DataExchangeImpl implements IDataExchange {
 
     public void updatePublicBasic(CleanPublicBasic cleanPublicBasic, CleanPublicExtend cleanPublicExtend,
                                   CleanDirectory cleanDirectory, ExchangeTaskHandleItemVo vo) {
-        DbContextHolder.setDbType(DBTypeEnum.db1);
-        Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String currentTime = sdf.format(date);
+        DbContextHolder.setDbType(DBTypeEnum.DB1);
+        String currentTime = getCurrentTime();
 
         IgtTaskBasic igtTaskBasic = igtBasicRepository.selectOne(Wrappers.<IgtTaskBasic>lambdaQuery()
                 .eq(IgtTaskBasic::getTaskHandleItem, cleanPublicBasic.getTaskhandleitem()));
@@ -290,21 +290,21 @@ public class DataExchangeImpl implements IDataExchange {
                     .localCatalogCode(cleanPublicBasic.getLocalcatalogcode())
                     .localTaskCode(cleanPublicBasic.getLocaltaskcode())
                     .powerSource(null)
-                    .productSourceType("01")
-                    .productType("01")
+                    .productSourceType(ConstantEnum.PRODUCT_SOURCE_TYPE.code())
+                    .productType(ConstantEnum.PRODUCT_TYPE.code())
                     .projectType(cleanPublicBasic.getProjecttype())
                     .promiseDay(cleanPublicBasic.getPromiseday())
                     .resultName(cleanPublicExtend.getResultname())
                     .resultType(cleanPublicExtend.getResulttype())
-                    .resultSample(null)
+                    .resultSample(ConstantEnum.RESULT_SAMPLE.code())
                     .serverType(cleanPublicBasic.getServertype())
-                    .taskArea(null)
+                    .taskArea(ConstantEnum.TASK_AREA.code())
                     .taskCode(cleanPublicBasic.getTaskcode())
                     .taskGuid(cleanPublicExtend.getTaskguid())
                     .taskHandleItem(cleanPublicBasic.getTaskhandleitem())
                     .taskName(cleanPublicBasic.getTaskname())
                     .taskState(cleanPublicBasic.getTaskstate())
-                    .taskStatus("1")
+                    .taskStatus(ConstantEnum.TASK_STATUS.code())
                     .taskType(cleanPublicBasic.getTasktype())
                     .taskVersion(cleanPublicBasic.getTaskversion())
                     .transactAddr(cleanPublicBasic.getTransactaddr())
@@ -362,10 +362,8 @@ public class DataExchangeImpl implements IDataExchange {
     }
 
     public void updateTaskBasic(CleanBasic cleanBasic, CleanExtend cleanExtend, CleanDirectory cleanDirectory, ExchangeTaskHandleItemVo vo) {
-        DbContextHolder.setDbType(DBTypeEnum.db1);
-        Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String currentTime = sdf.format(date);
+        DbContextHolder.setDbType(DBTypeEnum.DB1);
+        String currentTime = getCurrentTime();
 
         IgtTaskBasic igtTaskBasic = igtBasicRepository.selectOne(Wrappers.<IgtTaskBasic>lambdaQuery()
                 .eq(IgtTaskBasic::getTaskHandleItem, cleanBasic.getTaskhandleitem()));
@@ -395,21 +393,21 @@ public class DataExchangeImpl implements IDataExchange {
                     .localCatalogCode(cleanBasic.getLocalcatalogcode())
                     .localTaskCode(cleanBasic.getLocaltaskcode())
                     .powerSource(cleanBasic.getPowersource())
-                    .productSourceType("01")
-                    .productType("01")
+                    .productSourceType(ConstantEnum.PRODUCT_SOURCE_TYPE.code())
+                    .productType(ConstantEnum.PRODUCT_TYPE.code())
                     .projectType(cleanBasic.getProjecttype())
                     .promiseDay(cleanBasic.getPromiseday())
                     .resultName(cleanExtend.getResultname())
                     .resultType(cleanExtend.getResulttype())
-                    .resultSample(null)
+                    .resultSample(ConstantEnum.RESULT_SAMPLE.code())
                     .serverType(cleanBasic.getServertype())
-                    .taskArea(null)
+                    .taskArea(ConstantEnum.TASK_AREA.code())
                     .taskCode(cleanBasic.getTaskcode())
                     .taskGuid(cleanExtend.getTaskguid())
                     .taskHandleItem(cleanBasic.getTaskhandleitem())
                     .taskName(cleanBasic.getTaskname())
                     .taskState(cleanBasic.getTaskstate())
-                    .taskStatus("1")
+                    .taskStatus(ConstantEnum.TASK_STATUS.code())
                     .taskType(cleanBasic.getTasktype())
                     .taskVersion(cleanBasic.getTaskversion())
                     .transactAddr(cleanBasic.getTransactaddr())
@@ -467,10 +465,8 @@ public class DataExchangeImpl implements IDataExchange {
     }
 
     public void updatePublicExtend(CleanPublicBasic cleanPublicBasic, CleanPublicExtend cleanPublicExtend, ExchangeTaskHandleItemVo vo) {
-        DbContextHolder.setDbType(DBTypeEnum.db1);
-        Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String currentTime = sdf.format(date);
+        DbContextHolder.setDbType(DBTypeEnum.DB1);
+        String currentTime = getCurrentTime();
 
         IgtTaskExtend igtTaskExtend = igtExtendRepository.selectOne(Wrappers.<IgtTaskExtend>lambdaQuery()
                 .eq(IgtTaskExtend::getTaskHandleItem, cleanPublicBasic.getTaskhandleitem()));
@@ -484,7 +480,7 @@ public class DataExchangeImpl implements IDataExchange {
                     .anticipateType(cleanPublicBasic.getAnticipatetype())
                     .appIsSingleLogin(cleanPublicBasic.getAppissinglelogin())
                     .byLaw(cleanPublicBasic.getBylaw())
-                    .bySuppose(null)
+                    .bySuppose(ConstantEnum.BY_SUPPPOSE.code())
                     .cdBatch(cleanPublicBasic.getCdBatch())
                     .createOrgId(vo.getCreateOrgId())
                     .createTime(currentTime)
@@ -554,10 +550,8 @@ public class DataExchangeImpl implements IDataExchange {
     }
 
     public void updateTaskExtend(CleanBasic cleanBasic, CleanExtend cleanExtend, ExchangeTaskHandleItemVo vo) {
-        DbContextHolder.setDbType(DBTypeEnum.db1);
-        Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String currentTime = sdf.format(date);
+        DbContextHolder.setDbType(DBTypeEnum.DB1);
+        String currentTime = getCurrentTime();
 
         IgtTaskExtend igtTaskExtend = igtExtendRepository.selectOne(Wrappers.<IgtTaskExtend>lambdaQuery()
                 .eq(IgtTaskExtend::getTaskHandleItem, cleanBasic.getTaskhandleitem()));
@@ -571,7 +565,7 @@ public class DataExchangeImpl implements IDataExchange {
                     .anticipateType(cleanBasic.getAnticipatetype())
                     .appIsSingleLogin(cleanBasic.getAppissinglelogin())
                     .byLaw(cleanBasic.getBylaw())
-                    .bySuppose(null)
+                    .bySuppose(ConstantEnum.BY_SUPPPOSE.code())
                     .cdBatch(cleanBasic.getCdBatch())
                     .createOrgId(vo.getCreateOrgId())
                     .createTime(currentTime)
@@ -641,9 +635,7 @@ public class DataExchangeImpl implements IDataExchange {
     }
 
     public void insertPublicMaterial(List<CleanPublicMaterial> cleanPublicMaterialList, CleanPublicBasic cleanPublicBasic,ExchangeTaskHandleItemVo vo) {
-        Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String currentTime = sdf.format(date);
+        String currentTime = getCurrentTime();
 
         for(CleanPublicMaterial cleanMaterial : cleanPublicMaterialList) {
             IgtTaskMaterial igtTaskMaterial = IgtTaskMaterial.builder()
@@ -659,7 +651,7 @@ public class DataExchangeImpl implements IDataExchange {
                     .formGuid(cleanMaterial.getFormguid())
                     .handleType(cleanPublicBasic.getHandletype())
                     .isNeed(cleanMaterial.getIsneed())
-                    .isReused("0")
+                    .isReused(ConstantEnum.IS_REUSED.code())
                     .materialFormat(cleanMaterial.getMaterialformat())
                     .materialGuid(cleanMaterial.getRowguid())
                     .materialName(cleanMaterial.getMaterialname())
@@ -680,9 +672,7 @@ public class DataExchangeImpl implements IDataExchange {
     }
 
     public void insertMaterial(List<CleanMaterial> cleanMaterialList, CleanBasic cleanBasic, ExchangeTaskHandleItemVo vo) {
-        Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String currentTime = sdf.format(date);
+        String currentTime = getCurrentTime();
 
         for(CleanMaterial cleanMaterial : cleanMaterialList) {
             IgtTaskMaterial igtTaskMaterial = IgtTaskMaterial.builder()
@@ -698,7 +688,7 @@ public class DataExchangeImpl implements IDataExchange {
                     .formGuid(cleanMaterial.getFormguid())
                     .handleType(cleanBasic.getHandletype())
                     .isNeed(cleanMaterial.getIsneed())
-                    .isReused("0")
+                    .isReused(ConstantEnum.IS_REUSED.code())
                     .materialFormat(cleanMaterial.getMaterialformat())
                     .materialGuid(cleanMaterial.getRowguid())
                     .materialName(cleanMaterial.getMaterialname())
@@ -719,9 +709,7 @@ public class DataExchangeImpl implements IDataExchange {
     }
 
     public void insertCondition(List<CleanItemCondition> cleanItemConditionList, ExchangeTaskHandleItemVo vo) {
-        Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String currentTime = sdf.format(date);
+        String currentTime = getCurrentTime();
 
         for(CleanItemCondition cleanItemCondition : cleanItemConditionList) {
             IgtTaskCondition igtTaskCondition = IgtTaskCondition.builder()
@@ -744,9 +732,7 @@ public class DataExchangeImpl implements IDataExchange {
     }
 
     public void insertFee(List<CleanFeeProject> cleanFeeProjectList, ExchangeTaskHandleItemVo vo) {
-        Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String currentTime = sdf.format(date);
+        String currentTime = getCurrentTime();
 
         for(CleanFeeProject cleanFeeProject : cleanFeeProjectList) {
             IgtTaskFee igtTaskFee = IgtTaskFee.builder()
@@ -770,9 +756,7 @@ public class DataExchangeImpl implements IDataExchange {
     }
 
     public void insertPublicFee(List<CleanPublicFeeProject> cleanPublicFeeProjectList, ExchangeTaskHandleItemVo vo) {
-        Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String currentTime = sdf.format(date);
+        String currentTime = getCurrentTime();
 
         for(CleanPublicFeeProject cleanPublicFeeProject : cleanPublicFeeProjectList) {
             IgtTaskFee igtTaskFee = IgtTaskFee.builder()
@@ -795,10 +779,14 @@ public class DataExchangeImpl implements IDataExchange {
         }
     }
 
-    public void insertConditionMaterial(List<CleanMaterialCondition> cleanMaterialConditionList, ExchangeTaskHandleItemVo vo) {
+    private String getCurrentTime() {
         Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String currentTime = sdf.format(date);
+        SimpleDateFormat sdf = new SimpleDateFormat(DateFormatConstant.FORMAT_SEC_LEVEL);
+        return sdf.format(date);
+    }
+
+    public void insertConditionMaterial(List<CleanMaterialCondition> cleanMaterialConditionList, ExchangeTaskHandleItemVo vo) {
+        String currentTime = getCurrentTime();
 
         for(CleanMaterialCondition cleanMaterialCondition : cleanMaterialConditionList) {
             IgtTaskConditionMaterial igtTaskConditionMaterial = IgtTaskConditionMaterial.builder()

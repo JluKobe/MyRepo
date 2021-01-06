@@ -83,8 +83,8 @@ public class MybatisPlusConfig {
     public DataSource multipleDataSource(@Qualifier("db1") DataSource db1, @Qualifier("db2") DataSource db2) {
         DynamicDataSource dynamicDataSource = new DynamicDataSource();
         Map<Object, Object> targetDataSources = new HashMap<>();
-        targetDataSources.put(DBTypeEnum.db1.getValue(), db1);
-        targetDataSources.put(DBTypeEnum.db2.getValue(), db2);
+        targetDataSources.put(DBTypeEnum.DB1.getValue(), db1);
+        targetDataSources.put(DBTypeEnum.DB2.getValue(), db2);
         dynamicDataSource.setTargetDataSources(targetDataSources);
         dynamicDataSource.setDefaultTargetDataSource(db1);
         return dynamicDataSource;
