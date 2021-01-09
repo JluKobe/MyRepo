@@ -9,11 +9,10 @@ import java.util.Arrays;
 public class MinKNum {
 
     public static void main(String[] args) {
-        int[] input = {4,5,1,6,2,7,3,8};
+        int[] input = {2,51,12,95,42,52,76,77,23,81,71,41,2,23,43,4,64,22,71,96,1,87,51,91,67,16,58,11,44,38,63,14,4,69,88,49,92,91,9,15,17,74,21,91,24,78,62,50,82,26,53,18,25,14,94,79,44,11,36,38,44,53,9,34,58,6,50,82,81,50,36,1,6,61,9,47,33,47,84,41,57,48,73,18};
         int k = 4;
 
         MinKNum t = new MinKNum();
-        ArrayList<Integer> list = t.GetLeastNumbers_Solution(input, k);
     }
 
     public ArrayList<Integer> GetLeastNumbers_Solution(int [] input, int k) {
