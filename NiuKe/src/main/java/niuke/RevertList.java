@@ -29,15 +29,15 @@ public class RevertList {
             return null;
         }
 
-        ListNode n = null;
+        ListNode theNext = null;
         ListNode pre = null;
         ListNode current = head;
 
         while(current != null) {
-            n = current.next;
+            theNext = current.next;
             current.next = pre;
             pre = current;
-            current = n;
+            current = theNext;
         }
 
         return pre;
