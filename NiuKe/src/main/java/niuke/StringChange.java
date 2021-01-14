@@ -1,7 +1,5 @@
 package niuke;
 
-import test.Test2;
-
 /**
  * 字符串变形
  */
@@ -9,9 +7,7 @@ public class StringChange {
 
     public static void main(String[] args) {
         StringChange t = new StringChange();
-        String s = "This is a sample";
         String s1 = "  is a   ";
-        int n = 16;
         int n1 = 9;
         System.out.println(t.trans(s1, n1));
     }
