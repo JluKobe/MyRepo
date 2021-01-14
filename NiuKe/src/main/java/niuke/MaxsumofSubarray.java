@@ -43,12 +43,12 @@ public class MaxsumofSubarray {
         return max;
     }
 
-    public static int maxsumofSubarray3 (int[] arr){
+    public static int maxsumofSubarray3 (int[] array){
         int max = Integer.MIN_VALUE;
         int current = 0;
 
-        for(int i = 0; i < arr.length; i ++) {
-            int temp = arr[i];
+        for(int i = 0; i < array.length; i ++) {
+            int temp = array[i];
 
             current += temp;
 
