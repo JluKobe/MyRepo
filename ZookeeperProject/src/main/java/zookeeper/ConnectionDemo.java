@@ -13,8 +13,8 @@ import java.util.concurrent.CountDownLatch;
 public class ConnectionDemo {
     public static void main(String[] args) {
         try {
-            final CountDownLatch countDownLatch=new CountDownLatch(1);
-            ZooKeeper zooKeeper=
+            final CountDownLatch countDownLatch = new CountDownLatch(1);
+            ZooKeeper zooKeeper =
                     new ZooKeeper("192.168.58.131:2181," +
                             "192.168.58.132:2181,192.168.58.133:2181",
                             4000, new Watcher() {
