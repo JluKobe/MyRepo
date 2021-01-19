@@ -19,7 +19,7 @@ public class CuratorDemo {
         curatorFramework.start();
         Stat stat = new Stat();
         //查询节点数据
-        byte[] bytes = curatorFramework.getData().storingStatIn(stat).forPath("/mytest");
+        byte[] bytes = curatorFramework.getData().storingStatIn(stat).forPath("/config/topics/test");
         System.out.println(new String(bytes));
         curatorFramework.close();
     }
