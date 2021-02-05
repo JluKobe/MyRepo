@@ -25,13 +25,13 @@ import java.util.Map;
 @Configuration
 public class MybatisPlusConfig {
 
-    @Value("${db1.url}")
+    @Value("${db3.url}")
     private String db1Url;
 
-    @Value("${db1.username}")
+    @Value("${db3.username}")
     private String db1Username;
 
-    @Value("${db1.password}")
+    @Value("${db3.password}")
     private String db1Password;
 
     @Value("${db2.url}")
