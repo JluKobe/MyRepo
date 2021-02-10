@@ -7,7 +7,7 @@ import java.util.Queue;
 /**
  * 二叉树层次遍历
  */
-public class LevelTraversal {
+public class LevelOrder {
 
     public ArrayList<ArrayList<Integer>> levelOrder(TreeNode root) {
         ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
