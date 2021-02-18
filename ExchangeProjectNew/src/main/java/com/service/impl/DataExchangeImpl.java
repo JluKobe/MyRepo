@@ -418,7 +418,7 @@ public class DataExchangeImpl implements IDataExchange {
                     .updateUserId(vo.getUpdateUserId())
                     .useLevel(cleanBasic.getUselevel())
                     .version(vo.getVersion())
-                    .acceptCenterCode(null)
+                    .acceptCenterCode("220000000000_TE22000033606280YW")
                     .build();
             igtBasicRepository.insert(igtTaskBasicObj);
         }
