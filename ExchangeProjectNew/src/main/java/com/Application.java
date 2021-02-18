@@ -11,7 +11,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-@NacosPropertySource(dataId = "exchange-config", groupId = "EXCHANGE", autoRefreshed = true)
+//@NacosPropertySource(dataId = "exchange-config", groupId = "EXCHANGE", autoRefreshed = true)
 @MapperScan(basePackages = "com.repository")
 @RestController
 public class Application {
@@ -20,11 +20,11 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-    @NacosValue(value = "${test}", autoRefreshed = true)
-    private String testProperties;
-
-    @GetMapping("/test")
-    public String test(){
-        return testProperties;
-    }
+//    @NacosValue(value = "${test}", autoRefreshed = true)
+//    private String testProperties;
+//
+//    @GetMapping("/test")
+//    public String test(){
+//        return testProperties;
+//    }
 }

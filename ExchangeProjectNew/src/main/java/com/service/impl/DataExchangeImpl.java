@@ -73,6 +73,7 @@ public class DataExchangeImpl implements IDataExchange {
     @Autowired
     private IgtFeeRepository igtFeeRepository;
 
+    //生产环境导入
     @Override
     public ExchangeTaskHandleItemResponse doBusiness(ExchangeTaskHandleItemVo vo) {
         List<String> taskHandleItemList = vo.getTaskHandleItemList();
@@ -139,7 +140,7 @@ public class DataExchangeImpl implements IDataExchange {
         log.info("materialList size : {}", cleanMaterialList.size());
 
         //7 根据得到数据，在igt_task_material_catalog新增数据，事项材料目录信息
-        DbContextHolder.setDbType(DBTypeEnum.DB1);
+        DbContextHolder.setDbType(DBTypeEnum.DB3);
         igtMaterialRepository.delete(Wrappers.<IgtTaskMaterial>lambdaQuery()
                 .eq(IgtTaskMaterial::getTaskHandleItem, taskHandleItem));
         insertMaterial(cleanMaterialList, cleanBasic, vo);
@@ -154,7 +155,7 @@ public class DataExchangeImpl implements IDataExchange {
         log.info("feeList size : {}", cleanFeeProjectList.size());
 
         //13 根据得到数据，在igt_task_fee新增数据，事项收费情况
-        DbContextHolder.setDbType(DBTypeEnum.DB1);
+        DbContextHolder.setDbType(DBTypeEnum.DB3);
         igtFeeRepository.delete(Wrappers.<IgtTaskFee>lambdaQuery()
                 .eq(IgtTaskFee::getTaskHandleItem, taskHandleItem));
         insertFee(cleanFeeProjectList, vo);
@@ -172,7 +173,7 @@ public class DataExchangeImpl implements IDataExchange {
         log.info("conditionList size : {}", cleanItemConditionList.size());
 
         //9 根据得到数据，在igt_task_condition新增数据，事项情形
-        DbContextHolder.setDbType(DBTypeEnum.DB1);
+        DbContextHolder.setDbType(DBTypeEnum.DB3);
         List<IgtTaskCondition> igtTaskConditionList = igtConditionRepository.selectList(Wrappers.<IgtTaskCondition>lambdaQuery()
                 .eq(IgtTaskCondition::getTaskHandleItem, taskHandleItem));
         igtConditionRepository.delete(Wrappers.<IgtTaskCondition>lambdaQuery()
@@ -200,7 +201,7 @@ public class DataExchangeImpl implements IDataExchange {
         log.info("materialConditionList size : {}", cleanMaterialConditionList.size());
 
         //11 根据得到数据，在igt_task_condition_material新增数据，情形材料关系
-        DbContextHolder.setDbType(DBTypeEnum.DB1);
+        DbContextHolder.setDbType(DBTypeEnum.DB3);
         if (cleanMaterialConditionList.size() > 0) {
             insertConditionMaterial(cleanMaterialConditionList, vo);
         }
@@ -362,7 +363,7 @@ public class DataExchangeImpl implements IDataExchange {
     }
 
     public void updateTaskBasic(CleanBasic cleanBasic, CleanExtend cleanExtend, CleanDirectory cleanDirectory, ExchangeTaskHandleItemVo vo) {
-        DbContextHolder.setDbType(DBTypeEnum.DB1);
+        DbContextHolder.setDbType(DBTypeEnum.DB3);
         String currentTime = getCurrentTime();
 
         IgtTaskBasic igtTaskBasic = igtBasicRepository.selectOne(Wrappers.<IgtTaskBasic>lambdaQuery()
@@ -551,7 +552,7 @@ public class DataExchangeImpl implements IDataExchange {
     }
 
     public void updateTaskExtend(CleanBasic cleanBasic, CleanExtend cleanExtend, ExchangeTaskHandleItemVo vo) {
-        DbContextHolder.setDbType(DBTypeEnum.DB1);
+        DbContextHolder.setDbType(DBTypeEnum.DB3);
         String currentTime = getCurrentTime();
 
         IgtTaskExtend igtTaskExtend = igtExtendRepository.selectOne(Wrappers.<IgtTaskExtend>lambdaQuery()
