@@ -75,7 +75,7 @@ public class DataExchangeImpl implements IDataExchange {
 
     //生产环境导入
     @Override
-    public ExchangeTaskHandleItemResponse doBusiness(ExchangeTaskHandleItemVo vo) {
+    public ExchangeTaskHandleItemResponse doBusinessProductionEnvironment(ExchangeTaskHandleItemVo vo) {
         List<String> taskHandleItemList = vo.getTaskHandleItemList();
 
         log.info("数据导入 start，taskHandleItemList size : {}, 是否高频事项 : {}, 是否批量 : {}",

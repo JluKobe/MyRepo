@@ -5,5 +5,5 @@ import com.bean.vo.ExchangeTaskHandleItemVo;
 
 public interface IDataExchange {
     //生产环境导入
-    ExchangeTaskHandleItemResponse doBusiness(ExchangeTaskHandleItemVo vo);
+    ExchangeTaskHandleItemResponse doBusinessProductionEnvironment(ExchangeTaskHandleItemVo vo);
 }

@@ -20,7 +20,7 @@ public class DataExchangeController {
     @ApiOperation(value = "生产环境数据处理", notes = "exchangeData")
     @PostMapping(value = "/exchangeDataFormal")
     public ResultBean<ExchangeTaskHandleItemResponse> exchangeDataFormal(@RequestBody ExchangeTaskHandleItemVo vo) {
-        ExchangeTaskHandleItemResponse result = iDataExchange.doBusiness(vo);
+        ExchangeTaskHandleItemResponse result = iDataExchange.doBusinessProductionEnvironment(vo);
         return new ResultBean<>(result);
     }
 }
