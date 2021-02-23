@@ -120,4 +120,12 @@ public class IgtTaskBasic implements Serializable {
     private String useLevel;
 
     private String acceptCenterCode;
+
+    private String isFee;
+
+    private String feeBasis;
+
+    private String areaCode;
+
+    private String chgTypeList;
 }

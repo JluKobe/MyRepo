@@ -101,4 +101,8 @@ public class CleanBasic {
     private String cdBatch;
 
     private String areacode;
+
+    private String isfee;
+
+    private String feebasis;
 }

@@ -51,4 +51,10 @@ public class IgtTaskFee implements Serializable {
     private String version;
 
     private String taskHandleItem;
+
+    private String byLaw;
+
+    private String remark;
+
+    private String taskCode;
 }

@@ -94,4 +94,24 @@ public class IgtTaskExtend implements Serializable {
     private String taskGuid;
 
     private String taskHandleItem;
+
+    private String limitExplain;
+
+    private String userTopicType;
+
+    private String userCharacterTopicType;
+
+    private String corpTopicType;
+
+    private String corpCharacterTopicType;
+
+    private String townName;
+
+    private String townCode;
+
+    private String villageName;
+
+    private String villageCode;
+
+    private String extendFile;
 }

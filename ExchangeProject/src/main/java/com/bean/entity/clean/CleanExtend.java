@@ -51,4 +51,22 @@ public class CleanExtend {
     private String limitsceneexplain;
 
     private String servicetype;
+
+    private String usertopictype;
+
+    private String usercharactertopictype;
+
+    private String corptopictype;
+
+    private String corpcharactertopictype;
+
+    private String townname;
+
+    private String towncode;
+
+    private String villagename;
+
+    private String villagecode;
+
+    private String extendfield;
 }
