@@ -18,6 +18,9 @@ import org.springframework.stereotype.Service;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * 生产环境service，igt_task_v2 旧表结构
+ */
 @Service
 @Slf4j
 public class DataExchangeImpl implements IDataExchange {
