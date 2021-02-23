@@ -17,7 +17,7 @@ public class DataExchangeController {
     @Autowired
     IDataExchange iDataExchange;
 
-    @ApiOperation(value = "数据处理", notes = "exchangeData")
+    @ApiOperation(value = "准生产数据处理，新表结构", notes = "exchangeData")
     @PostMapping(value = "/exchangeData")
     public ResultBean<ExchangeTaskHandleItemResponse> exchangeData(@RequestBody ExchangeTaskHandleItemVo vo) {
         ExchangeTaskHandleItemResponse result = iDataExchange.doBusiness(vo);
