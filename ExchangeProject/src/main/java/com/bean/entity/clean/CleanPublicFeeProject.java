@@ -29,4 +29,10 @@ public class CleanPublicFeeProject {
     private String taskguid;
 
     private String taskhandleitem;
+
+    private String bylaw;
+
+    private String remark;
+
+    private String taskcode;
 }

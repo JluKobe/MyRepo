@@ -113,5 +113,5 @@ public class IgtTaskExtend implements Serializable {
 
     private String villageCode;
 
-    private String extendFile;
+    private String extendField;
 }
