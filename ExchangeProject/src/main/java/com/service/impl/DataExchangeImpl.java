@@ -376,6 +376,8 @@ public class DataExchangeImpl implements IDataExchange {
         IgtTaskBasic igtTaskBasic = igtBasicRepository.selectOne(Wrappers.<IgtTaskBasic>lambdaQuery()
                 .eq(IgtTaskBasic::getTaskHandleItem, cleanBasic.getTaskhandleitem()));
 
+        String chgTypeList = "1".equals(cleanExtend.getIsonline()) ? "C01^C02" : "C01";
+
         if(igtTaskBasic == null) {
             IgtTaskBasic igtTaskBasicObj = IgtTaskBasic.builder()
                     .id(cleanBasic.getId())
@@ -425,7 +427,11 @@ public class DataExchangeImpl implements IDataExchange {
                     .updateUserId(vo.getUpdateUserId())
                     .useLevel(cleanBasic.getUselevel())
                     .version(vo.getVersion())
-                    .acceptCenterCode(null)
+                    .acceptCenterCode("220000000000_TE22000033606280YW")
+                    .isFee(cleanBasic.getIsfee())
+                    .feeBasis(cleanBasic.getFeebasis())
+                    .areaCode(cleanBasic.getAreacode())
+                    .chgTypeList(chgTypeList)
                     .build();
             igtBasicRepository.insert(igtTaskBasicObj);
         }
@@ -467,6 +473,11 @@ public class DataExchangeImpl implements IDataExchange {
             igtTaskBasic.setUpdateTime(currentTime);
             igtTaskBasic.setUseLevel(cleanBasic.getUselevel());
             igtTaskBasic.setVersion(vo.getVersion());
+            igtTaskBasic.setAcceptCenterCode("220000000000_TE22000033606280YW");
+            igtTaskBasic.setIsFee(cleanBasic.getIsfee());
+            igtTaskBasic.setFeeBasis(cleanBasic.getFeebasis());
+            igtTaskBasic.setAreaCode(cleanBasic.getAreacode());
+            igtTaskBasic.setChgTypeList(chgTypeList);
 
             igtBasicRepository.update(igtTaskBasic, Wrappers.<IgtTaskBasic>lambdaQuery()
                     .eq(IgtTaskBasic::getTaskHandleItem, cleanBasic.getTaskhandleitem()));
@@ -518,6 +529,16 @@ public class DataExchangeImpl implements IDataExchange {
                     .updateUserId(vo.getUpdateUserId())
                     .version(vo.getVersion())
                     .taskHandleItem(cleanPublicBasic.getTaskhandleitem())
+                    .limitExplain("")
+                    .userTopicType("")
+                    .userCharacterTopicType("")
+                    .corpTopicType("")
+                    .corpCharacterTopicType("")
+                    .townName("")
+                    .townCode("")
+                    .villageName("")
+                    .villageCode("")
+                    .extendFile("")
                     .build();
             igtExtendRepository.insert(igtTaskExtendObj);
         }
@@ -603,6 +624,16 @@ public class DataExchangeImpl implements IDataExchange {
                     .updateUserId(vo.getUpdateUserId())
                     .version(vo.getVersion())
                     .taskHandleItem(cleanBasic.getTaskhandleitem())
+                    .limitExplain("")
+                    .userTopicType("")
+                    .userCharacterTopicType("")
+                    .corpTopicType("")
+                    .corpCharacterTopicType("")
+                    .townName("")
+                    .townCode("")
+                    .villageName("")
+                    .villageCode("")
+                    .extendFile("")
                     .build();
             igtExtendRepository.insert(igtTaskExtendObj);
         }
@@ -637,6 +668,16 @@ public class DataExchangeImpl implements IDataExchange {
             igtTaskExtend.setTaskGuid(cleanExtend.getTaskguid());
             igtTaskExtend.setUpdateTime(currentTime);
             igtTaskExtend.setVersion(vo.getVersion());
+            igtTaskExtend.setLimitExplain(cleanExtend.getLimitexplain());
+            igtTaskExtend.setUserTopicType(cleanExtend.getUsertopictype());
+            igtTaskExtend.setUserCharacterTopicType(cleanExtend.getUsercharactertopictype());
+            igtTaskExtend.setCorpTopicType(cleanExtend.getCorptopictype());
+            igtTaskExtend.setCorpCharacterTopicType(cleanExtend.getCorpcharactertopictype());
+            igtTaskExtend.setTownName(cleanExtend.getTownname());
+            igtTaskExtend.setTownCode(cleanExtend.getTowncode());
+            igtTaskExtend.setVillageName(cleanExtend.getVillagename());
+            igtTaskExtend.setVillageCode(cleanExtend.getVillagecode());
+            igtTaskExtend.setExtendFile(cleanExtend.getExtendfield());
 
             igtExtendRepository.update(igtTaskExtend, Wrappers.<IgtTaskExtend>lambdaQuery()
                     .eq(IgtTaskExtend::getTaskHandleItem, cleanBasic.getTaskhandleitem()));
@@ -759,6 +800,9 @@ public class DataExchangeImpl implements IDataExchange {
                     .updateUserId(vo.getUpdateUserId())
                     .version(vo.getVersion())
                     .taskHandleItem(cleanFeeProject.getTaskhandleitem())
+                    .byLaw(cleanFeeProject.getBylaw())
+                    .remark(cleanFeeProject.getRemark())
+                    .taskCode(cleanFeeProject.getTaskcode())
                     .build();
             igtFeeRepository.insert(igtTaskFee);
         }
