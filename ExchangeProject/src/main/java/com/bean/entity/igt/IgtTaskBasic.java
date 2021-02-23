@@ -118,4 +118,6 @@ public class IgtTaskBasic implements Serializable {
     private String transactTime;
 
     private String useLevel;
+
+    private String acceptCenterCode;
 }

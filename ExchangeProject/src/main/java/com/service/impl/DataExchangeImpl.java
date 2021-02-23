@@ -18,6 +18,9 @@ import org.springframework.stereotype.Service;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * 准生产环境，数据导入 igt_task_v1 新表
+ */
 @Service
 @Slf4j
 public class DataExchangeImpl implements IDataExchange {
@@ -73,6 +76,11 @@ public class DataExchangeImpl implements IDataExchange {
     @Autowired
     private IgtFeeRepository igtFeeRepository;
 
+    /**
+     * 准生产环境，数据导入 igt_task_v1 新表
+     * @param vo
+     * @return
+     */
     @Override
     public ExchangeTaskHandleItemResponse doBusiness(ExchangeTaskHandleItemVo vo) {
         List<String> taskHandleItemList = vo.getTaskHandleItemList();
@@ -417,6 +425,7 @@ public class DataExchangeImpl implements IDataExchange {
                     .updateUserId(vo.getUpdateUserId())
                     .useLevel(cleanBasic.getUselevel())
                     .version(vo.getVersion())
+                    .acceptCenterCode(null)
                     .build();
             igtBasicRepository.insert(igtTaskBasicObj);
         }
