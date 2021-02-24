@@ -47,6 +47,9 @@ public class DataExchangeImpl implements IDataExchange {
     private CleanMaterialConditionRepository cleanMaterialConditionRepository;
 
     @Autowired
+    private CleanQuestionsRepository cleanQuestionsRepository;
+
+    @Autowired
     private CleanPublicExtendRepository cleanPublicExtendRepository;
 
     @Autowired
@@ -57,6 +60,9 @@ public class DataExchangeImpl implements IDataExchange {
 
     @Autowired
     private CleanPublicFeeRepository cleanPublicFeeRepository;
+
+    @Autowired
+    private CleanPublicQuestionRepository cleanPublicQuestionRepository;
 
     @Autowired
     private IgtBasicRepository igtBasicRepository;
@@ -75,6 +81,9 @@ public class DataExchangeImpl implements IDataExchange {
 
     @Autowired
     private IgtFeeRepository igtFeeRepository;
+
+    @Autowired
+    private IgtQuestionRepository igtQuestionRepository;
 
     /**
      * 准生产环境，数据导入 igt_task_v1 新表
@@ -166,6 +175,17 @@ public class DataExchangeImpl implements IDataExchange {
         igtFeeRepository.delete(Wrappers.<IgtTaskFee>lambdaQuery()
                 .eq(IgtTaskFee::getTaskHandleItem, taskHandleItem));
         insertFee(cleanFeeProjectList, vo);
+
+        //14 根据taskHandleItem查询clean_dn_task_general_questions 常见问题解答表
+        DbContextHolder.setDbType(DBTypeEnum.DB2);
+        List<CleanQuestions> cleanQuestionsList = cleanQuestionsRepository.selectList(Wrappers.<CleanQuestions>lambdaQuery()
+                .eq(CleanQuestions::getTaskhandleitem, taskHandleItem));
+
+        //15 根据得到数据，在igt_task_question新增数据，常见问题情况
+        DbContextHolder.setDbType(DBTypeEnum.DB1);
+        igtQuestionRepository.delete(Wrappers.<IgtTaskQuestion>lambdaQuery()
+                .eq(IgtTaskQuestion::getTaskHandleItem, taskHandleItem));
+        insertQuestion(cleanQuestionsList, vo);
 
         taskGuidList.add(taskGuid);
 
@@ -261,6 +281,17 @@ public class DataExchangeImpl implements IDataExchange {
         igtFeeRepository.delete(Wrappers.<IgtTaskFee>lambdaQuery()
                 .eq(IgtTaskFee::getTaskHandleItem, taskHandleItem));
         insertPublicFee(cleanFeeProjectList, vo);
+
+        //14 根据taskHandleItem查询clean_dn_task_public_questions 常见问题解答表
+        DbContextHolder.setDbType(DBTypeEnum.DB2);
+        List<CleanPublicQuestions> cleanPublicQuestionsList = cleanPublicQuestionRepository.selectList(Wrappers.<CleanPublicQuestions>lambdaQuery()
+                .eq(CleanPublicQuestions::getTaskhandleitem, taskHandleItem));
+
+        //15 根据得到数据，在igt_task_question新增数据，常见问题情况
+        DbContextHolder.setDbType(DBTypeEnum.DB1);
+        igtQuestionRepository.delete(Wrappers.<IgtTaskQuestion>lambdaQuery()
+                .eq(IgtTaskQuestion::getTaskHandleItem, taskHandleItem));
+        insertPublicQuestion(cleanPublicQuestionsList, vo);
 
         return taskGuidList;
     }
@@ -828,6 +859,29 @@ public class DataExchangeImpl implements IDataExchange {
         }
     }
 
+    public void insertQuestion(List<CleanQuestions> cleanQuestionsList, ExchangeTaskHandleItemVo vo) {
+        String currentTime = getCurrentTime();
+
+        for(CleanQuestions cleanQuestions : cleanQuestionsList) {
+            IgtTaskQuestion igtTaskQuestion = IgtTaskQuestion.builder()
+                    .id(cleanQuestions.getId())
+                    .createOrgId(vo.getCreateOrgId())
+                    .createTime(currentTime)
+                    .createUserId(vo.getCreateUserId())
+                    .updateOrgId(vo.getUpdateOrgId())
+                    .updateTime(currentTime)
+                    .updateUserId(vo.getUpdateUserId())
+                    .version(vo.getVersion())
+                    .taskHandleItem(cleanQuestions.getTaskhandleitem())
+                    .taskCode(cleanQuestions.getTaskcode())
+                    .question(cleanQuestions.getQuestion())
+                    .answer(cleanQuestions.getAnswer())
+                    .orderNum(cleanQuestions.getOrdernum())
+                    .build();
+            igtQuestionRepository.insert(igtTaskQuestion);
+        }
+    }
+
     public void insertPublicFee(List<CleanPublicFeeProject> cleanPublicFeeProjectList, ExchangeTaskHandleItemVo vo) {
         String currentTime = getCurrentTime();
 
@@ -878,6 +932,29 @@ public class DataExchangeImpl implements IDataExchange {
                     .version(vo.getVersion())
                     .build();
             igtConditionMaterialRepository.insert(igtTaskConditionMaterial);
+        }
+    }
+
+    public void insertPublicQuestion(List<CleanPublicQuestions> cleanPublicQuestionsList, ExchangeTaskHandleItemVo vo) {
+        String currentTime = getCurrentTime();
+
+        for(CleanPublicQuestions cleanPublicQuestions : cleanPublicQuestionsList) {
+            IgtTaskQuestion igtTaskQuestion = IgtTaskQuestion.builder()
+                    .id(cleanPublicQuestions.getId())
+                    .createOrgId(vo.getCreateOrgId())
+                    .createTime(currentTime)
+                    .createUserId(vo.getCreateUserId())
+                    .updateOrgId(vo.getUpdateOrgId())
+                    .updateTime(currentTime)
+                    .updateUserId(vo.getUpdateUserId())
+                    .version(vo.getVersion())
+                    .taskHandleItem(cleanPublicQuestions.getTaskhandleitem())
+                    .taskCode(cleanPublicQuestions.getTaskcode())
+                    .question(cleanPublicQuestions.getQuestion())
+                    .answer(cleanPublicQuestions.getAnswer())
+                    .orderNum(cleanPublicQuestions.getOrdernum())
+                    .build();
+            igtQuestionRepository.insert(igtTaskQuestion);
         }
     }
 }
