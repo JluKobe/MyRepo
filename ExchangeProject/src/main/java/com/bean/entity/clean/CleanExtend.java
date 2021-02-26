@@ -69,4 +69,6 @@ public class CleanExtend {
     private String villagecode;
 
     private String extendfield;
+
+    private String resultguid;
 }

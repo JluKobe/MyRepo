@@ -67,4 +67,6 @@ public class CleanPublicExtend {
     private String villagecode;
 
     private String extendfield;
+
+    private String resultguid;
 }
