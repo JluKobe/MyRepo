@@ -2,41 +2,152 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04abfb22-9091-4727-b1f0-8d5d60b75e81" name="Default Changelist" comment="add swagger config">
-      <change afterPath="$PROJECT_DIR$/../SpringProject/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MyCreateTable/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../MyCreateTable/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../NiuKe/src/main/java/niuke/tree/LO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../NiuKe/src/main/java/niuke/tree/ReConstructBinaryTree.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../NiuKe/src/main/java/test/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../NiuKe/src/main/java/test/Main2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../NiuKe/src/main/java/test/Main3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ai/src/main/java/Ai/Knn/Knn.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Ai/src/main/java/Ai/Knn/Knn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ExchangeProjectNew/ExchangeProject.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ExchangeProjectNew/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../ExchangeProjectNew/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/Application.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/config/MybatisPlusConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/config/MybatisPlusConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/controller/DataExchangeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/controller/DataExchangeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/enums/DBTypeEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/enums/DBTypeEnum.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/schedule/ScheduleTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/schedule/ScheduleTask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/service/IDataExchange.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/service/IDataExchange.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/service/impl/DataExchangeImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/service/impl/DataExchangeImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyBatisPlusProject/src/main/java/mybatis/service/MyBatisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MyBatisPlusProject/src/main/java/mybatis/service/MyBatisService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/MyProject.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/Application.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/SwaggerConfiguration.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/controller/PlayerController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/controller/SamController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/controller/WordController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/jpa/bean/Player$PlayerBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/jpa/bean/Player.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/jpa/bean/Sam$SamBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/jpa/bean/Sam.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/jpa/bean/Word$WordBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/jpa/bean/Word.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/jpa/repository/PlayerRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/jpa/repository/SamRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/jpa/repository/WordRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/service/IPlayer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/service/ISam.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/service/IWord.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/service/impl/PlayerImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/service/impl/SamImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/service/impl/WordImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/vo/PlayerVo$PlayerVoBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/vo/PlayerVo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/vo/WordVo$WordVoBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/vo/WordVo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/vo/result/ResultBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/MyProject/AppTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpringProject/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpringProject/target/classes/com/spring/Application.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpringProject/target/classes/com/spring/SwaggerConfiguration.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpringProject/target/test-classes/spring/AppTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NacosProvider/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../NacosProvider/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NiuKe/src/main/java/niuke/tree/TreeNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/../NiuKe/src/main/java/niuke/tree/TreeNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NiuKe/src/main/java/test/Test5.java" beforeDir="false" afterPath="$PROJECT_DIR$/../NiuKe/src/main/java/test/Test5.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/.idea/artifacts/ServletProject_war_exploded.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/ServletProject.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/out/artifacts/ServletProject_war_exploded/WEB-INF/HelloWeb-servlet.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/out/artifacts/ServletProject_war_exploded/WEB-INF/classes/com/tutorialspoint/HelloController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/out/artifacts/ServletProject_war_exploded/WEB-INF/jsp/hello.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/out/artifacts/ServletProject_war_exploded/WEB-INF/lib/commons-logging-1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/out/artifacts/ServletProject_war_exploded/WEB-INF/lib/spring-aop-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/out/artifacts/ServletProject_war_exploded/WEB-INF/lib/spring-beans-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/out/artifacts/ServletProject_war_exploded/WEB-INF/lib/spring-context-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/out/artifacts/ServletProject_war_exploded/WEB-INF/lib/spring-core-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/out/artifacts/ServletProject_war_exploded/WEB-INF/lib/spring-expression-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/out/artifacts/ServletProject_war_exploded/WEB-INF/lib/spring-web-5.1.6.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/out/artifacts/ServletProject_war_exploded/WEB-INF/lib/spring-webmvc-5.1.7.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/out/artifacts/ServletProject_war_exploded/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/out/artifacts/ServletProject_war_exploded/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/out/production/ServletProject/com/tutorialspoint/HelloController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/src/com/tutorialspoint/HelloController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/web/WEB-INF/HelloWeb-servlet.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/web/WEB-INF/jsp/hello.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/web/WEB-INF/lib/commons-logging-1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/web/WEB-INF/lib/spring-aop-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/web/WEB-INF/lib/spring-beans-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/web/WEB-INF/lib/spring-context-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/web/WEB-INF/lib/spring-core-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/web/WEB-INF/lib/spring-expression-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/web/WEB-INF/lib/spring-web-5.1.6.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/web/WEB-INF/lib/spring-webmvc-5.1.7.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/web/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ServletProject/web/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBootBatisPlusProject/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBootBatisPlusProject/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBootBatisPlusProject/SpringBootBatisPlusProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBootBatisPlusProject/SpringBootBatisPlusProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBootBatisPlusProject/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBootBatisPlusProject/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBootBatisPlusProject/src/main/java/com/advice/ControllerAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBootBatisPlusProject/src/main/java/com/advice/ControllerAdvice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringProject/src/main/java/com/spring/bean/configuration/BeanConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringProject/src/main/java/com/spring/bean/configuration/BeanConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/.idea/artifacts/WebProject.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/WebProject.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/MyServlet/WEB-INF/HelloWeb-servlet.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/MyServlet/WEB-INF/classes/com/MyServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/MyServlet/WEB-INF/lib/commons-logging-1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/MyServlet/WEB-INF/lib/javax.servlet-api-4.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/MyServlet/WEB-INF/lib/spring-aop-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/MyServlet/WEB-INF/lib/spring-beans-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/MyServlet/WEB-INF/lib/spring-context-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/MyServlet/WEB-INF/lib/spring-core-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/MyServlet/WEB-INF/lib/spring-expression-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/MyServlet/WEB-INF/lib/spring-web-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/MyServlet/WEB-INF/lib/spring-webmvc-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/MyServlet/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/MyServlet/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/WebProject_war_exploded/WEB-INF/HelloWeb-servlet.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/WebProject_war_exploded/WEB-INF/classes/com/MyServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/WebProject_war_exploded/WEB-INF/lib/commons-logging-1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/WebProject_war_exploded/WEB-INF/lib/javax.servlet-api-4.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/WebProject_war_exploded/WEB-INF/lib/spring-aop-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/WebProject_war_exploded/WEB-INF/lib/spring-beans-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/WebProject_war_exploded/WEB-INF/lib/spring-context-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/WebProject_war_exploded/WEB-INF/lib/spring-core-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/WebProject_war_exploded/WEB-INF/lib/spring-expression-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/WebProject_war_exploded/WEB-INF/lib/spring-web-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/WebProject_war_exploded/WEB-INF/lib/spring-webmvc-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/WebProject_war_exploded/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/WebProject_war_exploded/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/WebProject_war_exploded2/WEB-INF/HelloWeb-servlet.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/WebProject_war_exploded2/WEB-INF/classes/com/MyServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/WebProject_war_exploded2/WEB-INF/lib/commons-logging-1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/WebProject_war_exploded2/WEB-INF/lib/javax.servlet-api-4.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/WebProject_war_exploded2/WEB-INF/lib/spring-aop-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/WebProject_war_exploded2/WEB-INF/lib/spring-beans-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/WebProject_war_exploded2/WEB-INF/lib/spring-context-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/WebProject_war_exploded2/WEB-INF/lib/spring-core-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/WebProject_war_exploded2/WEB-INF/lib/spring-expression-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/WebProject_war_exploded2/WEB-INF/lib/spring-web-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/WebProject_war_exploded2/WEB-INF/lib/spring-webmvc-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/WebProject_war_exploded2/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/artifacts/WebProject_war_exploded2/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/out/production/WebProject/com/MyServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/src/com/MyServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/src/com/http/CheckBox.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/src/com/http/FormServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/src/com/http/HelloForm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/src/com/http/HelloFormCookie.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/src/com/http/MyHttpServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/src/com/http/PageHitCounter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/src/com/http/PageRedirect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/src/com/http/ReadCookies.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/src/com/http/ReadParams.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/src/com/http/Refresh.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/src/com/http/SendEmail.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/src/com/http/UploadServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/src/com/http/filter/DisplayHeader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/src/com/http/filter/LogFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/src/com/http/filter/MyFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/src/com/http/listener/MyListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/web/HelloFormCookie.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/web/WEB-INF/HelloWeb-servlet.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/web/WEB-INF/lib/activation.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/web/WEB-INF/lib/commons-fileupload-1.3.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/web/WEB-INF/lib/commons-io-2.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/web/WEB-INF/lib/commons-logging-1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/web/WEB-INF/lib/javax.servlet-api-4.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/web/WEB-INF/lib/mail.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/web/WEB-INF/lib/spring-aop-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/web/WEB-INF/lib/spring-beans-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/web/WEB-INF/lib/spring-context-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/web/WEB-INF/lib/spring-core-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/web/WEB-INF/lib/spring-expression-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/web/WEB-INF/lib/spring-web-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/web/WEB-INF/lib/spring-webmvc-5.1.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/web/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/web/checkbox.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/web/form.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/web/hello.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/web/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/web/message.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/web/readparams.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WebProject/web/upload.jsp" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -63,6 +174,8 @@
       <list>
         <option value="AnnotationType" />
         <option value="Interface" />
+        <option value="Kotlin Enum" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -90,19 +203,25 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MyCreateTable" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.myproject.exception" />
       <recent name="com.myproject.controller" />
       <recent name="com.myproject" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\github\MyProject\src\main\java\com\myproject\jdbctemplate\bean" />
+      <recent name="D:\github\MyProject\src\main\java\com\myproject\jdbc\bean" />
       <recent name="D:\project\MyProject\src\main\java\com\myproject\vo" />
       <recent name="D:\project\MyProject\src\main\java\com\myproject\service" />
       <recent name="D:\project\MyProject\src\main\java\com\myproject\bean" />
-      <recent name="D:\project\MyProject\src\main\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -118,23 +237,47 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.Application">
-    <configuration name="AppTest.myTest1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="JdbcMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.myproject.jdbctemplate.main.JdbcMain" />
       <module name="MyProject" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="MyProject.*" />
+          <option name="PATTERN" value="com.myproject.jdbctemplate.main.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="MyProject" />
-      <option name="MAIN_CLASS_NAME" value="MyProject.AppTest" />
-      <option name="METHOD_NAME" value="myTest1" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AppTest.myTest2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="JdbcMain2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.myproject.jdbc.main.JdbcMain2" />
+      <module name="MyProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.myproject.jdbctemplate.main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyTest4" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.myproject.test.MyTest4" />
+      <module name="MyProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.myproject.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MyProject.Test" />
       <module name="MyProject" />
       <extension name="coverage">
         <pattern>
@@ -142,10 +285,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="MyProject" />
-      <option name="MAIN_CLASS_NAME" value="MyProject.AppTest" />
-      <option name="METHOD_NAME" value="myTest2" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -166,8 +305,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.Application" />
-        <item itemvalue="JUnit.AppTest.myTest2" />
-        <item itemvalue="JUnit.AppTest.myTest1" />
+        <item itemvalue="Application.Test" />
+        <item itemvalue="Application.JdbcMain2" />
+        <item itemvalue="Application.JdbcMain" />
+        <item itemvalue="Application.MyTest4" />
       </list>
     </recent_temporary>
   </component>
@@ -193,7 +334,32 @@
       <workItem from="1603759988567" duration="21142000" />
       <workItem from="1603870499551" duration="15911000" />
       <workItem from="1604191239959" duration="17934000" />
-      <workItem from="1604456523137" duration="2842000" />
+      <workItem from="1604456523137" duration="3249000" />
+      <workItem from="1604558550512" duration="10298000" />
+      <workItem from="1604882853315" duration="2472000" />
+      <workItem from="1604968709238" duration="2915000" />
+      <workItem from="1605141507254" duration="2547000" />
+      <workItem from="1605227845443" duration="3741000" />
+      <workItem from="1605402698995" duration="4295000" />
+      <workItem from="1605610496502" duration="1698000" />
+      <workItem from="1605660068627" duration="18000" />
+      <workItem from="1605691213545" duration="6000" />
+      <workItem from="1605751467291" duration="6024000" />
+      <workItem from="1606011175323" duration="1819000" />
+      <workItem from="1606097147197" duration="38650000" />
+      <workItem from="1606350811434" duration="7431000" />
+      <workItem from="1606638459808" duration="45608000" />
+      <workItem from="1607389828515" duration="1856000" />
+      <workItem from="1607393595962" duration="2021000" />
+      <workItem from="1607421279792" duration="6377000" />
+      <workItem from="1607581699012" duration="29331000" />
+      <workItem from="1607935193455" duration="7335000" />
+      <workItem from="1607999475981" duration="1572000" />
+      <workItem from="1608620364758" duration="1221000" />
+      <workItem from="1611736390031" duration="9000" />
+      <workItem from="1612314251869" duration="25000" />
+      <workItem from="1615167265897" duration="60000" />
+      <workItem from="1615167455632" duration="23000" />
     </task>
     <task id="LOCAL-00001" summary="modify getAllWord controller">
       <created>1603872165427</created>
@@ -286,7 +452,168 @@
       <option name="project" value="LOCAL" />
       <updated>1604454419830</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="添加jdbctemplate配置">
+      <created>1606112766919</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1606112766919</updated>
+    </task>
+    <task id="LOCAL-00015" summary="新增导数据逻辑接口，新增controlleradvice badresponseexception">
+      <created>1606208299854</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1606208299854</updated>
+    </task>
+    <task id="LOCAL-00016" summary="modify controller">
+      <created>1606462608820</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1606462608820</updated>
+    </task>
+    <task id="LOCAL-00017" summary="modify insert data logic">
+      <created>1606463311528</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1606463311528</updated>
+    </task>
+    <task id="LOCAL-00018" summary="modify notes">
+      <created>1606463408512</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1606463408512</updated>
+    </task>
+    <task id="LOCAL-00019" summary="modify interface">
+      <created>1606463482794</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1606463482794</updated>
+    </task>
+    <task id="LOCAL-00020" summary="modify logic">
+      <created>1606465957147</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1606465957147</updated>
+    </task>
+    <task id="LOCAL-00021" summary="delete redundancy code">
+      <created>1606638709156</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1606638709156</updated>
+    </task>
+    <task id="LOCAL-00022" summary="add controller">
+      <created>1606784330087</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1606784330087</updated>
+    </task>
+    <task id="LOCAL-00023" summary="modify properties">
+      <created>1606784454739</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1606784454740</updated>
+    </task>
+    <task id="LOCAL-00024" summary="修改导数据逻辑">
+      <created>1606900800172</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1606900800172</updated>
+    </task>
+    <task id="LOCAL-00025" summary="modify data source">
+      <created>1607045484405</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1607045484405</updated>
+    </task>
+    <task id="LOCAL-00026" summary="modify data source">
+      <created>1607046453868</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1607046453868</updated>
+    </task>
+    <task id="LOCAL-00027" summary="add log">
+      <created>1607047777632</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1607047777632</updated>
+    </task>
+    <task id="LOCAL-00028" summary="add log">
+      <created>1607048093246</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1607048093247</updated>
+    </task>
+    <task id="LOCAL-00029" summary="modify log">
+      <created>1607048133535</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1607048133535</updated>
+    </task>
+    <task id="LOCAL-00030" summary="modify table construction">
+      <created>1607427630389</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1607427630389</updated>
+    </task>
+    <task id="LOCAL-00031" summary="add swagger config">
+      <created>1607477064724</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1607477064724</updated>
+    </task>
+    <task id="LOCAL-00032" summary="modify pom, add servlet dependency">
+      <created>1607503280654</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1607503280654</updated>
+    </task>
+    <task id="LOCAL-00033" summary="modify dataexchangeimpl class">
+      <created>1607588176951</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1607588176951</updated>
+    </task>
+    <task id="LOCAL-00034" summary="modify sql">
+      <created>1607935345040</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1607935345040</updated>
+    </task>
+    <task id="LOCAL-00035" summary="modify sql">
+      <created>1607935646753</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1607935646753</updated>
+    </task>
+    <task id="LOCAL-00036" summary="add application.yaml">
+      <created>1608002634779</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1608002634779</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -306,18 +633,67 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="modify getAllWord controller" />
-    <MESSAGE value="remove controller" />
-    <MESSAGE value="remove file" />
-    <MESSAGE value="modify word controller" />
-    <MESSAGE value="add getAllSentence Controller" />
-    <MESSAGE value="remove student refer" />
     <MESSAGE value="add feign dependency" />
     <MESSAGE value="modify dependency" />
     <MESSAGE value="add getAllMean controller" />
     <MESSAGE value="modify swagger config" />
     <MESSAGE value="delete swagger config" />
+    <MESSAGE value="添加jdbctemplate配置" />
+    <MESSAGE value="新增导数据逻辑接口，新增controlleradvice badresponseexception" />
+    <MESSAGE value="modify controller" />
+    <MESSAGE value="modify insert data logic" />
+    <MESSAGE value="modify notes" />
+    <MESSAGE value="modify interface" />
+    <MESSAGE value="modify logic" />
+    <MESSAGE value="delete redundancy code" />
+    <MESSAGE value="add controller" />
+    <MESSAGE value="modify properties" />
+    <MESSAGE value="修改导数据逻辑" />
+    <MESSAGE value="modify data source" />
+    <MESSAGE value="add log" />
+    <MESSAGE value="modify log" />
+    <MESSAGE value="modify table construction" />
     <MESSAGE value="add swagger config" />
-    <option name="LAST_COMMIT_MESSAGE" value="add swagger config" />
+    <MESSAGE value="modify pom, add servlet dependency" />
+    <MESSAGE value="modify dataexchangeimpl class" />
+    <MESSAGE value="modify sql" />
+    <MESSAGE value="add application.yaml" />
+    <option name="LAST_COMMIT_MESSAGE" value="add application.yaml" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/myproject/controller/PlayerController.java</url>
+          <line>125</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/myproject/jdbctemplate/main/JdbcMain.java</url>
+          <line>20</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/myproject/service/impl/WordImpl.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/myproject/exception/BadResponseException.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/myproject/advice/ControllerAdvice.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/myproject/service/impl/DataExchangeImpl.java</url>
+          <line>236</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -60,6 +60,7 @@ public class MyBatisService extends ServiceImpl<PlayerMapper, Player> {
 
     public Person queryByEx(Integer id) {
         Person person = personMapperEx.selectOne(Wrappers.<Person>lambdaQuery().eq(Person::getId, id));
+        Person person1 = personMapperEx.selectOne(Wrappers.lambdaQuery());
         return person;
     }
 }

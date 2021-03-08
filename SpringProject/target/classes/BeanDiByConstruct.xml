@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="textEditorByConstruct" class="com.spring.bean.di.byConstruct.TextEditorByConstruct" autowire="constructor">
+        <constructor-arg value="Generic Text Editor"></constructor-arg>
+    </bean>
+
+    <bean id="byConstruct" class="com.spring.bean.di.byConstruct.SpellCheckByConstruct">
+    </bean>
+</beans>

@@ -12,6 +12,8 @@ public class BeanConfiguration {
 
     @Bean(initMethod = "init", destroyMethod = "destroy")
     public MyDestroyBean2 myDestroyBean2() {
+        System.out.println("testtesttest");
+        System.out.println("test");
         return new MyDestroyBean2();
     }
 }

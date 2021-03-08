@@ -24,12 +24,12 @@ public class ControllerAdvice {
 //        return map;
 //    }
 
-    @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ResponseBody
-    public ResultBean<Object> handleException(Exception ex) {
-        log.error(COMMON_ERROR_FORMAT, ex.getClass(), ex.getMessage(), ex.getCause(), ex.getStackTrace());
-        ResultBean resultBean = new ResultBean();
-        return ResponseWrapper.resp(ErrorCodeEnum.GL909500.code(), ex.getMessage());
-    }
+//    @ExceptionHandler(Exception.class)
+//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//    @ResponseBody
+//    public ResultBean<Object> handleException(Exception ex) {
+//        log.error(COMMON_ERROR_FORMAT, ex.getClass(), ex.getMessage(), ex.getCause(), ex.getStackTrace());
+//        ResultBean resultBean = new ResultBean();
+//        return ResponseWrapper.resp(ErrorCodeEnum.GL909500.code(), ex.getMessage());
+//    }
 }

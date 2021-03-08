@@ -1,0 +1,13 @@
+server:
+  port: 8888
+spring:
+  datasource:
+    one:
+      type: com.alibaba.druid.pool.DruidDataSource
+      url: jdbc:mysql://127.0.0.1:3306/mysql?useUnicode=true&characterEncoding=utf8
+      username: root
+      password: aaaa
+    username: root
+    password: aaaa
+    url: jdbc:mysql://127.0.0.1:3306/mysql?characterEncoding=UTF8
+    driver-class-name: com.mysql.jdbc.Driver #直接打mysql会有提示
