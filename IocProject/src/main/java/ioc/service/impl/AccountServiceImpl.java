@@ -5,9 +5,13 @@ import ioc.bean.IgtTaskBasic;
 import ioc.repository.TaskBasicRepository;
 import ioc.service.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 @Service
+//@Component("accountService")
 public class AccountServiceImpl implements IAccountService {
 
     @Autowired
