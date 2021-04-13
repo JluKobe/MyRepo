@@ -21,4 +21,6 @@ public class CleanDirectory {
     private String taskname;
 
     private String catalogcode;
+
+    private String updateTime;
 }

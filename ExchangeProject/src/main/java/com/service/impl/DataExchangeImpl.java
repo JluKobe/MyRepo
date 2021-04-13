@@ -85,6 +85,9 @@ public class DataExchangeImpl implements IDataExchange {
     @Autowired
     private IgtQuestionRepository igtQuestionRepository;
 
+    @Autowired
+    SnowflakeManager snowflakeManager;
+
     /**
      * 准生产环境，数据导入 igt_task_v1 新表
      * @param vo
@@ -141,7 +144,8 @@ public class DataExchangeImpl implements IDataExchange {
 
         //3 查询clean_dn_task_directory得到task_name
         CleanDirectory cleanDirectory = cleanDirectoryRepository.selectOne(Wrappers.<CleanDirectory>lambdaQuery()
-                .eq(CleanDirectory::getCatalogcode, cleanBasic.getCatalogcode()));
+                .eq(CleanDirectory::getCatalogcode, cleanBasic.getCatalogcode())
+                .orderByDesc(CleanDirectory::getUpdateTime).last("limit 1"));
 
         //4 根据得到数据，在igt_task_basic新增数据，基本信息
         updateTaskBasic(cleanBasic, cleanExtend, cleanDirectory, vo);
@@ -246,7 +250,8 @@ public class DataExchangeImpl implements IDataExchange {
 
         //3 查询clean_dn_task_directory得到task_name
         CleanDirectory cleanDirectory = cleanDirectoryRepository.selectOne(Wrappers.<CleanDirectory>lambdaQuery()
-                .eq(CleanDirectory::getCatalogcode, cleanPublicBasic.getCatalogcode()));
+                .eq(CleanDirectory::getCatalogcode, cleanPublicBasic.getCatalogcode())
+                .orderByDesc(CleanDirectory::getUpdateTime).last("limit 1"));
 
         //4 根据得到数据，在igt_task_basic新增数据，基本信息
         updatePublicBasic(cleanPublicBasic, cleanPublicExtend, cleanDirectory, vo);
@@ -308,7 +313,7 @@ public class DataExchangeImpl implements IDataExchange {
 
         if(igtTaskBasic == null) {
             IgtTaskBasic igtTaskBasicObj = IgtTaskBasic.builder()
-                    .id(cleanPublicBasic.getId())
+                    .id(String.valueOf(snowflakeManager.getSnowFlakeId()))
                     .catalogCode(cleanPublicBasic.getCatalogcode())
                     .catalogName(cleanDirectory.getTaskname())
                     .createOrgId(vo.getCreateOrgId())
@@ -423,7 +428,7 @@ public class DataExchangeImpl implements IDataExchange {
 
         if(igtTaskBasic == null) {
             IgtTaskBasic igtTaskBasicObj = IgtTaskBasic.builder()
-                    .id(cleanBasic.getId())
+                    .id(String.valueOf(snowflakeManager.getSnowFlakeId()))
                     .catalogCode(cleanBasic.getCatalogcode())
                     .catalogName(cleanDirectory.getTaskname())
                     .createOrgId(vo.getCreateOrgId())
@@ -536,7 +541,7 @@ public class DataExchangeImpl implements IDataExchange {
 
         if(igtTaskExtend == null) {
             IgtTaskExtend igtTaskExtendObj = IgtTaskExtend.builder()
-                    .id(cleanPublicBasic.getId())
+                    .id(String.valueOf(snowflakeManager.getSnowFlakeId()))
                     .acceptCondition(cleanPublicBasic.getAcceptcondition())
                     .anticipateDay(cleanPublicBasic.getAnticipateday())
                     .anticipateExplain(cleanPublicBasic.getAnticipateexplain())
@@ -639,7 +644,7 @@ public class DataExchangeImpl implements IDataExchange {
 
         if(igtTaskExtend == null) {
             IgtTaskExtend igtTaskExtendObj = IgtTaskExtend.builder()
-                    .id(cleanExtend.getId())
+                    .id(String.valueOf(snowflakeManager.getSnowFlakeId()))
                     .acceptCondition(cleanBasic.getAcceptcondition())
                     .anticipateDay(cleanBasic.getAnticipateday())
                     .anticipateExplain(cleanBasic.getAnticipateexplain())
@@ -740,7 +745,7 @@ public class DataExchangeImpl implements IDataExchange {
 
         for(CleanPublicMaterial cleanMaterial : cleanPublicMaterialList) {
             IgtTaskMaterial igtTaskMaterial = IgtTaskMaterial.builder()
-                    .id(cleanMaterial.getId())
+                    .id(String.valueOf(snowflakeManager.getSnowFlakeId()))
                     .areaCode(cleanPublicBasic.getAreacode())
                     .acceptStand(cleanMaterial.getAcceptstand())
                     .byLaw(cleanMaterial.getBylaw())
@@ -777,7 +782,7 @@ public class DataExchangeImpl implements IDataExchange {
 
         for(CleanMaterial cleanMaterial : cleanMaterialList) {
             IgtTaskMaterial igtTaskMaterial = IgtTaskMaterial.builder()
-                    .id(cleanMaterial.getId())
+                    .id(String.valueOf(snowflakeManager.getSnowFlakeId()))
                     .areaCode(cleanBasic.getAreacode())
                     .acceptStand(cleanMaterial.getAcceptstand())
                     .byLaw(cleanMaterial.getBylaw())
@@ -814,7 +819,7 @@ public class DataExchangeImpl implements IDataExchange {
 
         for(CleanItemCondition cleanItemCondition : cleanItemConditionList) {
             IgtTaskCondition igtTaskCondition = IgtTaskCondition.builder()
-                    .id(cleanItemCondition.getId())
+                    .id(String.valueOf(snowflakeManager.getSnowFlakeId()))
                     .conditionDesc(cleanItemCondition.getConditionDesc())
                     .conditionGuid(cleanItemCondition.getRowguid())
                     .conditionName(cleanItemCondition.getConditionName())
@@ -837,7 +842,7 @@ public class DataExchangeImpl implements IDataExchange {
 
         for(CleanFeeProject cleanFeeProject : cleanFeeProjectList) {
             IgtTaskFee igtTaskFee = IgtTaskFee.builder()
-                    .id(cleanFeeProject.getId())
+                    .id(String.valueOf(snowflakeManager.getSnowFlakeId()))
                     .createOrgId(vo.getCreateOrgId())
                     .createTime(currentTime)
                     .createUserId(vo.getCreateUserId())
@@ -864,7 +869,7 @@ public class DataExchangeImpl implements IDataExchange {
 
         for(CleanQuestions cleanQuestions : cleanQuestionsList) {
             IgtTaskQuestion igtTaskQuestion = IgtTaskQuestion.builder()
-                    .id(cleanQuestions.getId())
+                    .id(String.valueOf(snowflakeManager.getSnowFlakeId()))
                     .createOrgId(vo.getCreateOrgId())
                     .createTime(currentTime)
                     .createUserId(vo.getCreateUserId())
@@ -887,7 +892,7 @@ public class DataExchangeImpl implements IDataExchange {
 
         for(CleanPublicFeeProject cleanPublicFeeProject : cleanPublicFeeProjectList) {
             IgtTaskFee igtTaskFee = IgtTaskFee.builder()
-                    .id(cleanPublicFeeProject.getId())
+                    .id(String.valueOf(snowflakeManager.getSnowFlakeId()))
                     .createOrgId(vo.getCreateOrgId())
                     .createTime(currentTime)
                     .createUserId(vo.getCreateUserId())
@@ -920,7 +925,7 @@ public class DataExchangeImpl implements IDataExchange {
 
         for(CleanMaterialCondition cleanMaterialCondition : cleanMaterialConditionList) {
             IgtTaskConditionMaterial igtTaskConditionMaterial = IgtTaskConditionMaterial.builder()
-                    .id(cleanMaterialCondition.getId())
+                    .id(String.valueOf(snowflakeManager.getSnowFlakeId()))
                     .conditionGuid(cleanMaterialCondition.getConditionGuid())
                     .createOrgId(vo.getCreateOrgId())
                     .createTime(currentTime)
@@ -940,7 +945,7 @@ public class DataExchangeImpl implements IDataExchange {
 
         for(CleanPublicQuestions cleanPublicQuestions : cleanPublicQuestionsList) {
             IgtTaskQuestion igtTaskQuestion = IgtTaskQuestion.builder()
-                    .id(cleanPublicQuestions.getId())
+                    .id(String.valueOf(snowflakeManager.getSnowFlakeId()))
                     .createOrgId(vo.getCreateOrgId())
                     .createTime(currentTime)
                     .createUserId(vo.getCreateUserId())

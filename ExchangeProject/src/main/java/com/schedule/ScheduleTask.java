@@ -2,6 +2,7 @@ package com.schedule;
 
 import com.bean.vo.ExchangeTaskHandleItemVo;
 import com.service.IDataExchange;
+import com.service.impl.SnowflakeManager;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,6 +23,8 @@ import java.util.List;
 @EnableScheduling   // 2.开启定时任务
 @Slf4j
 public class ScheduleTask {
+    @Autowired
+    SnowflakeManager snowflakeManager;
 //
 //    @Value("${task.handle.item}")
 //    private String taskHandleItemList;
@@ -52,6 +55,12 @@ public class ScheduleTask {
 //                .taskHandleItemList(taskHandleItemList)
 //                .build();
 //        iDataExchange.doBusiness(vo);
+//    }
+//
+//    @Scheduled(cron = "0/5 * * * * ?")
+//    public void test() {
+//        Long id = snowflakeManager.getSnowFlakeId();
+//        System.out.println(id);
 //    }
 //
 //    public List getTaskHandleItemList() {
