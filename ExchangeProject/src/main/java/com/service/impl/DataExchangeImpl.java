@@ -147,6 +147,11 @@ public class DataExchangeImpl implements IDataExchange {
                 .eq(CleanDirectory::getCatalogcode, cleanBasic.getCatalogcode())
                 .orderByDesc(CleanDirectory::getUpdateTime).last("limit 1"));
 
+        if(cleanDirectory == null) {
+            cleanDirectory = new CleanDirectory();
+            cleanDirectory.setTaskname("");
+        }
+
         //4 根据得到数据，在igt_task_basic新增数据，基本信息
         updateTaskBasic(cleanBasic, cleanExtend, cleanDirectory, vo);
 
@@ -252,6 +257,10 @@ public class DataExchangeImpl implements IDataExchange {
         CleanDirectory cleanDirectory = cleanDirectoryRepository.selectOne(Wrappers.<CleanDirectory>lambdaQuery()
                 .eq(CleanDirectory::getCatalogcode, cleanPublicBasic.getCatalogcode())
                 .orderByDesc(CleanDirectory::getUpdateTime).last("limit 1"));
+        if(cleanDirectory == null) {
+            cleanDirectory = new CleanDirectory();
+            cleanDirectory.setTaskname("");
+        }
 
         //4 根据得到数据，在igt_task_basic新增数据，基本信息
         updatePublicBasic(cleanPublicBasic, cleanPublicExtend, cleanDirectory, vo);
