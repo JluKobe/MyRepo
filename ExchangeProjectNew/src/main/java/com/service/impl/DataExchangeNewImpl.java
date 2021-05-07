@@ -102,6 +102,34 @@ public class DataExchangeNewImpl implements IDateExchangeNew {
         long start = System.currentTimeMillis();
         List<String> taskGuidList = new ArrayList<>();
 
+        //业务办理项分段处理，每次处理500个
+        int count = 0;
+        int splitCount = 500;
+        int temp = 500;
+
+        if(taskHandleItemList.size() <= splitCount) {
+            taskGuidList.addAll(doExchange(taskHandleItemList));
+        }
+
+        else {
+            List<String> taskHandleItemTempList;
+
+            while(taskHandleItemList.size() > splitCount) {
+                taskHandleItemTempList = taskHandleItemList.subList(count, splitCount);
+                taskGuidList.addAll(doExchange(taskHandleItemTempList));
+                count = splitCount;
+                splitCount = splitCount + temp;
+            }
+
+            taskHandleItemTempList = taskHandleItemList.subList(count, taskHandleItemList.size());
+            taskGuidList.addAll(doExchange(taskHandleItemTempList));
+        }
+
+        log.info("数据导入 end, {}", System.currentTimeMillis() - start);
+        return null;
+    }
+
+    public List<String> doExchange(List<String> taskHandleItemList) {
         //使用db2
         DbContextHolder.setDbType(DBTypeEnum.DB2);
 
@@ -147,8 +175,6 @@ public class DataExchangeNewImpl implements IDateExchangeNew {
         //查询 clean_dn_task_directory
         List<CleanDirectory> cleanDirectoryList = getCleanDirectoryList(cleanBasicList, cleanPublicBasicList);
 
-
-        log.info("数据导入 end, {}", System.currentTimeMillis() - start);
         return null;
     }
 
