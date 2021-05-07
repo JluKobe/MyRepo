@@ -369,7 +369,7 @@ public class DataExchangeImpl implements IDataExchange {
                     .updateUserId(vo.getUpdateUserId())
                     .useLevel(cleanPublicBasic.getUselevel())
                     .version(vo.getVersion())
-                    .acceptCenterCode("220000000000_TE22000033606280YW")
+                    .acceptCenterCode("220000000000_12220000MB0233162P")
                     .isFee(cleanPublicBasic.getIsfee())
                     .feeBasis(cleanPublicBasic.getFeebasis())
                     .areaCode(cleanPublicBasic.getAreacode())
@@ -415,7 +415,7 @@ public class DataExchangeImpl implements IDataExchange {
             igtTaskBasic.setUpdateTime(currentTime);
             igtTaskBasic.setUseLevel(cleanPublicBasic.getUselevel());
             igtTaskBasic.setVersion(vo.getVersion());
-            igtTaskBasic.setAcceptCenterCode("220000000000_TE22000033606280YW");
+            igtTaskBasic.setAcceptCenterCode("220000000000_12220000MB0233162P");
             igtTaskBasic.setIsFee(cleanPublicBasic.getIsfee());
             igtTaskBasic.setFeeBasis(cleanPublicBasic.getFeebasis());
             igtTaskBasic.setAreaCode(cleanPublicBasic.getAreacode());
@@ -484,7 +484,7 @@ public class DataExchangeImpl implements IDataExchange {
                     .updateUserId(vo.getUpdateUserId())
                     .useLevel(cleanBasic.getUselevel())
                     .version(vo.getVersion())
-                    .acceptCenterCode("220000000000_TE22000033606280YW")
+                    .acceptCenterCode("220000000000_12220000MB0233162P")
                     .isFee(cleanBasic.getIsfee())
                     .feeBasis(cleanBasic.getFeebasis())
                     .areaCode(cleanBasic.getAreacode())
@@ -530,7 +530,7 @@ public class DataExchangeImpl implements IDataExchange {
             igtTaskBasic.setUpdateTime(currentTime);
             igtTaskBasic.setUseLevel(cleanBasic.getUselevel());
             igtTaskBasic.setVersion(vo.getVersion());
-            igtTaskBasic.setAcceptCenterCode("220000000000_TE22000033606280YW");
+            igtTaskBasic.setAcceptCenterCode("220000000000_12220000MB0233162P");
             igtTaskBasic.setIsFee(cleanBasic.getIsfee());
             igtTaskBasic.setFeeBasis(cleanBasic.getFeebasis());
             igtTaskBasic.setAreaCode(cleanBasic.getAreacode());
