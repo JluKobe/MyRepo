@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>  
+    <contextName>|</contextName>
+    <property name="logback.logdir" value="d:/log"/>
+    <property name="logback.appname" value="DataExchange"/>
+s
+    <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{HH:mm:ss.SSS} %contextName %-5level %logger{36} - %msg%n</pattern>
+        </layout>
+    </appender>
+    <appender name="appInfoLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${logback.logdir}/${logback.appname}.info.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${logback.logdir}/${logback.appname}.info.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <maxHistory>90</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>50MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="appErrorLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${logback.logdir}/${logback.appname}.error.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${logback.logdir}/${logback.appname}.error.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <maxHistory>90</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>50MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+            <charset>utf-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>error</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <logger name="com.xiangyun.security.oauth2.mapper" level="DEBUG" />
+    <logger name="org.springframework.web" level="INFO"/>
+    <logger name="org.springframework.security" level="ERROR"/>
+    <logger name="org.springframework.security" level="INFO"/>
+    <logger name="org.springframework" level="ERROR"/>
+    <logger name="org.springframework.cloud" level="DEBUG"/>
+    <root level="INFO">
+        <appender-ref ref="consoleLog" />
+        <appender-ref ref="appInfoLog" />
+        <appender-ref ref="appErrorLog" />
+    </root>
+</configuration>
