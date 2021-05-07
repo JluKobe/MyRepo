@@ -2,28 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04abfb22-9091-4727-b1f0-8d5d60b75e81" name="Default Changelist" comment="add swagger config">
-      <change afterPath="$PROJECT_DIR$/../NiuKe/src/main/java/niuke/tree/LO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../NiuKe/src/main/java/niuke/tree/ReConstructBinaryTree.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../NiuKe/src/main/java/test/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../NiuKe/src/main/java/test/Main2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../NiuKe/src/main/java/test/Main3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ai/src/main/java/Ai/Knn/Knn.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Ai/src/main/java/Ai/Knn/Knn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ExchangeProjectNew/ExchangeProject.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ExchangeProjectNew/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../ExchangeProjectNew/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/Application.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/config/MybatisPlusConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/config/MybatisPlusConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/controller/DataExchangeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/controller/DataExchangeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/enums/DBTypeEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/enums/DBTypeEnum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/schedule/ScheduleTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/schedule/ScheduleTask.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/service/IDataExchange.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/service/IDataExchange.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/service/impl/DataExchangeImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ExchangeProjectNew/target/classes/com/service/impl/DataExchangeImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MyBatisPlusProject/src/main/java/mybatis/service/MyBatisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MyBatisPlusProject/src/main/java/mybatis/service/MyBatisService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../IocProject/src/main/java/ioc/bean/di/byname/StudentByName1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../IocProject/src/main/java/ioc/bean/di/byname/StudentByName2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../IocProject/src/main/java/ioc/bean/di/byname/StudentByName3.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../IocProject/src/main/java/ioc/bean/di/byname/StudentByName4.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../IocProject/src/main/java/ioc/bean/di/byname/StudentByName5.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../IocProject/src/main/java/ioc/bean/di/byname/StudentByName6.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../IocProject/src/main/java/ioc/bean/di/byname/StudentByName7.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../IocProject/src/main/java/ioc/service/main/ByName.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../IocProject/src/main/resources/BeanDiByName.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IocProject/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../IocProject/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NacosProvider/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../NacosProvider/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NiuKe/src/main/java/niuke/tree/TreeNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/../NiuKe/src/main/java/niuke/tree/TreeNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NiuKe/src/main/java/test/Test5.java" beforeDir="false" afterPath="$PROJECT_DIR$/../NiuKe/src/main/java/test/Test5.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/MyProject/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/MyProject/AppTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myproject/jdbctemplate/config/DataSourceConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myproject/jdbctemplate/config/DataSourceConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/META-INF/MyProject.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/MyProject/AppTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/MyProject/AppTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ServletProject/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../ServletProject/.idea/artifacts/ServletProject_war_exploded.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../ServletProject/.idea/misc.xml" beforeDir="false" />
@@ -57,11 +50,8 @@
       <change beforePath="$PROJECT_DIR$/../ServletProject/web/WEB-INF/lib/spring-webmvc-5.1.7.RELEASE.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../ServletProject/web/WEB-INF/web.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../ServletProject/web/index.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpringBootBatisPlusProject/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBootBatisPlusProject/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpringBootBatisPlusProject/SpringBootBatisPlusProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBootBatisPlusProject/SpringBootBatisPlusProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpringBootBatisPlusProject/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBootBatisPlusProject/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpringBootBatisPlusProject/src/main/java/com/advice/ControllerAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBootBatisPlusProject/src/main/java/com/advice/ControllerAdvice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpringProject/src/main/java/com/spring/bean/configuration/BeanConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringProject/src/main/java/com/spring/bean/configuration/BeanConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringProject/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringProject/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringProject/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringProject/target/classes/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../WebProject/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../WebProject/.idea/artifacts/WebProject.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../WebProject/.idea/misc.xml" beforeDir="false" />
@@ -236,39 +226,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.Application">
-    <configuration name="JdbcMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.myproject.jdbctemplate.main.JdbcMain" />
-      <module name="MyProject" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.myproject.jdbctemplate.main.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.AppTest.test1">
     <configuration name="JdbcMain2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.myproject.jdbc.main.JdbcMain2" />
       <module name="MyProject" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.myproject.jdbctemplate.main.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MyTest4" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.myproject.test.MyTest4" />
-      <module name="MyProject" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.myproject.test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -289,6 +253,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="AppTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MyProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="MyProject.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="MyProject" />
+      <option name="MAIN_CLASS_NAME" value="MyProject.AppTest" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppTest.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MyProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="MyProject.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="MyProject" />
+      <option name="MAIN_CLASS_NAME" value="MyProject.AppTest" />
+      <option name="METHOD_NAME" value="test1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="MyProject" />
       <extension name="coverage">
@@ -304,11 +300,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AppTest.test1" />
+        <item itemvalue="JUnit.AppTest.test" />
         <item itemvalue="Spring Boot.Application" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.JdbcMain2" />
-        <item itemvalue="Application.JdbcMain" />
-        <item itemvalue="Application.MyTest4" />
       </list>
     </recent_temporary>
   </component>
@@ -360,6 +356,8 @@
       <workItem from="1612314251869" duration="25000" />
       <workItem from="1615167265897" duration="60000" />
       <workItem from="1615167455632" duration="23000" />
+      <workItem from="1615968069545" duration="1704000" />
+      <workItem from="1616027946339" duration="5387000" />
     </task>
     <task id="LOCAL-00001" summary="modify getAllWord controller">
       <created>1603872165427</created>
@@ -659,41 +657,5 @@
     <MESSAGE value="modify sql" />
     <MESSAGE value="add application.yaml" />
     <option name="LAST_COMMIT_MESSAGE" value="add application.yaml" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/myproject/controller/PlayerController.java</url>
-          <line>125</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/myproject/jdbctemplate/main/JdbcMain.java</url>
-          <line>20</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/myproject/service/impl/WordImpl.java</url>
-          <line>43</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/myproject/exception/BadResponseException.java</url>
-          <line>21</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/myproject/advice/ControllerAdvice.java</url>
-          <line>21</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/myproject/service/impl/DataExchangeImpl.java</url>
-          <line>236</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
